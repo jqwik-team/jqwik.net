@@ -5,3 +5,4 @@ show_downloads: false
 plugins:
   - jekyll-remote-theme
   - jekyll-redirect-from
+theme: jekyll-theme-slate
