@@ -2984,10 +2984,10 @@ the variables.
 
 ## Stateful Testing
 
-_*The approach described here has been freshly introduced in version 1.7.0.
+***The approach described here has been freshly introduced in version 1.7.0.
 It is still marked "experimental" but will probably be promoted to default in
 one of the next minor versions of jqwik.
-You can also read about [the old way of stateful testing](#stateful-testing-old-approach).*_
+You can also read about [the old way of stateful testing](#stateful-testing-old-approach).***
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
@@ -3219,8 +3219,8 @@ org.opentest4j.AssertionFailedError:
 
 ## Stateful Testing (Old Approach)
 
-_*As of version 1.7.0 jqwik comes with a [new approach to stateful testing](#stateful-testing).
-What is described in this chapter will probably be deprecated in one of the next minor versions.*_
+***As of version 1.7.0 jqwik comes with a [new approach to stateful testing](#stateful-testing).
+What is described in this chapter will probably be deprecated in one of the next minor versions.***
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
