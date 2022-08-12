@@ -1,7 +1,7 @@
 ---
 title: jqwik Release Notes
 ---
- 
+
 # Release Notes
 
 <!-- use `doctoc --maxlevel 2 release-notes.md` to recreate the TOC -->
@@ -27,6 +27,10 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
+- A [new and more powerful approach to stateful testing](/docs/1.7.0/user-guide.html#stateful-testing)
+  has been introduced into jqwik.
+  It's still "experimental" but supposed to be propagated to "stable" very soon.
+
 - Promoted APIs from `EXPERIMENTAL` to `MAINTAINED`:
     - `net.jqwik.api.ArbitrarySupplier`
     - `net.jqwik.api.Arbitraries.subsetOf(Collection<T>)`
@@ -42,7 +46,7 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
-- [Default configuration](https://jqwik.net/docs/current/user-guide.html#jqwik-configuration) 
+- [Default configuration](/docs/1.7.0/user-guide.html#jqwik-configuration)
   for `jqwik.failures.after.default` is now `SAMPLE_FIRST`.
   Set it to `PREVIOUS_SEED` if you want the behaviour of jqwik < 1.7.
 
@@ -101,12 +105,12 @@ and <a href="/docs/1.6.5/kdoc/index.html">kdoc</a>
 
 #### New and Enhanced Features
 
-- After-execution sample will only be reported if there are _visible differences_ 
+- After-execution sample will only be reported if there are _visible differences_
   to the before-execution sample.
 
 #### Breaking Changes
 
-- The return type of `@Provide` methods in subclasses of `DomainContextBase` 
+- The return type of `@Provide` methods in subclasses of `DomainContextBase`
   can no longer be supertypes of the target type to match.
   For example `Arbitrary<List<?>>` will no longer match target type `List<String>``
 
@@ -163,18 +167,18 @@ and <a href="/docs/1.6.3/kdoc/index.html">kdoc</a>
 
 - Upgraded to Kotlin 1.6.10.
 
-- `@ForAll` and `@From` now support 
-  [arbitrary suppliers](/docs/1.6.3/user-guide.html#arbitrary-suppliers) 
+- `@ForAll` and `@From` now support
+  [arbitrary suppliers](/docs/1.6.3/user-guide.html#arbitrary-suppliers)
   through a `supplier` attribute.
 
-- Changed [Lifecycle Storage API](/docs/1.6.3/user-guide.html#lifecycle-storage) 
+- Changed [Lifecycle Storage API](/docs/1.6.3/user-guide.html#lifecycle-storage)
   so that stored values can now implement `Store.CloseOnReset` if they need closing action.
 
 - Added capability to automatically resolve Arbitrary parameters.
   This is an experimental feature.
 
-- Module `time` has added the capability to 
-  [generate `ZonedDateTime` objects](/docs/1.6.3/user-guide.html#zoneddatetimearbitrary). 
+- Module `time` has added the capability to
+  [generate `ZonedDateTime` objects](/docs/1.6.3/user-guide.html#zoneddatetimearbitrary).
   Many thanks to https://github.com/zinki97 for his continued support with this module!
 
 #### Breaking Changes
@@ -210,20 +214,20 @@ and <a href="/docs/1.6.2/kdoc/index.html">kdoc</a>
   - If random seed is manually changed after a failing test run using `Property.seed=<new random seed>`
     the configured after-failure-mode does not apply for the next test run.
   - `SAMPLE_FIRST` and `SAMPLE_ONLY` now also work for data-driven properties and exhaustive generation.
-    I recommend now to use `SAMPLE_FIRST` as 
-    [default configuration value](/docs/1.6.2/user-guide.html#jqwik-configuration) for most projects. 
+    I recommend now to use `SAMPLE_FIRST` as
+    [default configuration value](/docs/1.6.2/user-guide.html#jqwik-configuration) for most projects.
 
 - Added `PropertyDefaults.maxDiscardRatio`
 
 - Added two Kotlin convenience functions:
-  - `fun <T> frequency(vararg frequencies: Pair<Int, T>)` 
-  - `fun <T> frequencyOf(vararg frequencies: Pair<Int, Arbitrary<out T>>)` 
+  - `fun <T> frequency(vararg frequencies: Pair<Int, T>)`
+  - `fun <T> frequencyOf(vararg frequencies: Pair<Int, Arbitrary<out T>>)`
 
 - Maximum size of generated collections and arrays is now generated regularly, if no size distribution is specified
 
 #### Breaking Changes
 
-- Parameter annotations on array types (e.g. `@WithNull String[]`) 
+- Parameter annotations on array types (e.g. `@WithNull String[]`)
   [are no longer applied to the component type](/docs/1.6.2/user-guide.html#constraining-array-types).
 
 - The jqwik database no longer stores test run data for succeeding tests and properties.
@@ -276,9 +280,9 @@ and <a href="/docs/1.6.1/kdoc/index.html">kdoc</a>
 - Multi-value arbitraries (ListArbitrary, SetArbitrary etc.) check minSize and maxSize
   values at configuration time now.
 
-- Upgrade to Kotlin 1.6.0. Versions 1.5.x should still work with the binary. 
+- Upgrade to Kotlin 1.6.0. Versions 1.5.x should still work with the binary.
 
-- `DomainContext` implementation classes can now be annotated with `@Domain` themselves. 
+- `DomainContext` implementation classes can now be annotated with `@Domain` themselves.
 
 - Tags added to containers or property methods through `@Tag` annotations
   are now being reported in execution result report as part of the key.
@@ -315,13 +319,13 @@ and <a href="/docs/1.6.0/kdoc/index.html">kdoc</a>
 
 #### New and Enhanced Features
 
-- Added new module [`jqwik-kotlin`](/docs/1.6.0/user-guide.html#kotlin-module) 
+- Added new module [`jqwik-kotlin`](/docs/1.6.0/user-guide.html#kotlin-module)
   for improved Kotlin support.
 
-- Introduced new lifecycle hook [`InvokePropertyMethodHook`](/docs/1.6.0/user-guide.html#invokepropertymethodhook) 
+- Introduced new lifecycle hook [`InvokePropertyMethodHook`](/docs/1.6.0/user-guide.html#invokepropertymethodhook)
   in order to support some Kotlin specialties.
 
-- Introduced new lifecycle hook [`ProvidePropertyInstanceHook`](/docs/1.6.0/user-guide.html#providepropertyinstancehook) 
+- Introduced new lifecycle hook [`ProvidePropertyInstanceHook`](/docs/1.6.0/user-guide.html#providepropertyinstancehook)
   in order to allow Kotlin singleton objects as test containers.
 
 - Promoted APIs from `EXPERIMENTAL` to `MAINTAINED`:
@@ -335,13 +339,13 @@ and <a href="/docs/1.6.0/kdoc/index.html">kdoc</a>
 
 - Upgraded to JUnit Platform 1.8.1
 
-- Added experimental `JqwikSession` API to 
+- Added experimental `JqwikSession` API to
   [use arbitraries outside jqwik's lifecycle](/docs/1.6.0/user-guide.html#using-arbitraries-outside-jqwik-lifecycle).
 
 - Added `Functions.FunctionWrapper.returning()` as replacement for deprecated `returns()`.
 
 - Added explicit module information for all modules.
-  See https://github.com/jlink/jqwik/issues/243. 
+  See https://github.com/jlink/jqwik/issues/243.
   Thank you https://github.com/sormuras for the support!
 
 
@@ -363,10 +367,10 @@ and <a href="/docs/1.6.0/kdoc/index.html">kdoc</a>
 - Fixed memory leak when calling `Arbitrary.sample()` in jqwik scope.
   See https://github.com/jlink/jqwik/issues/236.
 
-- Sometimes Kotlin method names have a postfix. 
+- Sometimes Kotlin method names have a postfix.
   They can now be resolved and have normal display names.
 
-- Arbitrary.withoutEdgeCases() sometimes did not work in combination with 
+- Arbitrary.withoutEdgeCases() sometimes did not work in combination with
   filter, map and flatMap.
 
 - When an arbitrary fails to generate values, the property seed will now be reported.
@@ -397,7 +401,7 @@ and
 
 - Added reporting format for type `char[]`.
 
-- `@StatisticsReport(onFailureOnly = true)` now also works when failure 
+- `@StatisticsReport(onFailureOnly = true)` now also works when failure
   is a statistics check failure.
 
 
@@ -431,7 +435,7 @@ and
 
 #### Bug Fixes
 
-- Fixed edge cases performance problem. 
+- Fixed edge cases performance problem.
   See https://github.com/jlink/jqwik/issues/214
 
 
@@ -447,7 +451,7 @@ and
 
 - Added default method `DomainContext.initialize(PropertyLifecycleContext)` which
   can be overridden if domain context implementations need access to the property context.
-  
+
 - Added `StringArbitrary.repeatChars(double repeatProbability)`
 
 - Added `Arbitrary.optional(double presenceProbability)`
@@ -461,7 +465,7 @@ and
 - Progress on [generation of DateTimes](/docs/1.5.4/user-guide.html#generation-of-datetimes):
   Objects of type `java.time.Instant` can now be generated by default.
 
-- `FloatArbitrary` and `DoubleArbitrary` can now 
+- `FloatArbitrary` and `DoubleArbitrary` can now
   [generate special values on demand](/docs/1.5.4/user-guide.html#special-decimal-values).
 
 
@@ -470,7 +474,7 @@ and
 - Generated strings will no longer intentionally generate duplicate characters
   by default. You now have to tell it to do so.
 
-- Methods `Combinators.withBuilder(builderSupplier)` and 
+- Methods `Combinators.withBuilder(builderSupplier)` and
   `Combinators.withBuilder(arbitrary)` are now deprecated.
 
 #### Bug Fixes
@@ -490,17 +494,17 @@ and
 
 #### New and Enhanced Features
 
-- You can now influence the random distribution of 
-  [the size of generated multi-value containers](/docs/1.5.3/user-guide.html#size-of-multi-value-containers) 
+- You can now influence the random distribution of
+  [the size of generated multi-value containers](/docs/1.5.3/user-guide.html#size-of-multi-value-containers)
   (sets, lists, arrays, streams, iterators and maps).
 
-- You can now influence the random distribution of 
+- You can now influence the random distribution of
   [the size of generated strings](/docs/1.5.3/user-guide.html#string-size).
 
-- All container-based arbitraries (e.g. List, Sets, Strings) now generate containers 
-  without duplicated elements with a higher probability even when they have many elements. 
+- All container-based arbitraries (e.g. List, Sets, Strings) now generate containers
+  without duplicated elements with a higher probability even when they have many elements.
 
-- String arbitraries now generate duplicate chars and series of chars with a higher probability. 
+- String arbitraries now generate duplicate chars and series of chars with a higher probability.
 
 - Added `CharacterArbitrary.numeric()` and `CharacterArbitrary.alpha()`.
 
@@ -534,18 +538,18 @@ and
 
 #### New and Enhanced Features
 
-- Added new base class 
-  [`DomainContextBase`](/docs/1.5.2/javadoc/net/jqwik/api/domains/DomainContextBase.html), which changes the way 
+- Added new base class
+  [`DomainContextBase`](/docs/1.5.2/javadoc/net/jqwik/api/domains/DomainContextBase.html), which changes the way
   how you typically [provide domain contexts](/docs/1.5.2/user-guide.html#domain-and-domain-context).
-  
-  That's the reason why 
-  [`AbstractDomainContextBase`](/docs/1.5.2/javadoc/net/jqwik/api/domains/AbstractDomainContextBase.html) 
+
+  That's the reason why
+  [`AbstractDomainContextBase`](/docs/1.5.2/javadoc/net/jqwik/api/domains/AbstractDomainContextBase.html)
   is now _deprecated_.
 
 - Provider Methods annotated with `@Provide` now support
   [implicit flat mapping](/docs/1.5.2/user-guide.html#implicit-flat-mapping).
 
-- More progress on 
+- More progress on
   [generation of DateTimes](/docs/1.5.2/user-guide.html#generation-of-datetimes)
 
 - Upgrade to JUnit Platform 1.7.2
@@ -560,7 +564,7 @@ and
 
 #### Bug Fixes
 
-- Fixed bug in edge case generation: 
+- Fixed bug in edge case generation:
   https://github.com/jlink/jqwik/issues/180
 
 - Fixed bug when running inner tests of an extended test container:
@@ -579,7 +583,7 @@ and
 
 #### New and Enhanced Features
 
-- Implemented `@StatisticsReport.label` as suggested in 
+- Implemented `@StatisticsReport.label` as suggested in
   https://github.com/jlink/jqwik/issues/146.
 
 - Time module
@@ -587,7 +591,7 @@ and
   - [Generation of DateTimes](/docs/1.5.1/user-guide.html#generation-of-datetimes)
     got its first rudimentary support.
 
-- Added `StringArbitrary.excludeChars(char ... toExclude)`. 
+- Added `StringArbitrary.excludeChars(char ... toExclude)`.
   See https://github.com/jlink/jqwik/issues/167.
 
 #### Breaking Changes
@@ -627,17 +631,17 @@ and
 
 #### Bug Fixes
 
-- Fixed [degraded generation performance](https://github.com/jlink/jqwik/issues/166) 
-  introduced in version [1.4.0](#140). 
+- Fixed [degraded generation performance](https://github.com/jlink/jqwik/issues/166)
+  introduced in version [1.4.0](#140).
 
 - `Arbitrary.withoutEdgeCases()` did not really get rid of all edge case generation.
   Now it does.
 
 - Some arbitrary types, e.g. `Arbitraries.lazyOf()` could not be used in sampling.
   Now all should work.
-  
+
 - Bounded shrinking could previously result in an `OutsideJqwikException`.
-  
+
 
 ## 1.4.0
 
@@ -657,16 +661,16 @@ and
 
 - Upgrade to JUnit Platform 1.7.1
 
-- Using `@Property(edgeCases = NONE)` will now also suppress the generation of 
+- Using `@Property(edgeCases = NONE)` will now also suppress the generation of
   edge cases in embedded arbitraries.
 
-- You now have the capability to configure an 
+- You now have the capability to configure an
   [arbitrary's edge case generation](/docs/1.4.0/user-guide.html#configuring-edge-cases-themselves).
 
 - There is a new annotation attribute `@Property.whenSeedFixed` and a new
   [configuration parameter](/docs/1.4.0/user-guide.html#jqwik-configuration)
   `jqwik.seeds.whenfixed`
-  to warn or even fail when a property has been given a fixed random seed. 
+  to warn or even fail when a property has been given a fixed random seed.
   See [this issued](https://github.com/jlink/jqwik/issues/138) for more details.
   Many thanks to [osi](https://github.com/osi) for this contribution.
 
@@ -674,9 +678,9 @@ and
 
     - `Arbitrary.unique()` and the annotation `@Unique` are now deprecated and will
       be removed in version 1.5.
-    - [Uniqueness constraints](/docs/1.4.0/user-guide.html#uniqueness-constraints) 
+    - [Uniqueness constraints](/docs/1.4.0/user-guide.html#uniqueness-constraints)
       are now handled by the elements' container.
-    - The new [annotation to require uniqueness](/docs/1.4.0/user-guide.html#unique-elements) 
+    - The new [annotation to require uniqueness](/docs/1.4.0/user-guide.html#unique-elements)
       is called `@UniqueElements` and applied to the container's type.
 
 - Arbitraries modified through `Arbitrary.unique()`, which is deprecated anyway,
@@ -731,14 +735,14 @@ and
     - Method `StatisticsCollector.coverage(..)`
     - Class `StatisticsCoverage`
     - Class `StatisticsEntry`
-    
+
 #### Breaking Changes
 
-- `Arbitraries.emails()` has been moved to `net.jqwik.web.api.Web.emails()` in new 
+- `Arbitraries.emails()` has been moved to `net.jqwik.web.api.Web.emails()` in new
   [Web module](/docs/1.4.0/user-guide.html#web-module).
 
-- `@net.jqwik.api.constraints.Email` annotation has been moved to 
-  `@net.jqwik.web.api.Email` in new 
+- `@net.jqwik.api.constraints.Email` annotation has been moved to
+  `@net.jqwik.web.api.Email` in new
   [Web module](/docs/1.4.0/user-guide.html#web-module).
 
 - Parameters annotated with `@Email` will by default only generate
@@ -755,12 +759,12 @@ and
 
 - Unconstrained wildcards are no longer handled in a special way
   but just like unconstrained type variables.
-  
+
 - `Arbitrary.array(..)` now returns `ArrayArbitrary` instead of `StreamableArbitrary`
 
 #### Bug Fixes
 
-- Fixed bug that could lead to strange edge case generation behaviour 
+- Fixed bug that could lead to strange edge case generation behaviour
   when `Arbitrary.edgeCases(edgeCasesConfig)` was used.
 
 ## 1.3.x
@@ -781,7 +785,7 @@ and
 
 #### Breaking Changes
 
-- `SampleReportingFormat.reportJavaBean(..)` has been deprecated. 
+- `SampleReportingFormat.reportJavaBean(..)` has been deprecated.
   Will be removed in version 1.4.0.
 
 #### Bug Fixes
@@ -808,16 +812,16 @@ and
 #### New and Enhanced Features
 
 - [Generating email addresses](/docs/1.3.9/user-guide.html#email-address-generation)
-  has now configuration options. 
+  has now configuration options.
 
-- Generated email addresses now 
-  [have fewer edge cases](https://github.com/jlink/jqwik/issues/133). 
+- Generated email addresses now
+  [have fewer edge cases](https://github.com/jlink/jqwik/issues/133).
 
 - Added constraint annotation
   [`@Email`](/docs/1.3.9/javadoc/net/jqwik/api/constraints/Email.html)
   for generating valid email addresses.
-  
-- Experimental support for 
+
+- Experimental support for
   [changing an arbitrary's edge cases](/docs/1.3.9/javadoc/net/jqwik/api/Arbitrary.html#edgeCases(java.util.function.Consumer)).
 
 - Constraint annotation `@StringLength` now works for any arbitrary that generates a `String`.
@@ -831,10 +835,10 @@ and
 
 #### Bug Fixes
 
-- [Reporting of null values in failed properties](https://github.com/jlink/jqwik/issues/132) 
+- [Reporting of null values in failed properties](https://github.com/jlink/jqwik/issues/132)
   no longer fails with NPE.
 
-- Sampling arbitraries with null values 
+- Sampling arbitraries with null values
   [no longer fails](https://github.com/jlink/jqwik/pull/136).
 
 ### 1.3.8
@@ -848,11 +852,11 @@ and
 
 #### New and Enhanced Features
 
-- You can now 
-  [generate valid email addresses](/docs/1.3.8/user-guide.html#email-address-generation). 
+- You can now
+  [generate valid email addresses](/docs/1.3.8/user-guide.html#email-address-generation).
 
-- The header of the label column in 
-  [histograms and number range histograms](/docs/1.3.8/user-guide.html#histograms) 
+- The header of the label column in
+  [histograms and number range histograms](/docs/1.3.8/user-guide.html#histograms)
   can now be changed.
 
 #### Breaking Changes
@@ -868,7 +872,7 @@ and
 #### Bug Fixes
 
 No known bugs.
-                                 
+
 
 ### 1.3.7
 
@@ -885,7 +889,7 @@ and
 
 - Reporting of parameters that changed during execution of property is now better
   at detecting real changes.
-  
+
 #### Breaking Changes
 
 - _Examples_ with a failing assumption - i.e. throwing a `TestAbortedException` -
@@ -894,14 +898,14 @@ and
 
 #### Bug Fixes
 
-- Using some arbitraries with `Arbitrary.sample()` outside of a jqwik context 
-  [no longer worked](https://github.com/jlink/jqwik/issues/125). 
+- Using some arbitraries with `Arbitrary.sample()` outside of a jqwik context
+  [no longer worked](https://github.com/jlink/jqwik/issues/125).
   Now it does again.
 
 - The default character generator was erroneously considered to produce unique
-  characters. Resulted in a strange to analyze 
+  characters. Resulted in a strange to analyze
   [bug when generating functions](https://github.com/jlink/jqwik/issues/126)
-                                 
+
 
 ### 1.3.6
 
@@ -923,16 +927,16 @@ and
 
 - A maximum of 1000 (instead of 10000) edge cases is generated _per arbitrary_.
 
-- Arbitraries that allow nullables through `Arbitrary.injectNull()` or 
+- Arbitraries that allow nullables through `Arbitrary.injectNull()` or
   annotation `@WithNull` will now shrink their values to `null` if possible.
 
 #### Bug Fixes
 
-- With a lot of edge cases sometimes _only_ edge cases were generated. 
+- With a lot of edge cases sometimes _only_ edge cases were generated.
   Now the minimum ratio is 1 edge case in 3 generating steps.
 
 - Warning about combinatorial explosion of edge cases generation is
-  now [logged only once](https://github.com/jlink/jqwik/issues/119). 
+  now [logged only once](https://github.com/jlink/jqwik/issues/119).
 
 - Edge cases for `oneOf(..)` and `frequencyOf(..)` generators are now correctly being shrunk.
 
@@ -983,9 +987,9 @@ and
 
 #### New and Enhanced Features
 
-- `Arbitraries.lazyOf(Supplier<Arbitrary<T>> ...)` is now the method of choice for 
+- `Arbitraries.lazyOf(Supplier<Arbitrary<T>> ...)` is now the method of choice for
   recursive value generation. It has much better shrinking behaviour than the
-  more generic `lazy()` combined with `oneOf()`. 
+  more generic `lazy()` combined with `oneOf()`.
   Consult [the user guide](/docs/1.3.4/user-guide.html#probabilistic-recursion)
   for an example.
 
@@ -993,8 +997,8 @@ and
   a property method's attributes like number of tries and seed within a
  `AroundPropertyHook`  lifecycle hook.
 
-- Added `@PropertyDefaults` annotation which allows to 
-  [set the defaults](/docs/1.3.4/user-guide.html#setting-defaults-for-property-attributes) 
+- Added `@PropertyDefaults` annotation which allows to
+  [set the defaults](/docs/1.3.4/user-guide.html#setting-defaults-for-property-attributes)
   of all property methods in a container.
 
 #### Breaking Changes
@@ -1003,10 +1007,10 @@ and
 
 #### Bug Fixes
 
-- Made loading of services thread-safe to allow use of jqwik generators 
+- Made loading of services thread-safe to allow use of jqwik generators
   in parallel JUnit runs: https://github.com/jlink/jqwik/pull/117.
   Thank you, https://github.com/Danny02!
-  
+
 
 ### 1.3.3
 
@@ -1019,7 +1023,7 @@ and
 
 #### New and Enhanced Features
 
-- Shrinking has been re-implemented from scratch. Should be more predictable and 
+- Shrinking has been re-implemented from scratch. Should be more predictable and
   shrink to smaller samples in most cases.
 
 - Shrinking now has stronger equivalence requirements for falsification:
@@ -1028,10 +1032,10 @@ and
 
 - Shrinking `@AlphaChars` will now shrink to uppercase letters (if possible)
   since their Unicode codepoint is smaller.
-  
+
 - Negative numbers are shrunk to their positive counterpart if possible
 
-- Changes in property result reporting: 
+- Changes in property result reporting:
     - Shrunk samples have now header line "Shrunk Sample (<n> steps)"
     - If no shrinking took place samples have header line "Sample"
     - Original samples now also report the original error
@@ -1039,10 +1043,10 @@ and
 
 - `Arbitraries.frequencyOf() now takes covariant arbitrary types
 
-- Made loading of services thread-safe to allow use of jqwik generators 
+- Made loading of services thread-safe to allow use of jqwik generators
   in parallel JUnit runs: https://github.com/jlink/jqwik/pull/117.
   Thank you, https://github.com/Danny02!
-  
+
 - Added `PropertyLifecycleContext.attributes()`, which allows to query, set and change
   a property method's attributes like number of tries and seed within a
  `AroundPropertyHook`  lifecycle hook.
@@ -1052,18 +1056,18 @@ and
 
 - Exceeding shrinking bound is now logged as warning instead of being reported
   through JUnit platform reporting
-  
+
 - Deprecated interface `net.jqwik.api.ShrinkingSequence`. Throw all your implementations away!
 
 - Deprecated class `net.jqwik.api.FalsificationResult`. No longer used anywhere.
 
-- Deprecated method `Shrinkable.shrink(Falsifier<T> falsifier)`. 
+- Deprecated method `Shrinkable.shrink(Falsifier<T> falsifier)`.
   It's no longer used anywhere.
 
 #### Bug Fixes
 
 - Reporting an exhausted property had been broken since `1.2.4` and nobody noticed.
-  Works again. 
+  Works again.
 
 ### 1.3.2
 
@@ -1087,9 +1091,9 @@ and
 - Added `ListArbitrary.flatMapEach()`
 
 - Added `Arbitraries.just(aConstant)` and deprecated `Arbitraries.constant(aConstant)`.
-  Most other PBT libraries seem to use `just` for this functionality. 
-  
-- Added programmatic access to 
+  Most other PBT libraries seem to use `just` for this functionality.
+
+- Added programmatic access to
   [JUnit 5 platform reporting](/docs/1.3.2/user-guide.html#platform-reporting-with-reporter-object)
 
 - Added `Tuple.Tuple5<T,T,T,T,T> Arbitrary.tuple5()`
@@ -1101,7 +1105,7 @@ and
     - `Arbitrary.list()` now has return type `net.jqwik.api.arbitraries.ListArbitrary`
     - `Arbitrary.stream()` now has return type `net.jqwik.api.arbitraries.StreamArbitrary`
     - `Arbitrary.iterator()` now has return type `net.jqwik.api.arbitraries.IteratorArbitrary`
-    
+
 - `Arbitraries.maps(...)` now has return type `net.jqwik.api.arbitraries.MapArbitrary`
 
 - `net.jqwik.api.lifecycle.Reporter` moved to `net.jqwik.api.Reporter`
@@ -1111,9 +1115,9 @@ and
 - Reporting samples with circular dependencies [does no longer throw
   an exception](https://github.com/jlink/jqwik/issues/111)
 
-- Reporting test failure due to exception without message 
+- Reporting test failure due to exception without message
   no longer leads to ignored test
-  
+
 - Reporting shrunk samples now report the actual sample and not a freshly generated one
 
 ### 1.3.1
@@ -1127,7 +1131,7 @@ and
 
 #### New and Enhanced Features
 
-- Reporting of falsified, shrunk and  generated samples 
+- Reporting of falsified, shrunk and  generated samples
   [has been completely reworked](/docs/1.3.1/user-guide.html#failure-reporting).
   See [this issue](https://github.com/jlink/jqwik/issues/85) for more details.
 
@@ -1156,25 +1160,25 @@ and
 
 - Added user-guide documentation for [Lifecycle Hooks](/docs/1.3.0/user-guide.html#lifecycle-hooks)
 
-- Added new statistics report formats: 
+- Added new statistics report formats:
   [Histogram and NumberRangeHistogram](/docs/1.3.0/user-guide.html#histograms)
 
 - Improved shrinking of dependent parameters.
 
 - Added `Arbitraries.ofSuppliers(..)` to choose among a set of mutable objects.
 
-- You can now influence the 
-  [distribution of random number generation](/docs/1.3.0/user-guide.html#random-numeric-distribution): 
+- You can now influence the
+  [distribution of random number generation](/docs/1.3.0/user-guide.html#random-numeric-distribution):
   All numeric arbitraries now support `withDistribution(RandomDistribution)`
   to choose between `RandomDistribution.biased()` (default),
-   `RandomDistribution.uniform()` and `RandomDistribution.gaussian(borderSigma)`. 
-  
+   `RandomDistribution.uniform()` and `RandomDistribution.gaussian(borderSigma)`.
+
 - Default number generation has now a much higher bias towards numbers
   that are closer to the shrinking target of a number range.
 
 - Using a faster implementation of `java.util.Random` under the hood
 
-- Massively improved and enhanced 
+- Massively improved and enhanced
   [generation of edge cases](/docs/1.3.0/user-guide.html#generation-of-edge-cases)
 
 - Edge Cases Mode is now being reported per property
@@ -1200,15 +1204,15 @@ and
 #### Breaking Changes
 
 - Decimal Generation: `min` and `max` values are now rejected if they have more decimal places
-  than the generator's `scale` allows. 
-  
+  than the generator's `scale` allows.
+
 - Decimal Shrinking: Values without decimal places are no longer preferred while shrinking.
 
 - Removed deprecated APIs
     - `Arbitrary.withSamples(T... samples)`
     - `RandomGenerator.withSamples(T... samples)`
     - `TryLifecycleContext.propertyContext()`
-    - `net.jqwik.api.Statistics`: Replaced by `net.jqwik.api.statistics.Statistics` 
+    - `net.jqwik.api.Statistics`: Replaced by `net.jqwik.api.statistics.Statistics`
 
 - Set most public methods of `RandomGenerator` to API status `INTERNAL`
 
@@ -1221,9 +1225,9 @@ and
 #### Bug Fixes
 
 - An `OutOfMemoryError` will go through to the top. Fix for
-  [bug report from jqwik-spring](https://github.com/jlink/jqwik-spring/issues/5). 
-  
-- `Arbitraries.of(listOfValues)` would break when list does not allow null values. 
+  [bug report from jqwik-spring](https://github.com/jlink/jqwik-spring/issues/5).
+
+- `Arbitraries.of(listOfValues)` would break when list does not allow null values.
 
 - Generated functions now handle default methods correctly
 
@@ -1280,8 +1284,8 @@ and
 
 #### Breaking Changes
 
-- More changes to Lifecycle Hooks API in order to support a 
-  [jqwik Spring extension](https://github.com/jlink/jqwik-spring) 
+- More changes to Lifecycle Hooks API in order to support a
+  [jqwik Spring extension](https://github.com/jlink/jqwik-spring)
 
 
 ### 1.2.5
@@ -1299,8 +1303,8 @@ and
 
 - Added `@AfterExample` as an alias of `@AfterProperty`
 
-- Lifecycle methods annotated with `@BeforeTry`, `@AfterTry`, `@BeforeProperty`, 
-  `@AfterProperty`, `@BeforeContainer` and `@AfterContainer` can now have 
+- Lifecycle methods annotated with `@BeforeTry`, `@AfterTry`, `@BeforeProperty`,
+  `@AfterProperty`, `@BeforeContainer` and `@AfterContainer` can now have
   parameters that will be resolved using registered `ResolveParameterHook` instances.
 
 - Added `ActionSequence.withInvariant(String label, Invariant<M> invariant);`.
@@ -1317,13 +1321,13 @@ and
 
 #### Breaking Changes
 
-- Some fundamental changes to Lifecycle Hooks API in order to support a 
-  [jqwik Spring extension](https://github.com/jlink/jqwik-spring) 
+- Some fundamental changes to Lifecycle Hooks API in order to support a
+  [jqwik Spring extension](https://github.com/jlink/jqwik-spring)
 
 
 #### Bug Fixes
 
-- Labelled statistics reports should now reliably being reported 
+- Labelled statistics reports should now reliably being reported
   in order of first usage.
 
 ### 1.2.4
@@ -1337,7 +1341,7 @@ and
 
 #### New and Enhanced Features
 
-- [Annotated lifecycle methods](/docs/1.2.4/user-guide.html#annotated-lifecycle-methods) 
+- [Annotated lifecycle methods](/docs/1.2.4/user-guide.html#annotated-lifecycle-methods)
   have been implemented:
   - `@BeforeContainer`
   - `@AfterContainer`
@@ -1360,7 +1364,7 @@ and
 
 - `Falsifier` no longer extends `Predicate<T>`
 
-- Many breaking changes in Lifecycle API; but this API had not been published 
+- Many breaking changes in Lifecycle API; but this API had not been published
   or documented anyway.
 
 #### Bug Fixes
@@ -1466,7 +1470,7 @@ and
 
 #### Breaking Changes
 
-- `Arbitrary.exhaustive()` must no longer be overridden in implementors of 
+- `Arbitrary.exhaustive()` must no longer be overridden in implementors of
   Arbitrary. Override `Arbitrary.exhaustive(long maxNumberOfGeneratedSamples)` instead.
 
 - `TypeUsage.getTypeArguments()`: In case of type variables or wildcard types
@@ -1476,12 +1480,12 @@ and
 
 #### Bug Fixes
 
-- `@ForAll` annotation could not be replaced by self-made annotation. Now it can. 
+- `@ForAll` annotation could not be replaced by self-made annotation. Now it can.
 
-- Annotations in type parameters of bounds of type variables 
+- Annotations in type parameters of bounds of type variables
   are now correctly recognized.
 
-- Annotations in type parameters of bounds of wildcards 
+- Annotations in type parameters of bounds of wildcards
   are now correctly recognized.
 
 ### 1.2.0
@@ -1497,19 +1501,19 @@ and
 - Introduced [Labeled Statistics](/docs/1.2.0/user-guide.html#labeled-statistics)
 - Added [`Arbitraries.entries()`](/docs/1.2.0/user-guide.html#maps)
 - Added default generation for `Map.Entry` instances
-- [Enhanced statistics reporting](/docs/1.2.0/user-guide.html#collecting-and-reporting-statistics) 
+- [Enhanced statistics reporting](/docs/1.2.0/user-guide.html#collecting-and-reporting-statistics)
   by absolute count
-- _jqwik_ can now generate instances of 
+- _jqwik_ can now generate instances of
   [functions and other functional types](/docs/1.2.0/user-guide.html#functional-types)
-- Provider methods do now accept 
+- Provider methods do now accept
   [two optional parameters](docs/1.2.0/user-guide.html#parameter-provider-methods)
-- New `@From` annotation to 
-  [provide arbitraries for embedded type parameters](/docs/1.2.0/user-guide.html#providing-arbitraries-for-embedded-types) 
+- New `@From` annotation to
+  [provide arbitraries for embedded type parameters](/docs/1.2.0/user-guide.html#providing-arbitraries-for-embedded-types)
 
 
 #### Breaking Changes
 
-- Removed `CharacterArbitrary.between(min, max)` 
+- Removed `CharacterArbitrary.between(min, max)`
   which had been deprecated in [1.1.3](#113)
 
 
@@ -1524,7 +1528,7 @@ and
     `Combinators.withBuilder(Arbitrary<B> builderArbitrary)`
   - Annotation `@Domain` and interface `DomainContext`
 
-#### Dependency Upgrades and Bug Fixes 
+#### Dependency Upgrades and Bug Fixes
 
 - Upgrade to JUnit platform 1.5.1
 - Upgrade to Gradle 5.5.1
@@ -1560,7 +1564,7 @@ and
 <a href="/docs/1.1.5/javadoc/index.html">javadoc</a>
 </p>
 
-- Added `shrinkTowards(value)` to all decimal number arbitraries: 
+- Added `shrinkTowards(value)` to all decimal number arbitraries:
   FloatArbitrary, DoubleArbitrary, BigDecimalArbitrary
 - Exceptions during test class instance creation are now reported as failures
 - Removed caching of engine descriptor in JqwikTestEngine
@@ -1576,7 +1580,7 @@ and
 - Upgrade to junit-platform 1.4.2
 - Added `Arbitrary.collect(Predicate<List<T>> until)` in order to
   [collect values in a list](/docs/1.1.4/user-guide.html#collecting-values-in-a-list)
-- Added `shrinkTowards(value)` to all integral number arbitraries: 
+- Added `shrinkTowards(value)` to all integral number arbitraries:
   ByteArbitrary, ShortArbitrary, IntegerArbitrary, LongArbitrary, BigIntegerArbitrary
   in order to [change the shrinking target](/docs/1.1.4/user-guide.html#change-the-shrinking-target)
 - Upgrade Gradle to 5.4.2
@@ -1590,8 +1594,8 @@ and
 <a href="/docs/1.1.3/javadoc/index.html">javadoc</a>
 </p>
 
-- Whitespace characters for generation of Strings and chars are now 
-  platform and JDK version dependent. 
+- Whitespace characters for generation of Strings and chars are now
+  platform and JDK version dependent.
   See [this Github issue](https://github.com/jlink/jqwik/issues/55).
 - Missing `@ForAll` annotation will now fail test - instead of skipping it.
   See [this Github issue](https://github.com/jlink/jqwik/issues/54).
@@ -1621,7 +1625,7 @@ and
 <a href="/docs/1.1.1/javadoc/index.html">javadoc</a>
 </p>
 
-- Added `Combinators.withBuilder` to enable a 
+- Added `Combinators.withBuilder` to enable a
   [different way for combining arbitraries](/docs/1.1.1/user-guide.html#combining-arbitraries-with-builder).
 
 - You can configure if you want to [report only failures](/docs/1.1.1/user-guide.html#jqwik-configuration).
@@ -1633,7 +1637,7 @@ and
 - Added [`Arbitraries.create`](/docs/1.1.1/user-guide.html#create).
 
 - Fixed problem with double and float conversion in range constraints.
-  My thanks go to [blairdye](https://github.com/blairdye) for that! 
+  My thanks go to [blairdye](https://github.com/blairdye) for that!
 
 - Annotation `@Provide` can now be placed on a "super method" i.e. a method from
   a superclass or super interface that is overridden.
@@ -1659,8 +1663,8 @@ and
 - Added capability to generate objects from their type's
   [constructors and factories](/docs/1.1.0/user-guide.html#generation-from-a-types-interface)
 
-- __Breaking Change__: Best fit search for provider methods is no longer supported. 
-  Reason: Using `@Domain` requires less magic and is a better abstraction for automatic arbitrary provision. 
+- __Breaking Change__: Best fit search for provider methods is no longer supported.
+  Reason: Using `@Domain` requires less magic and is a better abstraction for automatic arbitrary provision.
 
 - Update to JUnit Platform 5.4
 
@@ -1843,7 +1847,7 @@ Faulty release. Do not use!
 ### 0.8.9
 
 - Some minor but potentially incompatible API changes in `GenericType`.
-- Tags from parent (e.g. container class) are now also present in children (methods) 
+- Tags from parent (e.g. container class) are now also present in children (methods)
 - Renamed `ShrinkingMode.ON` to `ShrinkingMode.FULL`
   <p/>_This is an incompatible API change!_
 - Introduced `ShrinkingMode.BOUNDED` and made it the default
@@ -1852,7 +1856,7 @@ Faulty release. Do not use!
 
 ### 0.8.8
 
-- Added `Arbitraries.lazy()` 
+- Added `Arbitraries.lazy()`
   to allow [recursive value generation](/docs/0.9.3/user-guide.html#recursive-arbitraries)
 - Added `Arbitrary.fixGenSize()` to enable a fixed genSize when creating random generators
 - Added `Arbitrary.sequences()` to create sequences of actions for [stateful testing](/docs/0.9.3/user-guide.html#stateful-testing)
@@ -1864,7 +1868,7 @@ Faulty release. Do not use!
 - Changed license from EPL 1.0 to EPL 2.0
 - Added `@Tag` to allow the [tagging of examples, properties and containers](/docs/0.9.3/user-guide.html#tagging-tests)
 - User guide: Added links to example sources on github
-- Added `Arbitraries.frequency()` to enable 
+- Added `Arbitraries.frequency()` to enable
   [choosing values with weighted probabilities](/docs/0.9.3/user-guide.html#select-randomly-with-weights)
 - Collection and String generation now explores a wider range of sizes and lengths
 
@@ -1877,7 +1881,7 @@ Faulty release. Do not use!
 - BigInteger generation now supports numbers outside long range
 - Property.seed is now of type String
   <p/>_This is an incompatible API change!_
-- Property methods without @ForAll parameters are now also tried as many times as 
+- Property methods without @ForAll parameters are now also tried as many times as
   specified by `tries` parameter.
 - Added new method `Arbitraries.constant()`
 - Added new method `Arbitraries.defaultFor()`
@@ -1894,7 +1898,7 @@ Faulty release. Do not use!
 - Numbers are now generated within their full domain (min, max)
 - Decimal shrinking improved
 - Fixed bug: Reporting.FALSIFIED now also works for falsification through exception
-- Added support for running all tests in a module (Java 9 only). I HAVE NOT TESTED IT! 
+- Added support for running all tests in a module (Java 9 only). I HAVE NOT TESTED IT!
 
 ### 0.8.4
 
