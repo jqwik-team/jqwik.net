@@ -1,8 +1,8 @@
 ---
-title: jqwik User Guide - 1.6.4-SNAPSHOT
+title: jqwik User Guide - 1.7.0-SNAPSHOT
 ---
 <h1>The jqwik User Guide
-<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.6.4-SNAPSHOT</span>
+<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.0-SNAPSHOT</span>
 </h1>
 
 <h3>Table of Contents
@@ -19,6 +19,7 @@ title: jqwik User Guide - 1.6.4-SNAPSHOT
 - [Using Arbitraries Directly](#using-arbitraries-directly)
 - [Contract Tests](#contract-tests)
 - [Stateful Testing](#stateful-testing)
+- [Stateful Testing (Old Approach)](#stateful-testing-old)
 - [Assumptions](#assumptions)
 - [Result Shrinking](#result-shrinking)
 - [Collecting and Reporting Statistics](#collecting-and-reporting-statistics)
@@ -139,10 +140,6 @@ title: jqwik User Guide - 1.6.4-SNAPSHOT
   - [Using Arbitraries Outside Jqwik Lifecycle](#using-arbitraries-outside-jqwik-lifecycle)
 - [Contract Tests](#contract-tests)
 - [Stateful Testing](#stateful-testing)
-  - [Specify Actions](#specify-actions)
-  - [Check Postconditions](#check-postconditions)
-  - [Number of actions](#number-of-actions)
-  - [Check Invariants](#check-invariants)
 - [Assumptions](#assumptions)
 - [Result Shrinking](#result-shrinking)
   - [Integrated Shrinking](#integrated-shrinking)
@@ -225,7 +222,7 @@ Snapshot releases are created on a regular basis and can be fetched from
 
 ### Required Version of JUnit Platform
 
-The minimum required version of the JUnit platform is `1.8.2`.
+The minimum required version of the JUnit platform is `1.9.0`.
 
 ### Gradle
 
@@ -244,10 +241,10 @@ repositories {
 
 }
 
-ext.junitPlatformVersion = '1.8.2'
-ext.junitJupiterVersion = '5.8.2'
+ext.junitPlatformVersion = '1.9.0'
+ext.junitJupiterVersion = '5.9.0'
 
-ext.jqwikVersion = '1.6.4-SNAPSHOT'
+ext.jqwikVersion = '1.7.0-SNAPSHOT'
 
 compileTestJava {
     // To enable argument names in reporting and debugging
@@ -277,7 +274,7 @@ dependencies {
     testImplementation "net.jqwik:jqwik:${jqwikVersion}"
 
     // Add if you also want to use the Jupiter engine or Assertions from it
-    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
 
     // Add any other test library you need...
     testImplementation "org.assertj:assertj-core:3.12.2"
@@ -346,7 +343,7 @@ Additionally you have to add the following dependency to your `pom.xml` file:
     <dependency>
         <groupId>net.jqwik</groupId>
         <artifactId>jqwik</artifactId>
-        <version>1.6.4-SNAPSHOT</version>
+        <version>1.7.0-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -374,15 +371,15 @@ will allow you to use _jqwik_'s snapshot release which contains all the latest f
 I've never tried it but using jqwik without gradle or some other tool to manage dependencies should also work.
 You will have to add _at least_ the following jars to your classpath:
 
-- `jqwik-api-1.6.4-SNAPSHOT.jar`
-- `jqwik-engine-1.6.4-SNAPSHOT.jar`
-- `junit-platform-engine-1.8.2.jar`
-- `junit-platform-commons-1.8.2.jar`
+- `jqwik-api-1.7.0-SNAPSHOT.jar`
+- `jqwik-engine-1.7.0-SNAPSHOT.jar`
+- `junit-platform-engine-1.9.0.jar`
+- `junit-platform-commons-1.9.0.jar`
 - `opentest4j-1.2.0.jar`
 
 Optional jars are:
-- `jqwik-web-1.6.4-SNAPSHOT.jar`
-- `jqwik-time-1.6.4-SNAPSHOT.jar`
+- `jqwik-web-1.7.0-SNAPSHOT.jar`
+- `jqwik-time-1.7.0-SNAPSHOT.jar`
 
 
 
@@ -397,7 +394,7 @@ or package-scoped method with
 [`@Property`](/docs/snapshot/javadoc/net/jqwik/api/Property.html).
 In contrast to examples a property method is supposed to have one or
 more parameters, all of which must be annotated with
-[`@ForAll`](/docs/1.6.4-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
+[`@ForAll`](/docs/1.7.0-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
 
 At test runtime the exact parameter values of the property method
 will be filled in by _jqwik_.
@@ -651,11 +648,11 @@ annotation has a few optional values:
 - `AfterFailureMode afterFailure`: Determines how jqwik will generate values of a property
   that has [failed in the previous run](#rerunning-falsified-properties).
 
-    - `AfterFailureMode.PREVIOUS_SEED` is the default. jqwik will use the same seed and thereby generate
-      the same sequence of parameters as in the previous, failing run.
-    - `AfterFailureMode.SAMPLE_ONLY` means that jqwik will only use the last _shrunk set of parameters_.
-    - `AfterFailureMode.SAMPLE_FIRST` means that jqwik will use the last shrunk set of parameters first
+    - `AfterFailureMode.SAMPLE_FIRST` is the default. It means that jqwik will use the last shrunk set of parameters first
       and then, if successful, go for a new randomly generated set of parameters.
+    - `AfterFailureMode.SAMPLE_ONLY` means that jqwik will only use the last _shrunk set of parameters_.
+    - `AfterFailureMode.PREVIOUS_SEED` means that jqwik will use the same seed and thereby generate
+      the same sequence of parameters as in the previous, failing run.
     - `AfterFailureMode.RANDOM_SEED` makes jqwik use a new random seed even directly after a failure.
       This might lead to a "flaky" property that sometimes fails and sometimes succeeds.
       If the seed for this property has been fixed, the fixed seed will always be used.
@@ -677,7 +674,7 @@ and edge cases numbers are reported after each run property:
 tries = 10 
 checks = 10 
 generation = EXHAUSTIVE
-after-failure = PREVIOUS_SEED
+after-failure = SAMPLE_FIRST
 when-fixed-seed = ALLOW
 edge-cases#mode = MIXIN 
 edge-cases#total = 2 
@@ -2477,7 +2474,7 @@ If you need more you have a few options:
 - Consider to group some parameters into an object of their own and change your design
 - Generate inbetween arbitraries e.g. of type `Tuple` and combine those in another step
 - Introduce a build for your domain object and combine them
-  [in this way](#combining-arbitraries-with-builder)
+  [in this way](#combining-arbitraries-with-builders)
 
 #### Flat Combination
 
@@ -2982,6 +2979,11 @@ the variables.
 
 ## Stateful Testing
 
+> _The approach described here has been freshly introduced in version 1.7.0.
+  It is still marked "experimental" but will probably be promoted to default in
+  one of the next minor versions of jqwik.
+  You can also read about [the old way of stateful testing](#stateful-testing-old)._
+
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
 
@@ -2989,6 +2991,10 @@ Thinking in a more formal way we can look at those objects as _state machines_ a
 _actions_ that move the object from one state to another. Some actions have preconditions to constrain
 when they can be invoked and some objects have invariants that should never be violated regardless
 of the sequence of performed actions.
+
+_to be continued_
+
+<!--
 
 To make this abstract concept concrete, let's look at a
 [simple stack implementation](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStack.java):
@@ -3202,6 +3208,7 @@ org.opentest4j.AssertionFailedError:
     final state: ["AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA"]
 ```
 
+-->
 
 
 
@@ -3254,7 +3261,7 @@ org.opentest4j.AssertionFailedError:
 tries = 1000 
 checks = 20 
 generation = RANDOMIZED
-after-failure = PREVIOUS_SEED
+after-failure = SAMPLE_FIRST
 when-fixed-seed = ALLOW
 edge-cases#mode = MIXIN 
 seed = 1066117555581106850
@@ -4558,7 +4565,6 @@ The `afterFailure` property can have one of four values:
 - `AfterFailureMode.SAMPLE_FIRST`: Same as `SAMPLE_ONLY` but generate additional examples if the
   property no longer fails with the previous sample.
 
-
 You can also determine the default behaviour of all properties by setting
 the `jqwik.failures.after.default` parameter in the [configuration file](#jqwik-configuration)
 to one of those enum values.
@@ -4581,8 +4587,8 @@ jqwik.maxdiscardratio.default = 5            # The default ratio before assumpti
 jqwik.reporting.onlyfailures = false         # Set to true if only falsified properties should be reported
 jqwik.reporting.usejunitplatform = false     # Set to true if you want to use platform reporting
 jqwik.failures.runfirst = false              # Set to true if you want to run the failing tests from the previous run first
-jqwik.failures.after.default = PREVIOUS_SEED # Set default behaviour for falsified properties:
-                                             # PREVIOUS_SEED, SAMPLE_ONLY or SAMPLE_FIRST
+jqwik.failures.after.default = SAMPLE_FIRST  # Set default behaviour for falsified properties:
+                                             # PREVIOUS_SEED, SAMPLE_ONLY, SAMPLE_FIRST or RANDOM_SEED
 jqwik.generation.default = AUTO              # Set default behaviour for generation:
                                              # AUTO, RANDOMIZED, or EXHAUSTIVE
 jqwik.edgecases.default = MIXIN              # Set default behaviour for edge cases generation:
@@ -5128,7 +5134,7 @@ Here's the jqwik-related part of the Gradle build file for a Kotlin project:
 ```kotlin
 dependencies {
     ...
-    testImplementation("net.jqwik:jqwik-kotlin:1.6.4-SNAPSHOT")
+    testImplementation("net.jqwik:jqwik-kotlin:1.7.0-SNAPSHOT")
 }
 
 tasks.withType<Test>().configureEach {
@@ -6160,4 +6166,4 @@ If a certain element, e.g. a method, is not annotated itself, then it carries th
 
 ## Release Notes
 
-Read this version's [release notes](/release-notes.html#164-snapshot).
+Read this version's [release notes](/release-notes.html#170-snapshot).

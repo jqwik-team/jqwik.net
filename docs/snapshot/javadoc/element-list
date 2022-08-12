@@ -8,8 +8,10 @@ net.jqwik.api.footnotes
 net.jqwik.api.lifecycle
 net.jqwik.api.providers
 net.jqwik.api.sessions
+net.jqwik.api.state
 net.jqwik.api.stateful
 net.jqwik.api.statistics
+net.jqwik.api.support
 net.jqwik.time.api
 net.jqwik.time.api.arbitraries
 net.jqwik.time.api.constraints
