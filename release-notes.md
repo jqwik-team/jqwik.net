@@ -27,7 +27,7 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
-- A [new and more powerful approach to stateful testing](/docs/1.7.0/user-guide.html#stateful-testing)
+- A [new and more powerful approach to stateful testing](/docs/1.7.0-SNAPSHOT/user-guide.html#stateful-testing)
   has been introduced into jqwik.
   It's still "experimental" but supposed to be propagated to "stable" very soon.
 
@@ -46,7 +46,7 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
-- [Default configuration](/docs/1.7.0/user-guide.html#jqwik-configuration)
+- [Default configuration](/docs/1.7.0-SNAPSHOT/user-guide.html#jqwik-configuration)
   for `jqwik.failures.after.default` is now `SAMPLE_FIRST`.
   Set it to `PREVIOUS_SEED` if you want the behaviour of jqwik < 1.7.
 
