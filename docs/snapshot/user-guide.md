@@ -2884,6 +2884,8 @@ What makes the abstraction a bit more complicated than desirable is the fact tha
 the range of possible transformers may or may not depend on the previous state.
 That's why there exist the two subtypes of `Action`: `Independent` and `Dependent`.
 
+_**TO BE CONTINUED...**_
+
 <!--
 
 We can see at least three _actions_ with their preconditions and expected state changes:
