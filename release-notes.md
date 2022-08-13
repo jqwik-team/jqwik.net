@@ -27,7 +27,7 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
-- A [new and more powerful approach to stateful testing](/docs/snapshot/user-guide.html#stateful-testing-old-approach)
+- A [new and more powerful approach to stateful testing](/docs/snapshot/user-guide.html#stateful-testing)
   has been introduced into jqwik.
   It's still "experimental" but supposed to be propagated to "stable" very soon.
 
