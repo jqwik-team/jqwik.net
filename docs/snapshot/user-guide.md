@@ -43,170 +43,6 @@ title: jqwik User Guide - 1.7.0-SNAPSHOT
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Detailed Table of Contents  
 
-- [How to Use](#how-to-use)
-  - [Required Version of JUnit Platform](#required-version-of-junit-platform)
-  - [Gradle](#gradle)
-    - [Seeing jqwik Reporting in Gradle Output](#seeing-jqwik-reporting-in-gradle-output)
-  - [Maven](#maven)
-  - [Snapshot Releases](#snapshot-releases)
-  - [Project without Build Tool](#project-without-build-tool)
-- [Writing Properties](#writing-properties)
-  - [Creating a Property](#creating-a-property)
-    - [Failure Reporting](#failure-reporting)
-    - [Additional Reporting Options](#additional-reporting-options)
-    - [Platform Reporting with Reporter Object](#platform-reporting-with-reporter-object)
-    - [Adding Footnotes to Failure Reports](#adding-footnotes-to-failure-reports)
-  - [Optional `@Property` Attributes](#optional-property-attributes)
-    - [Setting Defaults for `@Property` Attributes](#setting-defaults-for-property-attributes)
-  - [Creating an Example-based Test](#creating-an-example-based-test)
-  - [Assertions](#assertions)
-  - [Lifecycle](#lifecycle)
-    - [Simple Property Lifecycle](#simple-property-lifecycle)
-    - [Annotated Lifecycle Methods](#annotated-lifecycle-methods)
-    - [Single Property Lifecycle](#single-property-lifecycle)
-  - [Grouping Tests](#grouping-tests)
-  - [Naming and Labeling Tests](#naming-and-labeling-tests)
-  - [Tagging Tests](#tagging-tests)
-  - [Disabling Tests](#disabling-tests)
-- [Default Parameter Generation](#default-parameter-generation)
-  - [Constraining Default Generation](#constraining-default-generation)
-    - [Allow Null Values](#allow-null-values)
-    - [String Length](#string-length)
-    - [String not Blank](#string-not-blank)
-    - [Character Sets](#character-sets)
-    - [List, Set, Stream, Iterator, Map and Array Size](#list-set-stream-iterator-map-and-array-size)
-    - [Unique Elements](#unique-elements)
-    - [Integer Constraints](#integer-constraints)
-    - [Decimal Constraints](#decimal-constraints)
-  - [Constraining parameterized types](#constraining-parameterized-types)
-  - [Constraining array types](#constraining-array-types)
-  - [Providing variable types](#providing-variable-types)
-  - [Self-Made Annotations](#self-made-annotations)
-- [Customized Parameter Generation](#customized-parameter-generation)
-  - [Arbitrary Provider Methods](#arbitrary-provider-methods)
-    - [Provider Methods with Parameters](#provider-methods-with-parameters)
-  - [Arbitrary Suppliers](#arbitrary-suppliers)
-  - [Providing Arbitraries for Embedded Types](#providing-arbitraries-for-embedded-types)
-  - [Static `Arbitraries` methods](#static-arbitraries-methods)
-    - [Generate values yourself](#generate-values-yourself)
-    - [Select or generate values randomly](#select-or-generate-values-randomly)
-    - [Select randomly with Weights](#select-randomly-with-weights)
-    - [Characters and Strings](#characters-and-strings)
-    - [String Size](#string-size)
-    - [java.util.Random](#javautilrandom)
-    - [Shuffling Permutations](#shuffling-permutations)
-    - [Default Types](#default-types)
-  - [Numeric Arbitrary Types](#numeric-arbitrary-types)
-    - [Integrals](#integrals)
-    - [Decimals](#decimals)
-    - [Special Decimal Values](#special-decimal-values)
-    - [Random Numeric Distribution](#random-numeric-distribution)
-  - [Collections, Streams, Iterators and Arrays](#collections-streams-iterators-and-arrays)
-    - [Size of Multi-value Containers](#size-of-multi-value-containers)
-  - [Collecting Values in a List](#collecting-values-in-a-list)
-  - [Optional](#optional)
-  - [Tuples of same base type](#tuples-of-same-base-type)
-  - [Maps](#maps)
-    - [Map Size](#map-size)
-    - [Map Entries](#map-entries)
-  - [Functional Types](#functional-types)
-  - [Fluent Configuration Interfaces](#fluent-configuration-interfaces)
-  - [Generate `null` values](#generate-null-values)
-  - [Inject duplicate values](#inject-duplicate-values)
-  - [Filtering](#filtering)
-  - [Mapping](#mapping)
-    - [Mapping over Elements of Collection](#mapping-over-elements-of-collection)
-  - [Flat Mapping](#flat-mapping)
-    - [Flat Mapping with Tuple Types](#flat-mapping-with-tuple-types)
-    - [Flat Mapping over Elements of Collection](#flat-mapping-over-elements-of-collection)
-    - [Implicit Flat Mapping](#implicit-flat-mapping)
-  - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
-  - [Combining Arbitraries](#combining-arbitraries)
-    - [Flat Combination](#flat-combination)
-  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
-  - [Uniqueness Constraints](#uniqueness-constraints)
-  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
-  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
-- [Recursive Arbitraries](#recursive-arbitraries)
-  - [Probabilistic Recursion](#probabilistic-recursion)
-    - [Using lazy() instead of lazyOf()](#using-lazy-instead-of-lazyof)
-  - [Deterministic Recursion](#deterministic-recursion)
-  - [Deterministic Recursion with `recursive()`](#deterministic-recursion-with-recursive)
-- [Using Arbitraries Directly](#using-arbitraries-directly)
-  - [Generating a Single Value](#generating-a-single-value)
-  - [Generating a Stream of Values](#generating-a-stream-of-values)
-  - [Generating all possible values](#generating-all-possible-values)
-  - [Iterating through all possible values](#iterating-through-all-possible-values)
-  - [Using Arbitraries Outside Jqwik Lifecycle](#using-arbitraries-outside-jqwik-lifecycle)
-- [Contract Tests](#contract-tests)
-- [Stateful Testing](#stateful-testing)
-- [Stateful Testing (Old Approach)](#stateful-testing-old-approach)
-  - [Specify Actions](#specify-actions)
-  - [Check Postconditions](#check-postconditions)
-  - [Number of actions](#number-of-actions)
-  - [Check Invariants](#check-invariants)
-- [Assumptions](#assumptions)
-- [Result Shrinking](#result-shrinking)
-  - [Integrated Shrinking](#integrated-shrinking)
-  - [Switch Shrinking Off](#switch-shrinking-off)
-  - [Switch Shrinking to Full Mode](#switch-shrinking-to-full-mode)
-  - [Change the Shrinking Target](#change-the-shrinking-target)
-- [Collecting and Reporting Statistics](#collecting-and-reporting-statistics)
-  - [Labeled Statistics](#labeled-statistics)
-  - [Statistics Report Formatting](#statistics-report-formatting)
-    - [Switch Statistics Reporting Off](#switch-statistics-reporting-off)
-    - [Histograms](#histograms)
-    - [Make Your Own Statistics Report Format](#make-your-own-statistics-report-format)
-  - [Checking Coverage of Collected Statistics](#checking-coverage-of-collected-statistics)
-    - [Check Percentages and Counts](#check-percentages-and-counts)
-    - [Check Ad-hoc Query Coverage](#check-ad-hoc-query-coverage)
-- [Providing Default Arbitraries](#providing-default-arbitraries)
-  - [Simple Arbitrary Providers](#simple-arbitrary-providers)
-  - [Arbitrary Providers for Parameterized Types](#arbitrary-providers-for-parameterized-types)
-  - [Arbitrary Provider Priority](#arbitrary-provider-priority)
-  - [Create your own Annotations for Arbitrary Configuration](#create-your-own-annotations-for-arbitrary-configuration)
-    - [Arbitrary Configuration Example: `@Odd`](#arbitrary-configuration-example-odd)
-- [Domain and Domain Context](#domain-and-domain-context)
-  - [Domain example: American Addresses](#domain-example-american-addresses)
-- [Generation from a Type's Interface](#generation-from-a-types-interface)
-- [Generation of Edge Cases](#generation-of-edge-cases)
-  - [Configuring Edge Case Injection](#configuring-edge-case-injection)
-  - [Configuring Edge Cases Themselves](#configuring-edge-cases-themselves)
-- [Exhaustive Generation](#exhaustive-generation)
-- [Data-Driven Properties](#data-driven-properties)
-- [Rerunning Falsified Properties](#rerunning-falsified-properties)
-- [jqwik Configuration](#jqwik-configuration)
-    - [Legacy Configuration in `jqwik.properties` File](#legacy-configuration-in-jqwikproperties-file)
-- [Additional Modules](#additional-modules)
-  - [Web Module](#web-module)
-    - [Email Address Generation](#email-address-generation)
-    - [Web Domain Generation](#web-domain-generation)
-  - [Time Module](#time-module)
-    - [Generation of Dates](#generation-of-dates)
-    - [Generation of Times](#generation-of-times)
-    - [Generation of DateTimes](#generation-of-datetimes)
-  - [Kotlin Module](#kotlin-module)
-    - [Build Configuration for Kotlin](#build-configuration-for-kotlin)
-    - [Differences to Java Usage](#differences-to-java-usage)
-    - [Generation of Nullable Types](#generation-of-nullable-types)
-    - [Support for Coroutines](#support-for-coroutines)
-    - [Support for Kotlin Collection Types](#support-for-kotlin-collection-types)
-    - [Support for Kotlin Functions](#support-for-kotlin-functions)
-    - [Supported Kotlin-only Types](#supported-kotlin-only-types)
-    - [Kotlin Singletons](#kotlin-singletons)
-    - [Convenience Functions for Kotlin](#convenience-functions-for-kotlin)
-    - [Quirks and Bugs](#quirks-and-bugs)
-  - [Testing Module](#testing-module)
-- [Advanced Topics](#advanced-topics)
-  - [Implement your own Arbitraries and Generators](#implement-your-own-arbitraries-and-generators)
-  - [Lifecycle Hooks](#lifecycle-hooks)
-    - [Principles of Lifecycle Hooks](#principles-of-lifecycle-hooks)
-    - [Lifecycle Hook Types](#lifecycle-hook-types)
-    - [Lifecycle Execution Hooks](#lifecycle-execution-hooks)
-    - [Other Hooks](#other-hooks)
-    - [Lifecycle Storage](#lifecycle-storage)
-- [API Evolution](#api-evolution)
-- [Release Notes](#release-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -222,8 +58,8 @@ All you have to do is add all needed engines to your `testImplementation` depend
 [gradle file](#gradle) below.
 
 The latest release of __jqwik__ is deployed to [Maven Central](https://search.maven.org/search?q=g:net.jqwik).
-Snapshot releases are created on a regular basis and can be fetched from
-[jqwik's snapshot repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
+Snapshot releases are created on a regular basis and can be fetched from 
+[jqwik's snapshot repository](https://s01.oss.sonatype.org/content/repositories/snapshots). 
 
 ### Required Version of JUnit Platform
 
@@ -259,7 +95,7 @@ compileTestJava {
 test {
 	useJUnitPlatform {
 		includeEngines 'jqwik'
-
+        
         // Or include several Junit engines if you use them
         // includeEngines 'jqwik', 'junit-jupiter', 'junit-vintage'
 
@@ -320,7 +156,7 @@ If you want to see jqwik's reports in the output use Gradle's command line optio
 > gradle clean test --info
 ...
 mypackage.MyClassProperties > myPropertyMethod STANDARD_OUT
-    timestamp = 2019-02-28T18:01:14.302, MyClassProperties:myPropertyMethod =
+    timestamp = 2019-02-28T18:01:14.302, MyClassProperties:myPropertyMethod = 
                                   |-----------------------jqwik-----------------------
     tries = 1000                  | # of calls to property
     checks = 1000                 | # of not rejected calls
@@ -366,7 +202,7 @@ Adding
 
 ```
 https://s01.oss.sonatype.org/content/repositories/snapshots
-```
+``` 
 
 as a maven repository
 will allow you to use _jqwik_'s snapshot release which contains all the latest features.
@@ -460,12 +296,12 @@ In the case of `lengthOfConcatenatedStringIsGreaterThanLengthOfEach`
 from above the report looks like that:
 
 ```
-PropertyBasedTests:lengthOfConcatenatedStringIsGreaterThanLengthOfEach =
-  java.lang.AssertionError:
+PropertyBasedTests:lengthOfConcatenatedStringIsGreaterThanLengthOfEach = 
+  java.lang.AssertionError: 
     Expecting:
      <0>
     to be greater than:
-     <0>
+     <0> 
                               |-----------------------jqwik-----------------------
 tries = 16                    | # of calls to property
 checks = 16                   | # of not rejected calls
@@ -489,11 +325,11 @@ Original Sample
 
   Original Error
   --------------
-  java.lang.AssertionError:
+  java.lang.AssertionError: 
     Expecting:
      <29>
     to be greater than:
-     <29>
+     <29> 
 ```
 
 The source code names of property method parameters can only be reported when compiler argument
@@ -676,14 +512,14 @@ The effective values for tries, seed, after-failure mode, generation mode edge-c
 and edge cases numbers are reported after each run property:
 
 ```
-tries = 10
-checks = 10
+tries = 10 
+checks = 10 
 generation = EXHAUSTIVE
 after-failure = SAMPLE_FIRST
 when-fixed-seed = ALLOW
-edge-cases#mode = MIXIN
-edge-cases#total = 2
-edge-cases#tried = 2
+edge-cases#mode = MIXIN 
+edge-cases#total = 2 
+edge-cases#tried = 2 
 seed = 42859154278924201
 ```
 
@@ -713,7 +549,7 @@ Thus, the order in which a property method's attributes are determined is:
 1. Use jqwik's built-in defaults,
 2. which can be overridden in the [configuration file](#jqwik-configuration),
 3. which can be changed in a container class' `@PropertyDefaults` annotation,
-4. which override `@PropertyDefaults` attributes in a container's superclass or
+4. which override `@PropertyDefaults` attributes in a container's superclass or 
    implemented interfaces,
 5. which can be overridden by a method's
    [`@Property` annotation attributes](#optional-property-attributes).
@@ -742,9 +578,9 @@ import net.jqwik.api.*;
 import org.assertj.core.data.*;
 
 class ExampleBasedTests {
-
+	
 	@Example
-	void squareRootOf16is4() {
+	void squareRootOf16is4() { 
 		assertThat(Math.sqrt(16)).isCloseTo(4.0, Offset.offset(0.01));
 	}
 
@@ -790,9 +626,9 @@ Jqwik Engine
         @Example fooExample()
     class MyBarTests
         @Property barProperty()
-        @Group class Group1
+        @Group class Group1 
             @Property group1Property()
-        @Group class Group2
+        @Group class Group2 
             @Example group2Example()
 ```   
 
@@ -1155,7 +991,7 @@ with a value, e.g. `@ForAll("aMethodName")`, the method
 referenced by `"aMethodName"` will be called to provide an Arbitrary of the
 required type (see [Arbitrary Provider Methods](#arbitrary-provider-methods)).
 Also, when you use it with a `supplier` attribute, e.g. `@ForAll(supplier=MySupplier.class)`,
-an [arbitrary supplier implementation](#arbitrary-suppliers) is invoked.
+an [arbitrary supplier implementation](#arbitrary-suppliers) is invoked. 
 
 ### Constraining Default Generation
 
@@ -1246,7 +1082,7 @@ They work for generated `String`s and `Character`s.
   ```java
     @Property
     void listOfStringsTheFirstCharacterOfWhichMustBeUnique(
-      @ForAll @Size(max = 25) @UniqueElements(by = FirstChar.class)
+      @ForAll @Size(max = 25) @UniqueElements(by = FirstChar.class) 
         List<@AlphaChars @StringLength(min = 1, max = 10) String> listOfStrings
     ) {
       Iterable<Character> firstCharacters = listOfStrings.stream().map(s -> s.charAt(0)).collect(Collectors.toList());
@@ -1480,7 +1316,7 @@ Arbitrary<Integer> favouritePrimes() {
 }
 ```
 
-From time to time, though, you need it as a `BigInteger` instead of an `int`.
+From time to time, though, you need it as a `BigInteger` instead of an `int`. 
 You can kill both types with a single method:
 
 ```java
@@ -1539,12 +1375,12 @@ Although this is a bit more verbose than using a provider method, it has two adv
 - `ArbitrarySupplier` implementations can be shared across test container classes.
 
 
-The [`ArbitrarySupplier`](/docs/snapshot/javadoc/net/jqwik/api/ArbitrarySupplier.html)
+The [`ArbitrarySupplier`](/docs/snapshot/javadoc/net/jqwik/api/ArbitrarySupplier.html) 
 interface requires to override exactly one of two methods:
 
 - `get()` as you have seen above
 - `supplyFor(TypeUsage targeType)` if you need more information about the parameter,
-  e.g. about annotations or type parameters.
+  e.g. about annotations or type parameters. 
 
 ### Providing Arbitraries for Embedded Types
 
@@ -1672,7 +1508,7 @@ You can browse the API for generating strings and chars here:
 - [`StringArbitrary strings()`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#strings())
 
 
-When it comes to defining the base set of possible chars to choose from
+When it comes to defining the base set of possible chars to choose from 
 Character and String arbitraries work very similarly, e.g.
 
 ```java
@@ -1695,7 +1531,7 @@ StringArbitrary strings = Arbitraries.strings()
 #### String Size
 
 Without any additional configuration, the size of generated strings
-is between 0 and 255.
+is between 0 and 255. 
 To change this `StringArbitrary` comes with additional capabilities to set the minimal
 and maximal length of a string:
 
@@ -1741,7 +1577,7 @@ Arbitraries.strings().ofMinLength(5).ofMaxLength(25)
   boolean listWithWildcard(@ForAll("stringLists") List<?> stringList) {
       return stringList.isEmpty() || stringList.get(0) instanceof String;
   }
-
+   
   @Provide
   Arbitrary<List> stringLists() {
       return Arbitraries.defaultFor(List.class, String.class);
@@ -1789,7 +1625,7 @@ Decimal arbitrary types come with a few additional capabilities:
 Since the generation of decimal values is constrained by the significant decimal places,
 some special values, like `MIN_NORMAL` and `MIN_VALUE`, will never be generated,
 although they are attractors of bugs in some cases.
-That's why `DecimalArbitrary` and `FloatArbitrary` provide you with the capability
+That's why `DecimalArbitrary` and `FloatArbitrary` provide you with the capability 
 to add special values into the possible generation scope:
 
 - `DoubleArbitrary.withSpecialValue(double)`
@@ -1849,8 +1685,8 @@ Arbitrary<Integer> gaussians() {
 
 Look at the statistics to see if it fits your expectation:
 ```
-[RandomDistributionExamples:gaussianDistributedIntegers] (1000) statistics =
-       # | label | count |
+[RandomDistributionExamples:gaussianDistributedIntegers] (1000) statistics = 
+       # | label | count | 
     -----|-------|-------|---------------------------------------------------------------------------------
        0 |     0 |    15 | ■■■■■
        1 |     1 |     8 | ■■
@@ -1871,7 +1707,7 @@ Look at the statistics to see if it fits your expectation:
       16 |    16 |    19 | ■■■■■■
       17 |    17 |    10 | ■■■
       18 |    18 |     7 | ■■
-      19 |    19 |     1 |
+      19 |    19 |     1 | 
       20 |    20 |    15 | ■■■■■
 ```
 
@@ -1899,8 +1735,8 @@ is between 0 and 255. To change this all the arbitraries from above support
 - `ofMinSize(int)`: To set the lower bound for container size
 - `ofMaxSize(int)`: To set the upper bound for container size
 
-Usually the distribution of generated container size is heavily distorted
-towards the allowed minimum.
+Usually the distribution of generated container size is heavily distorted 
+towards the allowed minimum. 
 If you want to influence the random distribution you can use
 `withSizeDistribution(RandomDistribution)`. For example:
 
@@ -1977,7 +1813,7 @@ Arbitrary<Map<Integer, String>> numberMaps() {
 
 #### Map Size
 
-Influencing the size of a generated map works exactly like
+Influencing the size of a generated map works exactly like 
 [in other multi-value containers](#size-of-multi-value-containers).
 
 #### Map Entries
@@ -2092,7 +1928,7 @@ The following provider method creates an arbitrary that will return a `null` Str
 in about 1 of 100 generated values.
 
 ```java
-@Provide
+@Provide 
 Arbitrary<String> stringsWithNull() {
   return Arbitraries.strings(0, 10).injectNull(0.01);
 }
@@ -2139,7 +1975,7 @@ boolean comparing_strings_is_symmetric(@ForAll String first, @ForAll String seco
 The following output
 
 ```
-[comparing strings is symmetric] (1000) statistics =
+[comparing strings is symmetric] (1000) statistics = 
     <0 not empty (471) : 47,10 %
     >0 not empty (456) : 45,60 %
     <0 empty     ( 37) :  3,70 %
@@ -2182,7 +2018,7 @@ The following arbitrary will filter out all
 even numbers from the stream of generated integers:
 
 ```java
-@Provide
+@Provide 
 Arbitrary<Integer> oddNumbers() {
   return Arbitraries.integers().filter(aNumber -> aNumber % 2 != 0);
 }
@@ -2200,7 +2036,7 @@ build other objects from them. In that case, use
 The following example uses generated integers to create numerical Strings:
 
 ```java
-@Provide
+@Provide 
 Arbitrary<String> fiveDigitStrings() {
   return Arbitraries.integers(10000, 99999).map(aNumber -> String.valueOf(aNumber));
 }
@@ -2212,8 +2048,8 @@ will move towards the lowest allowed number, that is `10000`.
 
 #### Mapping over Elements of Collection
 
-`ListArbitrary` and `SetArbitrary` provide you with a convenient way to map over each element
-of a collection and still keep the generated collection.
+`ListArbitrary` and `SetArbitrary` provide you with a convenient way to map over each element 
+of a collection and still keep the generated collection. 
 This is useful when the mapping function needs access to all elements of the list to do its job:
 
 - [`ListArbitrary.mapEach`](/docs/snapshot/javadoc/net/jqwik/api/arbitraries/ListArbitrary.html#mapEach(java.util.function.BiFunction))
@@ -2258,8 +2094,8 @@ boolean fixedSizedStrings(@ForAll("listsOfEqualSizedStrings")List<String> lists)
 Arbitrary<List<String>> listsOfEqualSizedStrings() {
     Arbitrary<Integer> integers2to5 = Arbitraries.integers().between(2, 5);
     return integers2to5.flatMap(stringSize -> {
-        Arbitrary<String> strings = Arbitraries.strings()
-                .withCharRange('a', 'z')
+        Arbitrary<String> strings = Arbitraries.strings() 
+                .withCharRange('a', 'z') 
                 .ofMinLength(stringSize).ofMaxLength(stringSize);
         return strings.list();
     });
@@ -2295,12 +2131,12 @@ void substringLength(@ForAll("stringWithBeginEnd") Tuple3<String, Integer, Integ
 
 @Provide
 Arbitrary<Tuple3<String, Integer, Integer>> stringWithBeginEnd() {
-    Arbitrary<String> stringArbitrary = Arbitraries.strings()
-            .withCharRange('a', 'z')
+    Arbitrary<String> stringArbitrary = Arbitraries.strings() 
+            .withCharRange('a', 'z') 
             .ofMinLength(2).ofMaxLength(20);
-    return stringArbitrary
-            .flatMap(aString -> Arbitraries.integers().between(0, aString.length())
-                    .flatMap(end -> Arbitraries.integers().between(0, end)
+    return stringArbitrary 
+            .flatMap(aString -> Arbitraries.integers().between(0, aString.length()) 
+                    .flatMap(end -> Arbitraries.integers().between(0, end) 
                             .map(begin -> Tuple.of(aString, begin, end))));
 }
 ```
@@ -2310,7 +2146,7 @@ very useful.
 
 #### Flat Mapping over Elements of Collection
 
-Just like [mapping over elements of a collection](#mapping-over-elements-of-collection)
+Just like [mapping over elements of a collection](#mapping-over-elements-of-collection) 
 `ListArbitrary` and `SetArbitrary` provide you with a mechanism to flat-map over each element
 of a collection and still keep the generated collection:
 
@@ -2323,7 +2159,7 @@ of a collection and still keep the generated collection:
 
 Flat mapping syntax - especially when it's nested - is a bit cumbersome to read.
 Starting with version `1.5.2` _jqwik_ allows to use flat mapping implicitly.
-You simply add a `@ForAll` parameter to your provider method,
+You simply add a `@ForAll` parameter to your provider method, 
 the value of which will be generated using standard parameter generation.
 Under the hood this uses this parameter's arbitrary and call `flatMap` on it.
 
@@ -2372,7 +2208,7 @@ a value:
 boolean intsAreCreatedFromOneOfThreeArbitraries(@ForAll("oneOfThree") int anInt) {
     String classifier = anInt < -1000 ? "below" : anInt > 1000 ? "above" : "one";
     Statistics.collect(classifier);
-
+    
     return anInt < -1000 //
             || Math.abs(anInt) == 1 //
             || anInt > 1000;
@@ -2383,7 +2219,7 @@ Arbitrary<Integer> oneOfThree() {
     IntegerArbitrary below1000 = Arbitraries.integers().between(-2000, -1001);
     IntegerArbitrary above1000 = Arbitraries.integers().between(1001, 2000);
     Arbitrary<Integer> oneOrMinusOne = Arbitraries.samples(-1, 1);
-
+    
     return Arbitraries.oneOf(below1000, above1000, oneOrMinusOne);
 }
 ```
@@ -2552,10 +2388,10 @@ Then you can go about generating people in the following way:
 ```java
 @Provide
 Arbitrary<Person> validPeopleWithBuilder() {
-    Arbitrary<String> names =
+    Arbitrary<String> names = 
         Arbitraries.strings().withCharRange('a', 'z').ofMinLength(2).ofMaxLength(20);
     Arbitrary<Integer> ages = Arbitraries.integers().between(0, 130);
-
+    
     return Builders.withBuilder(() -> new PersonBuilder())
         .use(names).in((builder, name) -> builder.withName(name))
         .use(ages).withProbability(0.5).in((builder, age)-> builder.withAge(age))
@@ -2563,7 +2399,7 @@ Arbitrary<Person> validPeopleWithBuilder() {
 }
 ```
 
-If you don't want to introduce an explicit builder object,
+If you don't want to introduce an explicit builder object, 
 you can also use a mutable POJO -- e.g. a Java bean -- instead:
 
 ```java
@@ -2586,11 +2422,11 @@ to check the API.
 
 ### Uniqueness Constraints
 
-In many problem domains there exist identifying features or attributes
+In many problem domains there exist identifying features or attributes 
 that must not appear more than once.
 In those cases the multiple generation of objects can be restricted by
 either [annotating parameters with `@UniqueElements`](#unique-elements)
-or by using one of the many `uniqueness(..)` configuration methods for
+or by using one of the many `uniqueness(..)` configuration methods for 
 collections and collection-like types:
 
 - `ListArbitrary<T>.uniqueElements(Function<T, Object>)`
@@ -2620,7 +2456,7 @@ void listOfPeopleWithUniqueNames(@ForAll("people") List<Person> people) {
 Arbitrary<List<Person>> people() {
   Arbitrary<String> names = Arbitraries.strings().alpha().ofMinLength(3).ofMaxLength(20);
   Arbitrary<Integer> ages = Arbitraries.integers().between(0, 120);
-
+  
   Arbitrary<Person> persons = Combinators.combine(names, ages).as((name, age) -> new Person(name, age));
   return persons.list().uniqueElements(p -> p.name);
 };
@@ -2652,7 +2488,7 @@ Arbitrary<LocalDate> datesBetween1900and2099() {
   Arbitrary<Integer> years = Arbitraries.integers().between(1900, 2099);
   Arbitrary<Integer> months = Arbitraries.integers().between(1, 12);
   Arbitrary<Integer> days = Arbitraries.integers().between(1, 31);
-
+  
   return Combinators.combine(years, months, days)
   	  .as(LocalDate::of)
   	  .ignoreException(DateTimeException.class);
@@ -2688,7 +2524,7 @@ which generates sentences by recursively adding words to a sentence:
 @Report(Reporting.GENERATED)
 boolean sentencesEndWithAPoint(@ForAll("sentences") String aSentence) {
 	return aSentence.endsWith(".");
-	// return !aSentence.contains("x"); // using this condition instead
+	// return !aSentence.contains("x"); // using this condition instead 
 	                                    // should shrink to "AAAAx."
 }
 
@@ -2714,9 +2550,9 @@ private StringArbitrary word() {
 
 There are two things to which you must pay attention:
 
-- It is important to use
+- It is important to use 
   [`lazyOf(suppliers)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#lazyOf(java.util.function.Supplier,java.util.function.Supplier...))
-  instead of the seemingly simpler
+  instead of the seemingly simpler 
   [`oneOf(arbitraries)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#oneOf(net.jqwik.api.Arbitrary,net.jqwik.api.Arbitrary...)).
   Otherwise _jqwik_'s attempt to build the arbitrary would result in a stack overflow.
 
@@ -2761,7 +2597,7 @@ Arbitrary<String> sentences() {
 private StringArbitrary word() {
     return Arbitraries.strings().alpha().ofLength(5);
 }
-```
+``` 
 
 The disadvantage of `lazy()` combined with `oneOf()` or `frequencyOf()`
 is its worse shrinking behaviour compared to `lazyOf()`.
@@ -2901,8 +2737,8 @@ _jqwik_ will do all the combinations and filtering for you.
 
 ### Using Arbitraries Outside Jqwik Lifecycle
 
-All the methode mentioned in this chapter can be used outside a property,
-which also means outside jqwik's lifecycle control.
+All the methode mentioned in this chapter can be used outside a property, 
+which also means outside jqwik's lifecycle control. 
 Probably the most prominent reason to that is to experiment with arbitraries
 and value generation in a Java console or a main method.
 Another reason can be to use jqwik's data generation capabilities for testing
@@ -2916,7 +2752,7 @@ All this data will fill up your heap space and never be released, because
 jqwik cannot know, if you're done with using a specific generator or not.
 
 In order to mitigate that, there's an experimental API that allows you
-to simulate a small part of jqwik's property lifecycle.
+to simulate a small part of jqwik's property lifecycle. 
 Currently this API consists of a few static methods on class `net.jqwik.api.sessions.JqwikSession`:
 
 - `JqwikSession.start()`: Start explicitly a session for using arbitraries and generators.
@@ -2984,25 +2820,27 @@ the variables.
 
 ## Stateful Testing
 
-***The approach described here has been freshly introduced in version 1.7.0.
+_**The approach described here has been freshly introduced in version 1.7.0.
 It is still marked "experimental" but will probably be promoted to default in
 one of the next minor versions of jqwik.
-You can also read about [the old way of stateful testing](#stateful-testing-old-approach).***
+You can also read about [the old way of stateful testing](#stateful-testing-old-approach).**_
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
+Applying the concept of properties to stateful objects or data is not a new idea.
+Jqwik provides the tools for you to explore and implement these ideas.
+Those tools are available in package [net.jqwik.api.state](/docs/snapshot/javadoc/net/jqwik/api/state/package-summary.html).
 
-Thinking in a more formal way we can look at those objects as _state machines_ and the methods as
-_actions_ that move the object from one state to another. Some actions have preconditions to constrain
-when they can be invoked and some objects have invariants that should never be violated regardless
+### State Machines
+
+One, slightly formal, way to look at stateful objects are _state machines_.
+A state machine has an internal state and _actions_ that change the internal state.
+Some actions have preconditions to constrain when they can be invoked. 
+Also, state machines can have invariants that should never be violated regardless
 of the sequence of performed actions.
 
-_to be continued_
-
-<!--
-
 To make this abstract concept concrete, let's look at a
-[simple stack implementation](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStack.java):
+[simple stack implementation](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/state/mystack/MyStringStack.java):
 
 ```java
 public class MyStringStack {
@@ -3015,7 +2853,38 @@ public class MyStringStack {
 }
 ```
 
-### Specify Actions
+### Specifying Actions
+
+Jqwik's [new `Action` type](/docs/snapshot/javadoc/net/jqwik/api/state/Action.html)
+covers the idea that an action can be represented by "arbitrary" 
+[transformers](/docs/snapshot/javadoc/net/jqwik/api/state/Transformer.html);
+arbitrary in the sense that in the context of property-based testing there's some variation to it,
+e.g. a push onto a string stack can have any `String` as parameter.
+And as mentioned above, actions can be restricted by preconditions.
+
+```java
+interface Action<S> {
+    default boolean precondition(S state) {
+        return true;
+    }
+
+    interface Independent<S> extends Action<S> {
+        Arbitrary<Transformer<S>> transformer();
+    }
+
+    interface Dependent<S> extends Action<S> {
+        Arbitrary<Transformer<S>> transformer(S state);
+    }
+}
+
+interface Transformer<S> extends Function<S, S> {}
+```
+
+What makes the abstraction a bit more complicated than desirable is the fact that 
+the range of possible transformers may or may not depend on the previous state.
+That's why there exist the two subtypes of `Action`: `Independent` and `Dependent`.
+
+<!--
 
 We can see at least three _actions_ with their preconditions and expected state changes:
 
@@ -3026,15 +2895,15 @@ We can see at least three _actions_ with their preconditions and expected state 
   ```java
   import net.jqwik.api.stateful.*;
   import org.assertj.core.api.*;
-
+  
   class PushAction implements Action<MyStringStack> {
-
+  
   	private final String element;
-
+  
   	PushAction(String element) {
   		this.element = element;
   	}
-
+  
   	@Override
   	public MyStringStack run(MyStringStack stack) {
   		int sizeBefore = stack.size();
@@ -3043,11 +2912,11 @@ We can see at least three _actions_ with their preconditions and expected state 
   		Assertions.assertThat(stack.size()).isEqualTo(sizeBefore + 1);
   		return stack;
   	}
-
+  
   	@Override
   	public String toString() { return String.format("push(%s)", element); }
   }
-  ```
+  ``` 
 
 - [`Pop`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PopAction.java):
   If (and only if) the stack is not empty, pop the element on top off the stack.
@@ -3055,27 +2924,27 @@ We can see at least three _actions_ with their preconditions and expected state 
 
   ```java
   class PopAction implements Action<MyStringStack> {
-
+    
         @Override
         public boolean precondition(MyStringStack stack) {
             return !stack.isEmpty();
         }
-
+    
         @Override
         public MyStringStack run(MyStringStack stack) {
             int sizeBefore = stack.size();
             String topBefore = stack.top();
-
+    
             String popped = stack.pop();
             Assertions.assertThat(popped).isEqualTo(topBefore);
             Assertions.assertThat(stack.size()).isEqualTo(sizeBefore - 1);
             return stack;
         }
-
+    
         @Override
         public String toString() { return "pop"; }
   }
-  ```
+  ``` 
 
 - [`Clear`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/ClearAction.java):
   Remove all elements from the stack which should be empty afterwards.
@@ -3089,11 +2958,11 @@ We can see at least three _actions_ with their preconditions and expected state 
             Assertions.assertThat(stack.isEmpty()).isTrue();
             return stack;
         }
-
+    
         @Override
         public String toString() { return "clear"; }
   }
-  ```
+  ``` 
 
 ### Check Postconditions
 
@@ -3158,7 +3027,7 @@ public void clear() {
 Running the property should now produce a result similar to:
 
 ```
-org.opentest4j.AssertionFailedError:
+org.opentest4j.AssertionFailedError: 
   Run failed after following actions:
       push(AAAAA)
       push(AAAAA)
@@ -3203,7 +3072,7 @@ If we first fix the bug in `MyStringStack.clear()` our property should eventuall
 with the following result:
 
 ```
-org.opentest4j.AssertionFailedError:
+org.opentest4j.AssertionFailedError: 
   Run failed after following actions:
       push(AAAAA)
       push(AAAAA)
@@ -3219,8 +3088,8 @@ org.opentest4j.AssertionFailedError:
 
 ## Stateful Testing (Old Approach)
 
-***As of version 1.7.0 jqwik comes with a [new approach to stateful testing](#stateful-testing).
-What is described in this chapter will probably be deprecated in one of the next minor versions.***
+_**As of version 1.7.0 jqwik comes with a [new approach to stateful testing](#stateful-testing).
+What is described in this chapter will probably be deprecated in one of the next minor versions.**_
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
@@ -3255,15 +3124,15 @@ We can see at least three _actions_ with their preconditions and expected state 
   ```java
   import net.jqwik.api.stateful.*;
   import org.assertj.core.api.*;
-
+  
   class PushAction implements Action<MyStringStack> {
-
+  
   	private final String element;
-
+  
   	PushAction(String element) {
   		this.element = element;
   	}
-
+  
   	@Override
   	public MyStringStack run(MyStringStack stack) {
   		int sizeBefore = stack.size();
@@ -3272,11 +3141,11 @@ We can see at least three _actions_ with their preconditions and expected state 
   		Assertions.assertThat(stack.size()).isEqualTo(sizeBefore + 1);
   		return stack;
   	}
-
+  
   	@Override
   	public String toString() { return String.format("push(%s)", element); }
   }
-  ```
+  ``` 
 
 - [`Pop`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PopAction.java):
   If (and only if) the stack is not empty, pop the element on top off the stack.
@@ -3284,27 +3153,27 @@ We can see at least three _actions_ with their preconditions and expected state 
 
   ```java
   class PopAction implements Action<MyStringStack> {
-
+    
         @Override
         public boolean precondition(MyStringStack stack) {
             return !stack.isEmpty();
         }
-
+    
         @Override
         public MyStringStack run(MyStringStack stack) {
             int sizeBefore = stack.size();
             String topBefore = stack.top();
-
+    
             String popped = stack.pop();
             Assertions.assertThat(popped).isEqualTo(topBefore);
             Assertions.assertThat(stack.size()).isEqualTo(sizeBefore - 1);
             return stack;
         }
-
+    
         @Override
         public String toString() { return "pop"; }
   }
-  ```
+  ``` 
 
 - [`Clear`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/ClearAction.java):
   Remove all elements from the stack which should be empty afterwards.
@@ -3318,11 +3187,11 @@ We can see at least three _actions_ with their preconditions and expected state 
             Assertions.assertThat(stack.isEmpty()).isTrue();
             return stack;
         }
-
+    
         @Override
         public String toString() { return "clear"; }
   }
-  ```
+  ``` 
 
 ### Check Postconditions
 
@@ -3387,7 +3256,7 @@ public void clear() {
 Running the property should now produce a result similar to:
 
 ```
-org.opentest4j.AssertionFailedError:
+org.opentest4j.AssertionFailedError: 
   Run failed after following actions:
       push(AAAAA)
       push(AAAAA)
@@ -3432,7 +3301,7 @@ If we first fix the bug in `MyStringStack.clear()` our property should eventuall
 with the following result:
 
 ```
-org.opentest4j.AssertionFailedError:
+org.opentest4j.AssertionFailedError: 
   Run failed after following actions:
       push(AAAAA)
       push(AAAAA)
@@ -3488,15 +3357,15 @@ Despite the fact that the property condition itself is correct, the property wil
 fail with the following message:
 
 ```
-org.opentest4j.AssertionFailedError:
+org.opentest4j.AssertionFailedError: 
     Property [findingContainedStrings] exhausted after [1000] tries and [980] rejections
 
-tries = 1000
-checks = 20
+tries = 1000 
+checks = 20 
 generation = RANDOMIZED
 after-failure = SAMPLE_FIRST
 when-fixed-seed = ALLOW
-edge-cases#mode = MIXIN
+edge-cases#mode = MIXIN 
 seed = 1066117555581106850
 ```
 
@@ -3550,8 +3419,8 @@ The test run result should look something like:
 ```
 AssertionFailedError: Property [stringShouldBeShrunkToAA] falsified with sample {0="aa"}
 
-tries = 38
-checks = 38
+tries = 38 
+checks = 38 
 ...
 Shrunk Sample (5 steps)
 -------------------------
@@ -3603,8 +3472,8 @@ Shrinking still works, although there's quite a bit of filtering and string conc
 ```
 AssertionFailedError: Property [shrinkingCanTakeLong] falsified with sample {0="a", 1="000"}}
 
-checks = 20
-tries = 20
+checks = 20 
+tries = 20 
 ...
 Shrunk Sample (3 steps)
 -----------------------
@@ -3631,7 +3500,7 @@ In those cases you can switch shrinking off for an individual property:
 ```java
 @Property(shrinking = ShrinkingMode.OFF)
 void aPropertyWithLongShrinkingTimes(
-	@ForAll List<Set<String>> list1,
+	@ForAll List<Set<String>> list1, 
 	@ForAll List<Set<String>> list2
 ) {	... }
 ```
@@ -3671,7 +3540,7 @@ towards the standard frequency. Here's how the provider method might look:
 ```java
 @Provide
 Arbitrary<List<Signal>> signals() {
-	Arbitrary<Long> frequencies =
+	Arbitrary<Long> frequencies = 
 	    Arbitraries
             .longs()
             .between(45, 55)
@@ -3708,7 +3577,7 @@ void simpleStats(@ForAll RoundingMode mode) {
 will create an output similar to that:
 
 ```
-[MyTest:simpleStats] (1000) statistics =
+[MyTest:simpleStats] (1000) statistics = 
     FLOOR       (158) : 16 %
     HALF_EVEN   (135) : 14 %
     DOWN        (126) : 13 %
@@ -3730,7 +3599,7 @@ void integerStats(@ForAll int anInt) {
 ```
 
 ```
-[MyTest:integerStats] (1000) statistics =
+[MyTest:integerStats] (1000) statistics = 
     negative (506) : 51 %
     positive (494) : 49 %
 ```
@@ -3749,7 +3618,7 @@ void combinedIntegerStats(@ForAll int anInt) {
 ```
 
 ```
-[MyTest:combinedIntegerStats] (1000) statistics =
+[MyTest:combinedIntegerStats] (1000) statistics = 
     negative even big   (222) : 22 %
     positive even big   (201) : 20 %
     positive odd big    (200) : 20 %
@@ -3774,7 +3643,7 @@ void twoParameterStats(
 ```
 
 ```
-[MyTest:twoParameterStats] (1000) statistics =
+[MyTest:twoParameterStats] (1000) statistics = 
     index within size (507) : 51 %
 ```
 
@@ -3799,11 +3668,11 @@ void severalStatistics(@ForAll @IntRange(min = 1, max = 10) Integer anInt) {
 produces the following reports:
 
 ```
-[MyTest:labeledStatistics] (1000) range =
+[MyTest:labeledStatistics] (1000) range = 
     large (783) : 78 %
     small (217) : 22 %
 
-[MyTest:labeledStatistics] (1000) value =
+[MyTest:labeledStatistics] (1000) value = 
     1  (115) : 12 %
     5  (109) : 11 %
     10 (105) : 11 %
@@ -3886,8 +3755,8 @@ Arbitrary<Integer> gaussians() {
 ```
 
 ```
-[HistogramExamples:integers] (1000) statistics =
-       # | label | count |
+[HistogramExamples:integers] (1000) statistics = 
+       # | label | count | 
     -----|-------|-------|---------------------------------------------------------------------------------
        0 |     0 |    13 | ■■■■
        1 |     1 |    13 | ■■■■
@@ -3922,8 +3791,8 @@ void integersInRanges(@ForAll @IntRange(min = -1000, max = 1000) int aNumber) {
 ```
 
 ```
-[HistogramExamples:integersInRanges] (1000) statistics =
-       # |         label | count |
+[HistogramExamples:integersInRanges] (1000) statistics = 
+       # |         label | count | 
     -----|---------------|-------|---------------------------------------------------------------------------------
        0 | [-1000..-900[ |    20 | ■■■■■
        1 |  [-900..-800[ |    17 | ■■■■
@@ -3978,7 +3847,7 @@ class MyStatisticsFormat implements StatisticsReportFormat {
 Running this property should produce a report similar to that:
 
 ```
-[StatisticsExamples:statisticsWithHandMadeFormat] (1000) statistics =
+[StatisticsExamples:statisticsWithHandMadeFormat] (1000) statistics = 
     negative: 520
     positive: 450
     zero: 30
@@ -4101,7 +3970,7 @@ public class Money {
 		return new Money(amount.multiply(new BigDecimal(factor)), currency);
 	}
 }
-```
+``` 
 
 If you register the following class
 [`MoneyArbitraryProvider`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/defaultprovider/MoneyArbitraryProvider.java):
@@ -4296,7 +4165,7 @@ There are a few catches, though:
   which can be influenced by overriding the `order()` method of a configurator.
 
 
-
+ 
 ## Domain and Domain Context
 
 Until now you have seen two ways to specify which arbitraries will be created for a given parameter:
@@ -4315,17 +4184,17 @@ As for ways to implement domain context classes have a look at
 [DomainContext](/docs/snapshot/javadoc/net/jqwik/api/domains/DomainContext.html)
 and [DomainContextBase](/docs/snapshot/javadoc/net/jqwik/api/domains/DomainContextBase.html).
 
-In subclasses of `DomainContextBase` you have several options to specify
+In subclasses of `DomainContextBase` you have several options to specify 
 arbitrary providers, arbitrary configurators and reporting formats:
 
 - Add methods annotated with `Provide` and a return type of `Arbitrary<T>`.
   The result of an annotated method will then be used as an arbitrary provider for type `T`.
-
-  Those methods follow the same rules as
+  
+  Those methods follow the same rules as 
   [provider methods in container classes](#parameter-provider-methods),
-  i.e. they have [_optional_ parameters](#provider-methods-with-parameters)
-  of type `TypeUsage` or `ArbitraryProvider.SubtypeProvider`
-  and can do [implicit flat-mapping](#implicit-flat-mapping) over `@ForAll` arguments.
+  i.e. they have [_optional_ parameters](#provider-methods-with-parameters) 
+  of type `TypeUsage` or `ArbitraryProvider.SubtypeProvider` 
+  and can do [implicit flat-mapping](#implicit-flat-mapping) over `@ForAll` arguments. 
 
 - Add inner classes (static or not static, but not private) that implement `ArbitraryProvider`.
   An instance of this class will then be created and used as arbitrary provider.
@@ -4360,7 +4229,7 @@ Instead use jqwik's [Storage Mechanism](#lifecycle-storage) to persist data if n
 Let's say that US postal addresses play a crucial role in the software that we're developing.
 That's why there are a couple of classes that represent important domain concepts:
 `Street`, `State`, `City` and `Address`. Since we have to generate instances of those classes
-for our properties, we collect all arbitrary provision code
+for our properties, we collect all arbitrary provision code 
 [in one place](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/domains/AmericanAddresses.java):
 
 ```java
@@ -4493,7 +4362,7 @@ use all public constructors and all public, static factory methods in
 the class in order to generate instances. Whenever there's an exception during
 generation they will be ignored; that way you'll only get valid instances.
 
-While the creation of a `Person` instance requires only basic Java types -
+While the creation of a `Person` instance requires only basic Java types - 
 `String` and `int` - that already have default arbitraries available,
 `@UseType` is also applied to nested types without default generators.
 That's why class `Party`:
@@ -4523,7 +4392,7 @@ void aPartyOfPeopleCanBeGenerated(@ForAll @UseType Party aParty) {
 }
 ```
 
-This _recursive_ application of `@UseType` is switched on by default,
+This _recursive_ application of `@UseType` is switched on by default, 
 but can also be switched off: `@UseType(enableRecursion=false)`.
 
 To learn about all configuration options have a look
@@ -4617,7 +4486,7 @@ void combinedEdgeCasesOfTwoParameters(
 ```
 
 If you want to suppress edge case generation for a single arbitrary that's also possible:
-Just use `Arbitrary.withoutEdgeCases()`.
+Just use `Arbitrary.withoutEdgeCases()`. 
 Running the following property will regularly create empty lists - because - this is one
 of the default list edge cases, but it will not create integer values of `0`, `1`, `-1` etc.
 with higher probability.
@@ -4636,8 +4505,8 @@ Arbitrary<Integer> withoutEdgeCases() {
 ### Configuring Edge Cases Themselves
 
 Besides switching edge cases completely off, you can also filter some edge cases out,
-include only certain ones or add new ones.
-This is done through [`Arbitrary.edgeCases(config)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html#edgeCases(java.util.function.Consumer)).
+include only certain ones or add new ones. 
+This is done through [`Arbitrary.edgeCases(config)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html#edgeCases(java.util.function.Consumer)). 
 Here's an example that shows how to add a few "special" strings to a generator:
 
 ```java
@@ -4766,7 +4635,7 @@ the external data was conceived or generated.
 
 When you rerun properties after they failed, they will - by default - use
 the previous random seed so that the next run will generate the exact same
-sequence of parameter data and thereby expose the same failing behaviour.
+sequence of parameter data and thereby expose the same failing behaviour. 
 This simplifies debugging and regression testing since it makes a property's falsification
 stick until the problem has been fixed.
 
@@ -4791,7 +4660,7 @@ The `afterFailure` property can have one of four values:
   void myProperty() { ... }
   ```
 
-- `AfterFailureMode.SAMPLE_ONLY`: Only run the property with just the last falsified (and shrunk) generated sample set of parameters.
+- `AfterFailureMode.SAMPLE_ONLY`: Only run the property with just the last falsified (and shrunk) generated sample set of parameters. 
   This only works if generation and shrinking will still lead to the same results as in the previous failing run.
   If the previous sample cannot be reproduced the property will restart with the previous run's random seed.
 
@@ -4835,7 +4704,7 @@ jqwik.seeds.whenfixed = ALLOW                # How a test should act when a seed
 ```
 
 Besides the properties file there is also the possibility to set properties
-in [Gradle](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-gradle-config-params) or
+in [Gradle](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-gradle-config-params) or 
 [Maven Surefire](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-maven-config-params).
 
 #### Legacy Configuration in `jqwik.properties` File
@@ -4856,7 +4725,7 @@ _jqwik_ comes with a few additional modules:
 ### Web Module
 
 This module's artefact name is `jqwik-web`. It's supposed to provide arbitraries,
-default generation and annotations for web related types.
+default generation and annotations for web related types. 
 Currently it supports the generation of
 
 - [Email addresses](#email-address-generation)
@@ -4898,7 +4767,7 @@ The `@Email` annotation comes with a few configuration attributes:
 - `quotedLocalPart` also allow quoted local parts to be generated
 - `ipv4Host` also allow ipv4 addresses to be generated in the host part
 - `ipv6Host` also allow ipv4 addresses to be generated in the host part
-
+  
 You can use it as follows:
 
 ```java
@@ -4943,16 +4812,16 @@ default generation and annotations for date and time types.
 
 This module is part of jqwik's default dependencies.
 
-The module provides:
+The module provides: 
 
 - [Generation of Dates](#generation-of-dates)
     - [default generation](#default-generation-of-dates) for date-related Java types
     - [Programmatic API](#programmatic-generation-of-dates) to configure date-related types
-
+    
 - [Generation of Times](#generation-of-times)
     - [default generation](#default-generation-of-times) for time-related Java types
     - [Programmatic API](#programmatic-generation-of-times) to configure time-related types
-
+    
 - [Generation of DateTimes](#generation-of-datetimes)
     - [default generation](#default-generation-of-datetimes) for date time-related Java types
     - [Programmatic API](#programmatic-generation-of-datetimes) to configure date time-related types
@@ -4985,8 +4854,8 @@ The following annotations can be used to constrain default generation of the enu
 - [`@DayOfWeekRange`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/DayOfWeekRange.html)
 - [`@PeriodRange`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/PeriodRange.html)
 
-`@DateRange`, `@MonthDayRange`, `@YearMonthRange` and `@PeriodRange`
-use the ISO format for date strings.
+`@DateRange`, `@MonthDayRange`, `@YearMonthRange` and `@PeriodRange` 
+use the ISO format for date strings. 
 Examples: `2013-05-25`, `--05-25`, `2013-05` and `P1Y2M15D`.
 
 ##### Programmatic Generation of Dates
@@ -5076,7 +4945,7 @@ Here's the list of available methods:
 ###### PeriodArbitrary
 
 - By default, periods between `-1000 years` and `1000 years` are generated.
-- Generated periods are always in a "reduced" form,
+- Generated periods are always in a "reduced" form, 
   i.e. months are always between `-11` and `11` and days between `-30` and `30`.   
 - You can constrain the minimum and maximum value using `between(Period min, Period max)`.
 - If you really want something like `Period.ofDays(3000)` generate an integer
@@ -5107,8 +4976,8 @@ The following annotations can be used to constrain default generation of the enu
 - [`@Precision`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/Precision.html)
 - [`@DurationRange`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/DurationRange.html)
 
-`@TimeRange`, `@OffsetRange` and `@DurationRange`
-use the standard format of their classes.
+`@TimeRange`, `@OffsetRange` and `@DurationRange` 
+use the standard format of their classes. 
 Examples:
 
 - `@TimeRange`: "01:32:31.394920222", "23:43:21" or "03:02" (See [`LocalTime.parse`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html#parse-java.lang.CharSequence-))
@@ -5179,7 +5048,7 @@ Here's the list of available methods:
 
 ##### Default Generation of DateTimes
 
-Default generation currently is supported for `LocalDateTime`, `Instant`, `OffsetDateTime` and `ZonedDateTime`.
+Default generation currently is supported for `LocalDateTime`, `Instant`, `OffsetDateTime` and `ZonedDateTime`. 
 Here's a small example:
 
 ```java
@@ -5208,8 +5077,8 @@ The following annotations can be used to constrain default generation of the enu
 - [`@OffsetRange`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/OffsetRange.html)
 - [`@Precision`](/docs/snapshot/javadoc/net/jqwik/time/api/constraints/Precision.html)
 
-`@DateTimeRange`, `@InstantRange`, `@DateRange`, `@TimeRange` and `@OffsetRange` use the standard format of their classes.
-Examples:
+`@DateTimeRange`, `@InstantRange`, `@DateRange`, `@TimeRange` and `@OffsetRange` use the standard format of their classes. 
+Examples: 
 
 - `@DateTimeRange`: `2013-05-25T01:34:22.231`
 - `@InstantRange`: `2013-05-25T01:34:22.231Z`
@@ -5319,10 +5188,10 @@ Here's the list of available methods:
 
 ### Kotlin Module
 
-This module's artefact name is `jqwik-kotlin`.
-It's supposed to simplify and streamline using _jqwik_ in Kotlin projects.
+This module's artefact name is `jqwik-kotlin`. 
+It's supposed to simplify and streamline using _jqwik_ in Kotlin projects. 
 
-This module is _not_ in jqwik's default dependencies.
+This module is _not_ in jqwik's default dependencies. 
 It's usually added as a test-implementation dependency.
 
 Adding this module will add dependencies on:
@@ -5355,9 +5224,9 @@ __Table of contents:__
 Apart from adding this module to the dependencies in test scope,
 there's a few other things you should configure for a seamless jqwik experience in Kotlin:
 
-- As of this writing the current kotlin version (1.5.31) does not generate byte code
-  for Java annotations by default.
-  It must be switched on through compiler argument `-Xemit-jvm-type-annotations`.
+- As of this writing the current kotlin version (1.5.31) does not generate byte code 
+  for Java annotations by default. 
+  It must be switched on through compiler argument `-Xemit-jvm-type-annotations`. 
 
 - In order to have nullability information for jqwik's API available in Kotlin
   _JSR305_ compatibility should be switched on with compiler argument `-Xjsr305=strict`.
@@ -5391,10 +5260,10 @@ tasks.withType<KotlinCompile> {
 Kotlin is very compatible with Java, but a few things do not work or do not work as expected.
 Here are a few of those which I noticed to be relevant for jqwik:
 
-- Before Kotlin 1.6.0 repeatable annotations with runtime retention did not work.
-  That's why with Kotlin 1.5 the container annotation must be used explicitly
+- Before Kotlin 1.6.0 repeatable annotations with runtime retention did not work. 
+  That's why with Kotlin 1.5 the container annotation must be used explicitly 
   if you need for example more than one tag:
-
+  
   ```kotlin
   @TagList(
       Tag("tag1"), Tag("tag2")
@@ -5404,15 +5273,15 @@ Here are a few of those which I noticed to be relevant for jqwik:
   ```
   That's also necessary for multiple `@Domain`, `@StatisticsReport` etc.
 
-- The positioning of constraint annotations can be confusing since
-  Kotlin allows annotations at the parameter and at the parameter's type.
+- The positioning of constraint annotations can be confusing since 
+  Kotlin allows annotations at the parameter and at the parameter's type. 
   So both of these will constrain generation of Strings to use only alphabetic characters:
 
   ```kotlin
   @Property
   fun test(@ForAll @AlphaChars aString: String) { ... }
   ```
-
+  
   ```kotlin
   @Property
   fun test(@ForAll aString: @AlphaChars String) { ... }
@@ -5422,20 +5291,20 @@ Here are a few of those which I noticed to be relevant for jqwik:
 
 - Grouping - aka nesting - of test container classes requires the `inner` modifier.
   The reason is that nested classes without `inner` are considered to be `static`
-  in the Java reflection API.
+  in the Java reflection API. 
 
   ```kotlin
   class GroupingExamples {
-
+  
       @Property
       fun plainProperty(@ForAll anInt: Int) {}
-
+  
       @Group
       inner class OuterGroup {
-
+  
           @Property
           fun propertyInOuterGroup(@ForAll anInt: Int) {}
-
+  
           @Group
           inner class InnerGroup {
               @Property
@@ -5446,14 +5315,14 @@ Here are a few of those which I noticed to be relevant for jqwik:
   ```
 
 - Just like abstract classes and interfaces Kotlin's _sealed_ classes
-  can give shelter to property methods and other lifecycle relevant behaviour.
+  can give shelter to property methods and other lifecycle relevant behaviour. 
   Sealed classes cannot be "run" themselves, but their subclasses inherit
-  all property methods, lifecycle methods and lifecycle hooks from them.
+  all property methods, lifecycle methods and lifecycle hooks from them. 
 
 #### Generation of Nullable Types
 
 Top-level nullable Kotlin types are recognized, i.e., `null`'s will automatically be
-generated with a probability of 5%.
+generated with a probability of 5%. 
 If you want a different probability you have to use `@WithNull(probability)`.
 
 ```kotlin
@@ -5505,29 +5374,29 @@ suspend fun useSuspend(@ForAll s: String) {
 
 Both variants do nothing more than starting the body of the property method asynchronously
 and waiting for all coroutines to finish.
-That means e.g. that delays will require the full amount of specified delay time.
+That means e.g. that delays will require the full amount of specified delay time. 
 
 If you need more control over the dispatchers to use or the handling of delays,
-you should consider using
+you should consider using 
 [`kotlinx.coroutines` testing support](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test).
 This will require to add a dependency on `org.jetbrains.kotlinx:kotlinx-coroutines-test`.
 
 
 #### Support for Kotlin Collection Types
 
-Kotlin has its own variations of collection types, e.g. (`kotlin.collections.List` and `kotlin.collections.MutableList`)
+Kotlin has its own variations of collection types, e.g. (`kotlin.collections.List` and `kotlin.collections.MutableList`) 
 that are - under the hood - instances of their corresponding, mutable Java type.
 Using those types in ForAll-parameters works as expected.
 
-This is also true for
-- Kotlin's notation of arrays, e.g. `Array<Int>`,
+This is also true for 
+- Kotlin's notation of arrays, e.g. `Array<Int>`, 
 - Kotlin's unsigned integer types: `UByte`, `UShort`, `UInt` and `ULong`,
 - and Kotlin's inline classes which are handled by jqwik like the class they inline.
 
 #### Support for Kotlin Functions
 
-Kotlin provides a generic way to specify functional types,
-e.g. `(String, String) -> Int` specifies a function with two `String` parameters
+Kotlin provides a generic way to specify functional types, 
+e.g. `(String, String) -> Int` specifies a function with two `String` parameters 
 that returns an `Int`.
 You can use those function types as `ForAll` parameters:
 
@@ -5634,7 +5503,7 @@ You can, however, run an object-based test container from the project view and t
 
 #### Convenience Functions for Kotlin
 
-Some parts of the jqwik API are hard to use in Kotlin.
+Some parts of the jqwik API are hard to use in Kotlin. 
 That's why this module offers a few extension functions and top-level functions
 to ease the pain.
 
@@ -5740,22 +5609,22 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
 
 - `frequency(vararg frequencies: Pair<Int, T>)` can replace `Arbitraries.frequency(vararg Tuple.Tuple2<Int, T>)`
 
-- `frequencyOf(vararg frequencies: Pair<Int, Arbitrary<out T>>)` can replace
+- `frequencyOf(vararg frequencies: Pair<Int, Arbitrary<out T>>)` can replace 
   `Arbitraries.frequencyOf(vararg Tuple.Tuple2<Int, Arbitrary<out T>>)`
 
 
 #### Quirks and Bugs
 
 - Despite our best effort to enrich jqwik's Java API with nullability information,
-  the derived Kotlin types are not always correct.
+  the derived Kotlin types are not always correct. 
   That means that you may run into `null` objects despite the type system showing non null types,
   or you may have to ignore Kotlin's warning about nullable types where in practice nulls are impossible.
 
 - As of this writing Kotlin still has a few bugs when it comes to supporting Java annotations.
   That's why in some constellations you'll run into strange behaviour - usually runtime exceptions or ignored constraints - when using predefined jqwik annotations on types.
 
-- Some prominent types in jqwik's API have a counterpart with the same name in
-  Kotlin's default namespace and must therefore be either fully qualified or
+- Some prominent types in jqwik's API have a counterpart with the same name in 
+  Kotlin's default namespace and must therefore be either fully qualified or 
   be imported manually (since the IDE assumes Kotlin's default type)
   or, even better, use the predefined type alias:
   - `net.jqwik.api.constraints.ShortRange` : `JqwikIntRange`
@@ -5763,17 +5632,17 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
   - `net.jqwik.api.constraints.LongRange` : `JqwikLongRange`
   - `net.jqwik.api.constraints.CharRange` : `JqwikCharRange`
 
-- Some types, e.g. `UByte`, are not visible during runtime.
+- Some types, e.g. `UByte`, are not visible during runtime. 
   That means that jqwik cannot determine if an `int` value is really a `UByte`,
   which will lead to confusing value reporting, e.g. a UByte value of `254` is reported
   as `-2` because that's the internal representation.
 
 - Kotlin's unsigned integer types (`UByte`, `UShort`, `UInt` and `ULong`) look like their
   signed counter parts to the JVM. Default generation works but range constraints do not.
-  If you build your own arbitraries for unsigned types you have to generate
+  If you build your own arbitraries for unsigned types you have to generate 
   `Byte` instead of `UByte` and so on.
   One day _jqwik_ may be able to handle the intricacies of hidden Kotlin types
-  better.
+  better. 
   [Create an issue](https://github.com/jlink/jqwik/issues/new) if that's important for you.
 
 - Inline classes are handled like the class they inline.
@@ -5790,9 +5659,9 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
       fun length() = s.length
   }
   ```
-
-  However, if you build your own arbitraries for inline classes
-  you have to generate values of the _inlined class_ instead,
+  
+  However, if you build your own arbitraries for inline classes 
+  you have to generate values of the _inlined class_ instead, 
   which would be `String` in the example above.
   [Create an issue](https://github.com/jlink/jqwik/issues/new) if that bothers you too much.
 
@@ -5800,7 +5669,7 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
 ### Testing Module
 
 This module's artefact name is `jqwik-testing`. It provides a few helpful methods
-and classes for generator writers to test their generators - including
+and classes for generator writers to test their generators - including 
 edge cases and shrinking.
 
 This module is _not_ in jqwik's default dependencies. It's usually added as a
@@ -5824,7 +5693,7 @@ If your domain arbitrary must implement another interface - e.g. for configurati
 subclassing `net.jqwik.api.arbitraries.ArbitraryDecorator` is the way to go.
 An example would come in handy now...
 
-Imagine you have to roll your own complex number type:
+Imagine you have to roll your own complex number type: 
 
 ```java
 public class ComplexNumber {
@@ -6033,7 +5902,7 @@ class ExternalServerResource implements AroundContainerHook {
     public void beforeContainer(final ContainerLifecycleContext context) {
         System.out.println("Starting server...");
     }
-
+  
     @Override
     public void afterContainer(final ContainerLifecycleContext context) {
         System.out.println("Stopping server...");
@@ -6143,7 +6012,7 @@ org.opentest4j.AssertionFailedError: sleepingProperty was too slow: 100 ms
 ##### InvokePropertyMethodHook
 
 This is an experimental hook, which allows to change the way how a method -
-represented by a `java.lang.reflect.Method` object - is being invoked
+represented by a `java.lang.reflect.Method` object - is being invoked 
 through reflection mechanisms.
 
 ##### ProvidePropertyInstanceHook
@@ -6164,11 +6033,11 @@ Consider this stateful `Calculator`:
 ```java
 public class Calculator {
     private int result = 0;
-
+  
     public int result() {
         return result;
     }
-
+  
     public void plus(int addend) {
         result += addend;
     }
@@ -6356,12 +6225,12 @@ class TemporaryFilesExample {
         writeToFile(anyFile, fileContents);
         assertThat(anyFile).isNotEmpty();
     }
-
+  
     @AfterTry
     void assertFileNotEmpty(File anyFile) {
         assertThat(anyFile).isNotEmpty();
     }
-
+  
     private void writeToFile(File anyFile, String contents) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(anyFile));
         writer.write(contents);
