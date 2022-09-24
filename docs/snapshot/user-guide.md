@@ -43,6 +43,177 @@ title: jqwik User Guide - 1.7.0-SNAPSHOT
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Detailed Table of Contents  
 
+- [How to Use](#how-to-use)
+  - [Required Version of JUnit Platform](#required-version-of-junit-platform)
+  - [Gradle](#gradle)
+    - [Seeing jqwik Reporting in Gradle Output](#seeing-jqwik-reporting-in-gradle-output)
+  - [Maven](#maven)
+  - [Snapshot Releases](#snapshot-releases)
+  - [Project without Build Tool](#project-without-build-tool)
+- [Writing Properties](#writing-properties)
+  - [Creating a Property](#creating-a-property)
+    - [Failure Reporting](#failure-reporting)
+    - [Additional Reporting Options](#additional-reporting-options)
+    - [Platform Reporting with Reporter Object](#platform-reporting-with-reporter-object)
+    - [Adding Footnotes to Failure Reports](#adding-footnotes-to-failure-reports)
+  - [Optional `@Property` Attributes](#optional-property-attributes)
+    - [Setting Defaults for `@Property` Attributes](#setting-defaults-for-property-attributes)
+  - [Creating an Example-based Test](#creating-an-example-based-test)
+  - [Assertions](#assertions)
+  - [Lifecycle](#lifecycle)
+    - [Simple Property Lifecycle](#simple-property-lifecycle)
+    - [Annotated Lifecycle Methods](#annotated-lifecycle-methods)
+    - [Single Property Lifecycle](#single-property-lifecycle)
+  - [Grouping Tests](#grouping-tests)
+  - [Naming and Labeling Tests](#naming-and-labeling-tests)
+  - [Tagging Tests](#tagging-tests)
+  - [Disabling Tests](#disabling-tests)
+- [Default Parameter Generation](#default-parameter-generation)
+  - [Constraining Default Generation](#constraining-default-generation)
+    - [Allow Null Values](#allow-null-values)
+    - [String Length](#string-length)
+    - [String not Blank](#string-not-blank)
+    - [Character Sets](#character-sets)
+    - [List, Set, Stream, Iterator, Map and Array Size](#list-set-stream-iterator-map-and-array-size)
+    - [Unique Elements](#unique-elements)
+    - [Integer Constraints](#integer-constraints)
+    - [Decimal Constraints](#decimal-constraints)
+  - [Constraining parameterized types](#constraining-parameterized-types)
+  - [Constraining array types](#constraining-array-types)
+  - [Providing variable types](#providing-variable-types)
+  - [Self-Made Annotations](#self-made-annotations)
+- [Customized Parameter Generation](#customized-parameter-generation)
+  - [Arbitrary Provider Methods](#arbitrary-provider-methods)
+    - [Provider Methods with Parameters](#provider-methods-with-parameters)
+  - [Arbitrary Suppliers](#arbitrary-suppliers)
+  - [Providing Arbitraries for Embedded Types](#providing-arbitraries-for-embedded-types)
+  - [Static `Arbitraries` methods](#static-arbitraries-methods)
+    - [Generate values yourself](#generate-values-yourself)
+    - [Select or generate values randomly](#select-or-generate-values-randomly)
+    - [Select randomly with Weights](#select-randomly-with-weights)
+    - [Characters and Strings](#characters-and-strings)
+    - [String Size](#string-size)
+    - [java.util.Random](#javautilrandom)
+    - [Shuffling Permutations](#shuffling-permutations)
+    - [Default Types](#default-types)
+  - [Numeric Arbitrary Types](#numeric-arbitrary-types)
+    - [Integrals](#integrals)
+    - [Decimals](#decimals)
+    - [Special Decimal Values](#special-decimal-values)
+    - [Random Numeric Distribution](#random-numeric-distribution)
+  - [Collections, Streams, Iterators and Arrays](#collections-streams-iterators-and-arrays)
+    - [Size of Multi-value Containers](#size-of-multi-value-containers)
+  - [Collecting Values in a List](#collecting-values-in-a-list)
+  - [Optional](#optional)
+  - [Tuples of same base type](#tuples-of-same-base-type)
+  - [Maps](#maps)
+    - [Map Size](#map-size)
+    - [Map Entries](#map-entries)
+  - [Functional Types](#functional-types)
+  - [Fluent Configuration Interfaces](#fluent-configuration-interfaces)
+  - [Generate `null` values](#generate-null-values)
+  - [Inject duplicate values](#inject-duplicate-values)
+  - [Filtering](#filtering)
+  - [Mapping](#mapping)
+    - [Mapping over Elements of Collection](#mapping-over-elements-of-collection)
+  - [Flat Mapping](#flat-mapping)
+    - [Flat Mapping with Tuple Types](#flat-mapping-with-tuple-types)
+    - [Flat Mapping over Elements of Collection](#flat-mapping-over-elements-of-collection)
+    - [Implicit Flat Mapping](#implicit-flat-mapping)
+  - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
+  - [Combining Arbitraries](#combining-arbitraries)
+    - [Flat Combination](#flat-combination)
+  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
+  - [Uniqueness Constraints](#uniqueness-constraints)
+  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
+  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
+- [Recursive Arbitraries](#recursive-arbitraries)
+  - [Probabilistic Recursion](#probabilistic-recursion)
+    - [Using lazy() instead of lazyOf()](#using-lazy-instead-of-lazyof)
+  - [Deterministic Recursion](#deterministic-recursion)
+  - [Deterministic Recursion with `recursive()`](#deterministic-recursion-with-recursive)
+- [Using Arbitraries Directly](#using-arbitraries-directly)
+  - [Generating a Single Value](#generating-a-single-value)
+  - [Generating a Stream of Values](#generating-a-stream-of-values)
+  - [Generating all possible values](#generating-all-possible-values)
+  - [Iterating through all possible values](#iterating-through-all-possible-values)
+  - [Using Arbitraries Outside Jqwik Lifecycle](#using-arbitraries-outside-jqwik-lifecycle)
+- [Contract Tests](#contract-tests)
+- [Stateful Testing](#stateful-testing)
+  - [State Machines](#state-machines)
+  - [Specifying Actions](#specifying-actions)
+  - [Formulating Stateful Properties](#formulating-stateful-properties)
+  - [Running Stateful Properties](#running-stateful-properties)
+  - [Number of actions](#number-of-actions)
+  - [Check Invariants](#check-invariants)
+- [Rerunning Falsified Action Chains](#rerunning-falsified-action-chains)
+- [Stateful Testing (Old Approach)](#stateful-testing-old-approach)
+  - [Specify Actions](#specify-actions)
+  - [Check Postconditions](#check-postconditions)
+  - [Number of actions](#number-of-actions-1)
+  - [Check Invariants](#check-invariants-1)
+- [Assumptions](#assumptions)
+- [Result Shrinking](#result-shrinking)
+  - [Integrated Shrinking](#integrated-shrinking)
+  - [Switch Shrinking Off](#switch-shrinking-off)
+  - [Switch Shrinking to Full Mode](#switch-shrinking-to-full-mode)
+  - [Change the Shrinking Target](#change-the-shrinking-target)
+- [Collecting and Reporting Statistics](#collecting-and-reporting-statistics)
+  - [Labeled Statistics](#labeled-statistics)
+  - [Statistics Report Formatting](#statistics-report-formatting)
+    - [Switch Statistics Reporting Off](#switch-statistics-reporting-off)
+    - [Histograms](#histograms)
+    - [Make Your Own Statistics Report Format](#make-your-own-statistics-report-format)
+  - [Checking Coverage of Collected Statistics](#checking-coverage-of-collected-statistics)
+    - [Check Percentages and Counts](#check-percentages-and-counts)
+    - [Check Ad-hoc Query Coverage](#check-ad-hoc-query-coverage)
+- [Providing Default Arbitraries](#providing-default-arbitraries)
+  - [Simple Arbitrary Providers](#simple-arbitrary-providers)
+  - [Arbitrary Providers for Parameterized Types](#arbitrary-providers-for-parameterized-types)
+  - [Arbitrary Provider Priority](#arbitrary-provider-priority)
+  - [Create your own Annotations for Arbitrary Configuration](#create-your-own-annotations-for-arbitrary-configuration)
+    - [Arbitrary Configuration Example: `@Odd`](#arbitrary-configuration-example-odd)
+- [Domain and Domain Context](#domain-and-domain-context)
+  - [Domain example: American Addresses](#domain-example-american-addresses)
+- [Generation from a Type's Interface](#generation-from-a-types-interface)
+- [Generation of Edge Cases](#generation-of-edge-cases)
+  - [Configuring Edge Case Injection](#configuring-edge-case-injection)
+  - [Configuring Edge Cases Themselves](#configuring-edge-cases-themselves)
+- [Exhaustive Generation](#exhaustive-generation)
+- [Data-Driven Properties](#data-driven-properties)
+- [Rerunning Falsified Properties](#rerunning-falsified-properties)
+- [jqwik Configuration](#jqwik-configuration)
+    - [Legacy Configuration in `jqwik.properties` File](#legacy-configuration-in-jqwikproperties-file)
+- [Additional Modules](#additional-modules)
+  - [Web Module](#web-module)
+    - [Email Address Generation](#email-address-generation)
+    - [Web Domain Generation](#web-domain-generation)
+  - [Time Module](#time-module)
+    - [Generation of Dates](#generation-of-dates)
+    - [Generation of Times](#generation-of-times)
+    - [Generation of DateTimes](#generation-of-datetimes)
+  - [Kotlin Module](#kotlin-module)
+    - [Build Configuration for Kotlin](#build-configuration-for-kotlin)
+    - [Differences to Java Usage](#differences-to-java-usage)
+    - [Generation of Nullable Types](#generation-of-nullable-types)
+    - [Support for Coroutines](#support-for-coroutines)
+    - [Support for Kotlin Collection Types](#support-for-kotlin-collection-types)
+    - [Support for Kotlin Functions](#support-for-kotlin-functions)
+    - [Supported Kotlin-only Types](#supported-kotlin-only-types)
+    - [Kotlin Singletons](#kotlin-singletons)
+    - [Convenience Functions for Kotlin](#convenience-functions-for-kotlin)
+    - [Quirks and Bugs](#quirks-and-bugs)
+  - [Testing Module](#testing-module)
+- [Advanced Topics](#advanced-topics)
+  - [Implement your own Arbitraries and Generators](#implement-your-own-arbitraries-and-generators)
+  - [Lifecycle Hooks](#lifecycle-hooks)
+    - [Principles of Lifecycle Hooks](#principles-of-lifecycle-hooks)
+    - [Lifecycle Hook Types](#lifecycle-hook-types)
+    - [Lifecycle Execution Hooks](#lifecycle-execution-hooks)
+    - [Other Hooks](#other-hooks)
+    - [Lifecycle Storage](#lifecycle-storage)
+- [API Evolution](#api-evolution)
+- [Release Notes](#release-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -63,7 +234,7 @@ Snapshot releases are created on a regular basis and can be fetched from
 
 ### Required Version of JUnit Platform
 
-The minimum required version of the JUnit platform is `1.9.0`.
+The minimum required version of the JUnit platform is `1.9.1`.
 
 ### Gradle
 
@@ -82,8 +253,8 @@ repositories {
 
 }
 
-ext.junitPlatformVersion = '1.9.0'
-ext.junitJupiterVersion = '5.9.0'
+ext.junitPlatformVersion = '1.9.1'
+ext.junitJupiterVersion = '5.9.1'
 
 ext.jqwikVersion = '1.7.0-SNAPSHOT'
 
@@ -115,7 +286,7 @@ dependencies {
     testImplementation "net.jqwik:jqwik:${jqwikVersion}"
 
     // Add if you also want to use the Jupiter engine or Assertions from it
-    testImplementation "org.junit.jupiter:junit-jupiter:5.9.0"
+    testImplementation "org.junit.jupiter:junit-jupiter:5.9.1"
 
     // Add any other test library you need...
     testImplementation "org.assertj:assertj-core:3.12.2"
@@ -214,8 +385,8 @@ You will have to add _at least_ the following jars to your classpath:
 
 - `jqwik-api-1.7.0-SNAPSHOT.jar`
 - `jqwik-engine-1.7.0-SNAPSHOT.jar`
-- `junit-platform-engine-1.9.0.jar`
-- `junit-platform-commons-1.9.0.jar`
+- `junit-platform-engine-1.9.1.jar`
+- `junit-platform-commons-1.9.1.jar`
 - `opentest4j-1.2.0.jar`
 
 Optional jars are:
@@ -2821,9 +2992,11 @@ the variables.
 ## Stateful Testing
 
 _**The approach described here has been freshly introduced in version 1.7.0.
-It is still marked "experimental" but will probably be promoted to default in
+It is still marked "experimental" but will probably be promoted to "maintained" in
 one of the next minor versions of jqwik.
-You can also read about [the old way of stateful testing](#stateful-testing-old-approach).**_
+You can also read about [the old way of stateful testing](#stateful-testing-old-approach).
+Since both approaches have an interface called `Action`, 
+be careful to import the right one!**_
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
@@ -2863,6 +3036,7 @@ e.g. a push onto a string stack can have any `String` as parameter.
 And as mentioned above, actions can be restricted by preconditions.
 
 ```java
+package net.jqwik.api.state;
 interface Action<S> {
     default boolean precondition(S state) {
         return true;
@@ -2883,134 +3057,133 @@ interface Transformer<S> extends Function<S, S> {}
 What makes the abstraction a bit more complicated than desirable is the fact that 
 the range of possible transformers may or may not depend on the previous state.
 That's why there exist the two subtypes of `Action`: `Independent` and `Dependent`.
+Both types of actions can have a precondition to state when they can be applied.
+Leaving the precondition out means that the action can be applied at any time.
 
-_**TO BE CONTINUED...**_
+Given that the precondition is fulfilled,
+- the transforming behaviour of an _independent_ action is defined by the `transformer()` method
+  and does not rely on the previous state.
+- the transforming behaviour of an _dependent_ action, however, 
+  is defined by the `transformer(S state)` method and can use the previous state
+  in order to constrain how a transformation should be done.
 
-<!--
+Both `transformer` methods return an `Arbitrary` of `Transformer` instances,
+which means that they describe a range of possible transformations; 
+jqwik will pick one of them at random as it does with any other `Arbitrary`.
+Mind that a transformer will not only invoke the transformation 
+but will often check the correct state changes and postcondition(s) as well.
 
-We can see at least three _actions_ with their preconditions and expected state changes:
+In our simple stack example at least three _actions_ can be identified:
 
-- [`Push`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PushAction.java):
-  Push a string onto the stack. The string should be on top afterwards and the size
-  should have increased by 1.
+- __Push__ a string onto the stack. 
+  The string should be on top afterwards and the size should have increased by 1.
 
   ```java
-  import net.jqwik.api.stateful.*;
-  import org.assertj.core.api.*;
-  
-  class PushAction implements Action<MyStringStack> {
-  
-  	private final String element;
-  
-  	PushAction(String element) {
-  		this.element = element;
-  	}
-  
-  	@Override
-  	public MyStringStack run(MyStringStack stack) {
-  		int sizeBefore = stack.size();
-  		stack.push(element);
-  		Assertions.assertThat(stack.isEmpty()).isFalse();
-  		Assertions.assertThat(stack.size()).isEqualTo(sizeBefore + 1);
-  		return stack;
-  	}
-  
-  	@Override
-  	public String toString() { return String.format("push(%s)", element); }
+  class PushAction implements Action.Independent<MyStringStack> {
+    @Override
+    public Arbitrary<Transformer<MyStringStack>> transformer() {
+      Arbitrary<String> pushElements = Arbitraries.strings().alpha().ofLength(5);
+      return pushElements.map(element -> Transformer.mutate(
+        String.format("push(%s)", element),
+        stack -> {
+          int sizeBefore = stack.size();
+          stack.push(element);
+          assertThat(stack.isEmpty()).isFalse();
+          assertThat(stack.size()).isEqualTo(sizeBefore + 1);
+        }
+      ));
+    }
   }
   ``` 
+  
+  In this case I've decided to directly implement the `Action.Independent` interface.
+  In order to facilitate the creation of transformers, the `Transformer` class comes 
+  with a few convenience methods; here `Transformer.mutate()` was a good fit.
 
-- [`Pop`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PopAction.java):
+- __Pop__ the last element from the stack.
   If (and only if) the stack is not empty, pop the element on top off the stack.
   The size of the stack should have decreased by 1.
 
   ```java
-  class PopAction implements Action<MyStringStack> {
-    
-        @Override
-        public boolean precondition(MyStringStack stack) {
-            return !stack.isEmpty();
-        }
-    
-        @Override
-        public MyStringStack run(MyStringStack stack) {
-            int sizeBefore = stack.size();
-            String topBefore = stack.top();
-    
-            String popped = stack.pop();
-            Assertions.assertThat(popped).isEqualTo(topBefore);
-            Assertions.assertThat(stack.size()).isEqualTo(sizeBefore - 1);
-            return stack;
-        }
-    
-        @Override
-        public String toString() { return "pop"; }
+  private Action<MyStringStack> pop() {
+    return Action.<MyStringStack>when(stack -> !stack.isEmpty())
+                 .describeAs("pop")
+                 .justMutate(stack -> {
+                   int sizeBefore = stack.size();
+                   String topBefore = stack.top();
+                   
+                   String popped = stack.pop();
+                   assertThat(popped).isEqualTo(topBefore);
+                   assertThat(stack.size()).isEqualTo(sizeBefore - 1);
+                 });
   }
-  ``` 
+  ```
+  
+  For _pop_ using an action builder through `Action.when(..)` seemed simpler 
+  than implementing the `Action.Independent` interface.
 
-- [`Clear`](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/ClearAction.java):
-  Remove all elements from the stack which should be empty afterwards.
+- __Clear__ the stack, which should be empty afterwards.
 
   ```java
-  class ClearAction implements Action<MyStringStack> {
-
-        @Override
-        public MyStringStack run(MyStringStack stack) {
-            stack.clear();
-            Assertions.assertThat(stack.isEmpty()).isTrue();
-            return stack;
-        }
+  static class ClearAction extends Action.JustMutate<MyStringStack> {
+    @Override
+    public void mutate(MyStringStack stack) {
+    	stack.clear();
+    	assertThat(stack.isEmpty()).describedAs("stack is empty").isTrue();
+    }
     
-        @Override
-        public String toString() { return "clear"; }
+    @Override
+    public String description() {
+    	return "clear";
+    }
   }
   ``` 
 
-### Check Postconditions
+  Here you can see yet another implementation option for actions that have no variation in their
+  transforming behaviour: Just subclass `Action.JustTransform` or `Action.JustMutate`.
 
-The fundamental property that _jqwik_ should try to falsify is:
+There are different ways to implement actions. 
+Sometimes one is obviously simpler than the other.
+In other cases it's a matter of taste - e.g. about preferring functions over classes, 
+or the other way round.
 
-    For any valid sequence of actions all required state changes
-    (aka postconditions) should be fulfilled.
+### Formulating Stateful Properties
 
-We can formulate that quite easily as a
-[_jqwik_ property](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStackProperties.java):
+Now that we have a set of actions, we can formulate the 
+_fundamental property of stateful systems_:
+
+> For any valid sequence of actions all required state changes
+> (aka postconditions) should be fulfilled.
+
+Let's translate that into jqwik's language:
 
 ```java
-class MyStringStackProperties {
+@Property
+void checkMyStack(@ForAll("myStackActions") ActionChain<MyStringStack> chain) {
+  chain.run();
+}
 
-	@Property
-	void checkMyStack(@ForAll("sequences") ActionSequence<MyStringStack> actions) {
-		actions.run(new MyStringStack());
-	}
-
-	@Provide
-	Arbitrary<ActionSequence<MyStringStack>> sequences() {
-		return Arbitraries.sequences(Arbitraries.oneOf(push(), pop(), clear()));
-	}
-
-	private Arbitrary<Action<MyStringStack>> push() {
-		return Arbitraries.strings().alpha().ofLength(5).map(PushAction::new);
-	}
-
-	private Arbitrary<Action<MyStringStack>> clear() {
-		return Arbitraries.just(new ClearAction());
-	}
-
-	private Arbitrary<Action<MyStringStack>> pop() {
-		return Arbitraries.just(new PopAction());
-	}
+@Provide
+Arbitrary<ActionChain<MyStringStack>> myStackActions() {
+  return ActionChain.startWith(MyStringStack::new)
+                    .addAction(new PushAction())
+                    .addAction(pop())
+                    .addAction(new ClearAction());
 }
 ```
 
 The interesting API elements are
-- [`ActionSequence`](/docs/snapshot/javadoc/net/jqwik/api/stateful/ActionSequence.html):
-  A generic collection type especially crafted for holding and shrinking of a list of actions.
-  As a convenience it will apply the actions to a state-based object when you call `run(state)`.
+- [`ActionChain`](/docs/snapshot/javadoc/net/jqwik/api/state/ActionChain.html):
+  This interface provides the entry point for running a stateful object through
+  a sequence of actions through its `run()` method, which returns the final state
+  as a convenience.
 
-- [`Arbitraries.sequences()`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#sequences(net.jqwik.api.Arbitrary)):
-  This method will create the arbitrary for generating an `ActionSequence` given the
-  arbitrary for generating actions.
+- [`Action.Chain.startWith()`](/docs/snapshot/javadoc/net/jqwik/api/state/ActionChain.html#startWith(java.util.function.Supplier)):
+  This method will create an arbitrary for generating an `ActionChain`.
+  This [`ActionChainArbitrary`](/docs/snapshot/javadoc/net/jqwik/api/state/ActionChainArbitrary.html)
+  has methods to add potential actions and to further configure chain generation.
+
+### Running Stateful Properties
 
 To give _jqwik_ something to falsify, we broke the implementation of `clear()` so that
 it won't clear everything if there are more than two elements on the stack:
@@ -3029,32 +3202,58 @@ public void clear() {
 Running the property should now produce a result similar to:
 
 ```
-org.opentest4j.AssertionFailedError: 
-  Run failed after following actions:
-      push(AAAAA)
-      push(AAAAA)
-      push(AAAAA)
-      clear
-    final state: ["AAAAA", "AAAAA"]
+MyStringStackExamples:checkMyStack = 
+  org.opentest4j.AssertionFailedError:
+    Run failed after the following actions: [
+        push(AAAAA)
+        push(AAAAA)
+        push(AAAAA)
+        clear  
+    ]
+    final state: [AAAAA, AAAAA]
+    [stack is empty] 
+    Expecting value to be true but was false
 ```
+
+The error message shows the sequence of actions that led to the failing postcondition.
+Moreover, you can notice that the sequence of actions has been shrunk to the minimal failing sequence.
 
 ### Number of actions
 
 _jqwik_ will vary the number of generated actions according to the number
 of `tries` of your property. For the default of 1000 tries a sequence will
-have 32 actions. If need be you can specify the number of actions
-to generate using either the fluent interface or the `@Size` annotation:
+have 32 actions. If need be you can specify the maximum number of actions
+explicitly using `withMaxTransformations(int)`:
 
 ```java
-@Property
-// check stack with sequences of 7 actions:
-void checkMyStack(@ForAll("sequences") @Size(7) ActionSequence<MyStringStack> actions) {
-    actions.run(new MyStringStack());
+@Provide
+Arbitrary<ActionChain<MyStringStack>> myStackActions() {
+    return ActionChain.startWith(MyStringStack::new)
+                      .addAction(new PushAction())
+                      .addAction(pop())
+                      .addAction(new ClearAction())
+                      .withMaxTransformations(10);
 }
 ```
 
 The minimum number of generated actions in a sequence is 1 since checking
 an empty sequence does not make sense.
+
+There's also the possibility to use a potentially `infinite` chain,
+which then requires to explicitly add an action with an `endOfChain()` transformer:
+
+```java
+@Provide
+Arbitrary<ActionChain<MyStringStack>> myStackActions() {
+    return ActionChain.startWith(MyStringStack::new)
+                      .addAction(new PushAction())
+                      .addAction(pop())
+                      .addAction(new ClearAction())
+                      .addAction(Action.just(Transformer.endOfChain()))
+                      .infinite();
+}
+
+```
 
 ### Check Invariants
 
@@ -3062,11 +3261,11 @@ We can also add invariants to our sequence checking property:
 
 ```java
 @Property
-void checkMyStackWithInvariant(@ForAll("sequences") ActionSequence<MyStringStack> actions) {
-    actions
-        .withInvariant(stack -> Assertions.assertThat(stack.size()).isGreaterThanOrEqualTo(0))
-        .withInvariant(stack -> Assertions.assertThat(stack.size()).isLessThan(5))
-        .run(new MyStringStack());
+void checkMyStackWithInvariant(@ForAll("myStackActions") ActionChain<MyStringStack> chain) {
+    chain
+      .withInvariant("greater", stack -> assertThat(stack.size()).isGreaterThanOrEqualTo(0))
+      .withInvariant("less", stack -> assertThat(stack.size()).isLessThan(5)) // Does not hold!
+      .run();
 }
 ```
 
@@ -3074,24 +3273,41 @@ If we first fix the bug in `MyStringStack.clear()` our property should eventuall
 with the following result:
 
 ```
-org.opentest4j.AssertionFailedError: 
-  Run failed after following actions:
+net.jqwik.engine.properties.state.InvariantFailedError:
+  Invariant 'less' failed after the following actions: [
       push(AAAAA)
       push(AAAAA)
       push(AAAAA)
       push(AAAAA)
-      push(AAAAA)
-    final state: ["AAAAA", "AAAAA", "AAAAA", "AAAAA", "AAAAA"]
+      push(AAAAA)  
+  ]
+  final state: [AAAAA, AAAAA, AAAAA, AAAAA, AAAAA]
+  Expecting actual:
+    5
+  to be less than:
+    5 
 ```
 
--->
+## Rerunning Falsified Action Chains
+
+As described in the [chapter about rerunning falsified properties](#rerunning-falsified-properties)
+_jqwik_ has different options for rerunning falsified properties.
+
+Due to the fact that action chains are generated one action after the other,
+recreating the exact same sample of a chain is usually not possible.
+That's why `AfterFailureMode.SAMPLE_ONLY` and `AfterFailureMode.SAMPLE_FIRST`
+will just start with the same random seed, which leads to the same sequence of chains,
+but not start with the last failing sample chain.
+A warning will be logged in such cases.
 
 
 
 ## Stateful Testing (Old Approach)
 
 _**As of version 1.7.0 jqwik comes with a [new approach to stateful testing](#stateful-testing).
-What is described in this chapter will probably be deprecated in one of the next minor versions.**_
+What is described in this chapter will probably be deprecated in one of the next minor versions.
+Since both approaches have an interface called `Action`,
+be careful to import the right one!**_
 
 Despite its bad reputation _state_ is an important concept in object-oriented languages like Java.
 We often have to deal with stateful objects or components whose state can be changed through methods.
