@@ -42,7 +42,7 @@ title: jqwik Release Notes
     - `net.jqwik.api.footnotes.Footnotes`
     - Large chunks of the hooks and extension API in package `net.jqwik.api.lifecycle`
 
-- Upgrade to JUnit Platform 1.9.0
+- Upgrade to JUnit Platform 1.9.1
 
 #### Breaking Changes
 
