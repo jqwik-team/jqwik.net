@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.7.0-SNAPSHOT](#170-snapshot)
+- [1.7.0](#170)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
 - [1.4.0](#140)
@@ -23,17 +23,17 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.7.0-SNAPSHOT
+## 1.7.0
 
 <p style="padding-left:1em;font-size:larger">
-<a href="/docs/snapshot/user-guide.html">User guide</a>,
-<a href="/docs/snapsho/javadoc/index.html">javadoc</a>
-and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
+<a href="/docs/1.7.0/user-guide.html">User guide</a>,
+<a href="/docs/1.7.0/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.7.0/kdoc/index.html">kdoc</a>
 </p>
 
 #### New and Enhanced Features
 
-- A [new and more powerful approach to stateful testing](/docs/snapshot/user-guide.html#stateful-testing)
+- A [new and more powerful approach to stateful testing](/docs/1.7.0/user-guide.html#stateful-testing)
   has been introduced into jqwik.
   It's still "experimental" but supposed to be propagated to "stable" very soon.
 
