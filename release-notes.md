@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.7.1-SNAPSHOT](#170-snapshot)
 - [1.7.0](#170)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
@@ -22,6 +23,15 @@ title: jqwik Release Notes
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+## 1.7.1-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Upgrade to Kotlin 1.7.20
+
+#### Breaking Changes
+
+#### Bug Fixes
 
 ## 1.7.0
 
