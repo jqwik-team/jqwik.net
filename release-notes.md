@@ -29,7 +29,20 @@ title: jqwik Release Notes
 
 - Upgrade to Kotlin 1.7.20
 
+- Added filtering possibility to Combinators. 
+  See https://github.com/jlink/jqwik/issues/329.
+
 #### Breaking Changes
+
+- All combinator types in `Combinators` are now interfaces instead of classes:
+  - `Combinators.Combinator2`
+  - `Combinators.Combinator3`
+  - `Combinators.Combinator4`
+  - `Combinators.Combinator5`
+  - `Combinators.Combinator6`
+  - `Combinators.Combinator7`
+  - `Combinators.Combinator8`
+  - `Combinators.ListCombinator`
 
 #### Bug Fixes
 
