@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.7.1-SNAPSHOT](#170-snapshot)
+- [1.7.1-SNAPSHOT](#171-snapshot)
 - [1.7.0](#170)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
