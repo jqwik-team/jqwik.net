@@ -1,8 +1,8 @@
 ---
-title: jqwik User Guide - 1.7.0-SNAPSHOT
+title: jqwik User Guide - 1.7.1-SNAPSHOT
 ---
 <h1>The jqwik User Guide
-<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.0-SNAPSHOT</span>
+<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.1-SNAPSHOT</span>
 </h1>
 
 <h3>Table of Contents
@@ -15,6 +15,7 @@ title: jqwik User Guide - 1.7.0-SNAPSHOT
 - [Writing Properties](#writing-properties)
 - [Default Parameter Generation](#default-parameter-generation)
 - [Customized Parameter Generation](#customized-parameter-generation)
+- [Combining Arbitraries](#combining-arbitraries)
 - [Recursive Arbitraries](#recursive-arbitraries)
 - [Using Arbitraries Directly](#using-arbitraries-directly)
 - [Contract Tests](#contract-tests)
@@ -121,12 +122,17 @@ title: jqwik User Guide - 1.7.0-SNAPSHOT
     - [Flat Mapping over Elements of Collection](#flat-mapping-over-elements-of-collection)
     - [Implicit Flat Mapping](#implicit-flat-mapping)
   - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
-  - [Combining Arbitraries](#combining-arbitraries)
-    - [Flat Combination](#flat-combination)
-  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
   - [Uniqueness Constraints](#uniqueness-constraints)
   - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
   - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
+- [Combining Arbitraries](#combining-arbitraries)
+  - [Combining Arbitraries with `combine`](#combining-arbitraries-with-combine)
+    - [Filtering Combinations](#filtering-combinations)
+    - [Flat Combination](#flat-combination)
+  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
+  - [Uniqueness Constraints](#uniqueness-constraints-1)
+  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation-1)
+  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize-1)
 - [Recursive Arbitraries](#recursive-arbitraries)
   - [Probabilistic Recursion](#probabilistic-recursion)
     - [Using lazy() instead of lazyOf()](#using-lazy-instead-of-lazyof)
@@ -256,7 +262,7 @@ repositories {
 ext.junitPlatformVersion = '1.9.1'
 ext.junitJupiterVersion = '5.9.1'
 
-ext.jqwikVersion = '1.7.0-SNAPSHOT'
+ext.jqwikVersion = '1.7.1-SNAPSHOT'
 
 compileTestJava {
     // To enable argument names in reporting and debugging
@@ -355,7 +361,7 @@ Additionally you have to add the following dependency to your `pom.xml` file:
     <dependency>
         <groupId>net.jqwik</groupId>
         <artifactId>jqwik</artifactId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>1.7.1-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -383,15 +389,15 @@ will allow you to use _jqwik_'s snapshot release which contains all the latest f
 I've never tried it but using jqwik without gradle or some other tool to manage dependencies should also work.
 You will have to add _at least_ the following jars to your classpath:
 
-- `jqwik-api-1.7.0-SNAPSHOT.jar`
-- `jqwik-engine-1.7.0-SNAPSHOT.jar`
+- `jqwik-api-1.7.1-SNAPSHOT.jar`
+- `jqwik-engine-1.7.1-SNAPSHOT.jar`
 - `junit-platform-engine-1.9.1.jar`
 - `junit-platform-commons-1.9.1.jar`
 - `opentest4j-1.2.0.jar`
 
 Optional jars are:
-- `jqwik-web-1.7.0-SNAPSHOT.jar`
-- `jqwik-time-1.7.0-SNAPSHOT.jar`
+- `jqwik-web-1.7.1-SNAPSHOT.jar`
+- `jqwik-time-1.7.1-SNAPSHOT.jar`
 
 
 
@@ -406,7 +412,7 @@ or package-scoped method with
 [`@Property`](/docs/snapshot/javadoc/net/jqwik/api/Property.html).
 In contrast to examples a property method is supposed to have one or
 more parameters, all of which must be annotated with
-[`@ForAll`](/docs/1.7.0-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
+[`@ForAll`](/docs/1.7.1-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
 
 At test runtime the exact parameter values of the property method
 will be filled in by _jqwik_.
@@ -2425,14 +2431,108 @@ Arbitrary<Integer> oneOfThree() {
 }
 ```
 
-### Combining Arbitraries
+### Uniqueness Constraints
+
+In many problem domains there exist identifying features or attributes 
+that must not appear more than once.
+In those cases the multiple generation of objects can be restricted by
+either [annotating parameters with `@UniqueElements`](#unique-elements)
+or by using one of the many `uniqueness(..)` configuration methods for 
+collections and collection-like types:
+
+- `ListArbitrary<T>.uniqueElements(Function<T, Object>)`
+- `ListArbitrary<T>.uniqueElements()`
+- `SetArbitrary<T>.uniqueElements(Function<T, Object>)`
+- `StreamArbitrary<T>.uniqueElements(Function<T, Object>)`
+- `StreamArbitrary<T>.uniqueElements()`
+- `IteratorArbitrary<T>.uniqueElements(Function<T, Object>)`
+- `IteratorArbitrary<T>.uniqueElements()`
+- `ArrayArbitrary<T, A>.uniqueElements(Function<T, Object>)`
+- `ArrayArbitrary<T, A>.uniqueElements()`
+- `MapArbitrary<K, V>.uniqueKeys(Function<K, Object>)`
+- `MapArbitrary<K, V>.uniqueValues(Function<V, Object>)`
+- `MapArbitrary<K, V>.uniqueValues()`
+
+The following examples demonstrates how to generate a list of `Person` objects
+whose names must be unique:
+
+```java
+@Property
+void listOfPeopleWithUniqueNames(@ForAll("people") List<Person> people) {
+  List<String> names = people.stream().map(p -> p.name).collect(Collectors.toList());
+  Assertions.assertThat(names).doesNotHaveDuplicates();
+}
+
+@Provide
+Arbitrary<List<Person>> people() {
+  Arbitrary<String> names = Arbitraries.strings().alpha().ofMinLength(3).ofMaxLength(20);
+  Arbitrary<Integer> ages = Arbitraries.integers().between(0, 120);
+  
+  Arbitrary<Person> persons = Combinators.combine(names, ages).as((name, age) -> new Person(name, age));
+  return persons.list().uniqueElements(p -> p.name);
+};
+```
+
+### Ignoring Exceptions During Generation
+
+Once in a while, usually when [combining generated values](#combining-arbitraries),
+it's difficult to figure out in advance all the constraints that make the generation of objects
+valid. In a good object-oriented model, however, the objects themselves --
+i.e. their constructors or factory methods -- take care that only valid objects
+can be created. The attempt to create an invalid value will be rejected with an
+exception.
+
+As a good example have a look at JDK's `LocalDate` class, which allows to instantiate dates
+using `LocalDate.of(int year, int month, int dayOfMonth)`.
+In general `dayOfMonth` can be between `1` and `31` but trying to generate a
+"February 31" will throw a `DateTimeException`. Therefore, when you want to randomly
+generated dates between "January 1 1900" and "December 31 2099" you have two choices:
+
+- Integrate all rules about valid dates -- including leap years! -- into your generator.
+  This will probably require a cascade of flat-mapping `years` to `months` to `days`.
+- Rely on the factory method's built-in validation and just ignore thrown
+  `DateTimeException` instances:
+
+```java
+@Provide
+Arbitrary<LocalDate> datesBetween1900and2099() {
+  Arbitrary<Integer> years = Arbitraries.integers().between(1900, 2099);
+  Arbitrary<Integer> months = Arbitraries.integers().between(1, 12);
+  Arbitrary<Integer> days = Arbitraries.integers().between(1, 31);
+  
+  return Combinators.combine(years, months, days)
+  	  .as(LocalDate::of)
+  	  .ignoreException(DateTimeException.class);
+}
+```
+
+### Fix an Arbitrary's `genSize`
+
+Some generators (e.g. most number generators) are sensitive to the
+`genSize` value that is used when creating them.
+The default value for `genSize` is the number of tries configured for the property
+they are used in. If there is a need to influence the behaviour of generators
+you can do so by using
+[`Arbitrary.fixGenSize(int)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html#fixGenSize(int)).
+
+
+
+
+## Combining Arbitraries
 
 Sometimes just mapping a single stream of generated values is not enough to generate
-a more complicated domain object. In those cases you can combine several arbitraries to
-a single result arbitrary using
+a more complicated domain object.
+What you want to do is to create arbitraries for parts of your domain object 
+and then mix those parts together into a resulting combined arbitrary.
+
+_Jqwik_ offers provides two main mechanism to do that:
+- Combine arbitraries in a functional style using [Combinators.combine(..)](#combining-arbitraries-with-combine)
+- Combine arbitraries using [builders](#combining-arbitraries-with-builders)
+
+### Combining Arbitraries with `combine`
+
 [`Combinators.combine()`](/docs/snapshot/javadoc/net/jqwik/api/Combinators.html#combine(net.jqwik.api.Arbitrary,net.jqwik.api.Arbitrary))
-with up to eight arbitraries.
-[Create an issue on github](https://github.com/jlink/jqwik/issues) if you need more than eight.
+allows you to set up a composite arbitrary from up to eight parts.
 
 [The following example](https://github.com/jlink/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/MappingAndCombinatorExamples.java#L25)
 generates `Person` instances from three arbitraries as inputs.
@@ -2487,6 +2587,31 @@ If you need more you have a few options:
 - Generate inbetween arbitraries e.g. of type `Tuple` and combine those in another step
 - Introduce a build for your domain object and combine them
   [in this way](#combining-arbitraries-with-builders)
+
+#### Filtering Combinations
+
+You may run into situations in which you want to combine two or more arbitraries,
+but not all combinations of values makes sense.
+Consider the example of combining a pair of values from the same domain, 
+but the values should never be the same.
+Adding a filter step between `combine(..)` and `as(..)` provides you with the
+capability to sort out unwanted combinations:
+
+```java
+@Property
+void pairsCannotBeTwins(@ForAll("digitPairsWithoutTwins") String pair) {
+	Assertions.assertThat(pair).hasSize(2);
+	Assertions.assertThat(pair.charAt(0)).isNotEqualTo(pair.charAt(1));
+}
+
+@Provide
+Arbitrary<String> digitPairsWithoutTwins() {
+	Arbitrary<Integer> digits = Arbitraries.integers().between(0, 9);
+	return Combinators.combine(digits, digits)
+					  .filter((first, second) -> first != second)
+					  .as((first, second) -> first + "" + second);
+}
+```
 
 #### Flat Combination
 
@@ -2908,9 +3033,9 @@ _jqwik_ will do all the combinations and filtering for you.
 
 ### Using Arbitraries Outside Jqwik Lifecycle
 
-All the methode mentioned in this chapter can be used outside a property, 
+All the methods mentioned in this chapter can be used outside a property, 
 which also means outside jqwik's lifecycle control. 
-Probably the most prominent reason to that is to experiment with arbitraries
+Probably the most prominent reason to do that is to experiment with arbitraries
 and value generation in a Java console or a main method.
 Another reason can be to use jqwik's data generation capabilities for testing
 data in Jupiter or Cucumber tests.
@@ -2945,7 +3070,7 @@ you can do some kind of _contract testing_. That means that you specify
 the properties in a generically typed interface and specify the concrete class to
 instantiate in a test container implementing the interface.
 
-The following example was influence by a similar feature in
+The following example was influenced by a similar feature in
 [junit-quickcheck](http://pholser.github.io/junit-quickcheck/site/0.8/usage/contract-tests.html).
 Here's the contract:
 
@@ -5488,7 +5613,7 @@ Here's the jqwik-related part of the Gradle build file for a Kotlin project:
 ```kotlin
 dependencies {
     ...
-    testImplementation("net.jqwik:jqwik-kotlin:1.7.0-SNAPSHOT")
+    testImplementation("net.jqwik:jqwik-kotlin:1.7.1-SNAPSHOT")
 }
 
 tasks.withType<Test>().configureEach {
@@ -6520,4 +6645,4 @@ If a certain element, e.g. a method, is not annotated itself, then it carries th
 
 ## Release Notes
 
-Read this version's [release notes](/release-notes.html#170-snapshot).
+Read this version's [release notes](/release-notes.html#171-snapshot).

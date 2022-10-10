@@ -29,7 +29,7 @@ title: jqwik Release Notes
 
 - Upgrade to Kotlin 1.7.20
 
-- Added filtering possibility to Combinators. 
+- Added [filtering](/docs/snapshot/user-guide.html#filtering-combinations) to Combinators. 
   See https://github.com/jlink/jqwik/issues/329.
 
 #### Breaking Changes
