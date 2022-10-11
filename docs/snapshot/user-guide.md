@@ -44,182 +44,6 @@ title: jqwik User Guide - 1.7.1-SNAPSHOT
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Detailed Table of Contents  
 
-- [How to Use](#how-to-use)
-  - [Required Version of JUnit Platform](#required-version-of-junit-platform)
-  - [Gradle](#gradle)
-    - [Seeing jqwik Reporting in Gradle Output](#seeing-jqwik-reporting-in-gradle-output)
-  - [Maven](#maven)
-  - [Snapshot Releases](#snapshot-releases)
-  - [Project without Build Tool](#project-without-build-tool)
-- [Writing Properties](#writing-properties)
-  - [Creating a Property](#creating-a-property)
-    - [Failure Reporting](#failure-reporting)
-    - [Additional Reporting Options](#additional-reporting-options)
-    - [Platform Reporting with Reporter Object](#platform-reporting-with-reporter-object)
-    - [Adding Footnotes to Failure Reports](#adding-footnotes-to-failure-reports)
-  - [Optional `@Property` Attributes](#optional-property-attributes)
-    - [Setting Defaults for `@Property` Attributes](#setting-defaults-for-property-attributes)
-  - [Creating an Example-based Test](#creating-an-example-based-test)
-  - [Assertions](#assertions)
-  - [Lifecycle](#lifecycle)
-    - [Simple Property Lifecycle](#simple-property-lifecycle)
-    - [Annotated Lifecycle Methods](#annotated-lifecycle-methods)
-    - [Single Property Lifecycle](#single-property-lifecycle)
-  - [Grouping Tests](#grouping-tests)
-  - [Naming and Labeling Tests](#naming-and-labeling-tests)
-  - [Tagging Tests](#tagging-tests)
-  - [Disabling Tests](#disabling-tests)
-- [Default Parameter Generation](#default-parameter-generation)
-  - [Constraining Default Generation](#constraining-default-generation)
-    - [Allow Null Values](#allow-null-values)
-    - [String Length](#string-length)
-    - [String not Blank](#string-not-blank)
-    - [Character Sets](#character-sets)
-    - [List, Set, Stream, Iterator, Map and Array Size](#list-set-stream-iterator-map-and-array-size)
-    - [Unique Elements](#unique-elements)
-    - [Integer Constraints](#integer-constraints)
-    - [Decimal Constraints](#decimal-constraints)
-  - [Constraining parameterized types](#constraining-parameterized-types)
-  - [Constraining array types](#constraining-array-types)
-  - [Providing variable types](#providing-variable-types)
-  - [Self-Made Annotations](#self-made-annotations)
-- [Customized Parameter Generation](#customized-parameter-generation)
-  - [Arbitrary Provider Methods](#arbitrary-provider-methods)
-    - [Provider Methods with Parameters](#provider-methods-with-parameters)
-  - [Arbitrary Suppliers](#arbitrary-suppliers)
-  - [Providing Arbitraries for Embedded Types](#providing-arbitraries-for-embedded-types)
-  - [Static `Arbitraries` methods](#static-arbitraries-methods)
-    - [Generate values yourself](#generate-values-yourself)
-    - [Select or generate values randomly](#select-or-generate-values-randomly)
-    - [Select randomly with Weights](#select-randomly-with-weights)
-    - [Characters and Strings](#characters-and-strings)
-    - [String Size](#string-size)
-    - [java.util.Random](#javautilrandom)
-    - [Shuffling Permutations](#shuffling-permutations)
-    - [Default Types](#default-types)
-  - [Numeric Arbitrary Types](#numeric-arbitrary-types)
-    - [Integrals](#integrals)
-    - [Decimals](#decimals)
-    - [Special Decimal Values](#special-decimal-values)
-    - [Random Numeric Distribution](#random-numeric-distribution)
-  - [Collections, Streams, Iterators and Arrays](#collections-streams-iterators-and-arrays)
-    - [Size of Multi-value Containers](#size-of-multi-value-containers)
-  - [Collecting Values in a List](#collecting-values-in-a-list)
-  - [Optional](#optional)
-  - [Tuples of same base type](#tuples-of-same-base-type)
-  - [Maps](#maps)
-    - [Map Size](#map-size)
-    - [Map Entries](#map-entries)
-  - [Functional Types](#functional-types)
-  - [Fluent Configuration Interfaces](#fluent-configuration-interfaces)
-  - [Generate `null` values](#generate-null-values)
-  - [Inject duplicate values](#inject-duplicate-values)
-  - [Filtering](#filtering)
-  - [Mapping](#mapping)
-    - [Mapping over Elements of Collection](#mapping-over-elements-of-collection)
-  - [Flat Mapping](#flat-mapping)
-    - [Flat Mapping with Tuple Types](#flat-mapping-with-tuple-types)
-    - [Flat Mapping over Elements of Collection](#flat-mapping-over-elements-of-collection)
-    - [Implicit Flat Mapping](#implicit-flat-mapping)
-  - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
-  - [Uniqueness Constraints](#uniqueness-constraints)
-  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
-  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
-- [Combining Arbitraries](#combining-arbitraries)
-  - [Combining Arbitraries with `combine`](#combining-arbitraries-with-combine)
-    - [Filtering Combinations](#filtering-combinations)
-    - [Flat Combination](#flat-combination)
-  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
-  - [Uniqueness Constraints](#uniqueness-constraints-1)
-  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation-1)
-  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize-1)
-- [Recursive Arbitraries](#recursive-arbitraries)
-  - [Probabilistic Recursion](#probabilistic-recursion)
-    - [Using lazy() instead of lazyOf()](#using-lazy-instead-of-lazyof)
-  - [Deterministic Recursion](#deterministic-recursion)
-  - [Deterministic Recursion with `recursive()`](#deterministic-recursion-with-recursive)
-- [Using Arbitraries Directly](#using-arbitraries-directly)
-  - [Generating a Single Value](#generating-a-single-value)
-  - [Generating a Stream of Values](#generating-a-stream-of-values)
-  - [Generating all possible values](#generating-all-possible-values)
-  - [Iterating through all possible values](#iterating-through-all-possible-values)
-  - [Using Arbitraries Outside Jqwik Lifecycle](#using-arbitraries-outside-jqwik-lifecycle)
-- [Contract Tests](#contract-tests)
-- [Stateful Testing](#stateful-testing)
-  - [State Machines](#state-machines)
-  - [Specifying Actions](#specifying-actions)
-  - [Formulating Stateful Properties](#formulating-stateful-properties)
-  - [Running Stateful Properties](#running-stateful-properties)
-  - [Number of actions](#number-of-actions)
-  - [Check Invariants](#check-invariants)
-  - [Rerunning Falsified Action Chains](#rerunning-falsified-action-chains)
-- [Stateful Testing (Old Approach)](#stateful-testing-old-approach)
-  - [Specify Actions](#specify-actions)
-  - [Check Postconditions](#check-postconditions)
-  - [Number of actions](#number-of-actions-1)
-  - [Check Invariants](#check-invariants-1)
-- [Assumptions](#assumptions)
-- [Result Shrinking](#result-shrinking)
-  - [Integrated Shrinking](#integrated-shrinking)
-  - [Switch Shrinking Off](#switch-shrinking-off)
-  - [Switch Shrinking to Full Mode](#switch-shrinking-to-full-mode)
-  - [Change the Shrinking Target](#change-the-shrinking-target)
-- [Collecting and Reporting Statistics](#collecting-and-reporting-statistics)
-  - [Labeled Statistics](#labeled-statistics)
-  - [Statistics Report Formatting](#statistics-report-formatting)
-    - [Switch Statistics Reporting Off](#switch-statistics-reporting-off)
-    - [Histograms](#histograms)
-    - [Make Your Own Statistics Report Format](#make-your-own-statistics-report-format)
-  - [Checking Coverage of Collected Statistics](#checking-coverage-of-collected-statistics)
-    - [Check Percentages and Counts](#check-percentages-and-counts)
-    - [Check Ad-hoc Query Coverage](#check-ad-hoc-query-coverage)
-- [Providing Default Arbitraries](#providing-default-arbitraries)
-  - [Simple Arbitrary Providers](#simple-arbitrary-providers)
-  - [Arbitrary Providers for Parameterized Types](#arbitrary-providers-for-parameterized-types)
-  - [Arbitrary Provider Priority](#arbitrary-provider-priority)
-  - [Create your own Annotations for Arbitrary Configuration](#create-your-own-annotations-for-arbitrary-configuration)
-    - [Arbitrary Configuration Example: `@Odd`](#arbitrary-configuration-example-odd)
-- [Domain and Domain Context](#domain-and-domain-context)
-  - [Domain example: American Addresses](#domain-example-american-addresses)
-- [Generation from a Type's Interface](#generation-from-a-types-interface)
-- [Generation of Edge Cases](#generation-of-edge-cases)
-  - [Configuring Edge Case Injection](#configuring-edge-case-injection)
-  - [Configuring Edge Cases Themselves](#configuring-edge-cases-themselves)
-- [Exhaustive Generation](#exhaustive-generation)
-- [Data-Driven Properties](#data-driven-properties)
-- [Rerunning Falsified Properties](#rerunning-falsified-properties)
-- [jqwik Configuration](#jqwik-configuration)
-    - [Legacy Configuration in `jqwik.properties` File](#legacy-configuration-in-jqwikproperties-file)
-- [Additional Modules](#additional-modules)
-  - [Web Module](#web-module)
-    - [Email Address Generation](#email-address-generation)
-    - [Web Domain Generation](#web-domain-generation)
-  - [Time Module](#time-module)
-    - [Generation of Dates](#generation-of-dates)
-    - [Generation of Times](#generation-of-times)
-    - [Generation of DateTimes](#generation-of-datetimes)
-  - [Kotlin Module](#kotlin-module)
-    - [Build Configuration for Kotlin](#build-configuration-for-kotlin)
-    - [Differences to Java Usage](#differences-to-java-usage)
-    - [Generation of Nullable Types](#generation-of-nullable-types)
-    - [Support for Coroutines](#support-for-coroutines)
-    - [Support for Kotlin Collection Types](#support-for-kotlin-collection-types)
-    - [Support for Kotlin Functions](#support-for-kotlin-functions)
-    - [Supported Kotlin-only Types](#supported-kotlin-only-types)
-    - [Kotlin Singletons](#kotlin-singletons)
-    - [Convenience Functions for Kotlin](#convenience-functions-for-kotlin)
-    - [Quirks and Bugs](#quirks-and-bugs)
-  - [Testing Module](#testing-module)
-- [Advanced Topics](#advanced-topics)
-  - [Implement your own Arbitraries and Generators](#implement-your-own-arbitraries-and-generators)
-  - [Lifecycle Hooks](#lifecycle-hooks)
-    - [Principles of Lifecycle Hooks](#principles-of-lifecycle-hooks)
-    - [Lifecycle Hook Types](#lifecycle-hook-types)
-    - [Lifecycle Execution Hooks](#lifecycle-execution-hooks)
-    - [Other Hooks](#other-hooks)
-    - [Lifecycle Storage](#lifecycle-storage)
-- [API Evolution](#api-evolution)
-- [Release Notes](#release-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -259,9 +83,7 @@ repositories {
 
 }
 
-ext.junitPlatformVersion = '1.9.1'
 ext.junitJupiterVersion = '5.9.1'
-
 ext.jqwikVersion = '1.7.1-SNAPSHOT'
 
 compileTestJava {
@@ -292,7 +114,7 @@ dependencies {
     testImplementation "net.jqwik:jqwik:${jqwikVersion}"
 
     // Add if you also want to use the Jupiter engine or Assertions from it
-    testImplementation "org.junit.jupiter:junit-jupiter:5.9.1"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
 
     // Add any other test library you need...
     testImplementation "org.assertj:assertj-core:3.12.2"
@@ -2588,6 +2410,33 @@ If you need more you have a few options:
 - Introduce a build for your domain object and combine them
   [in this way](#combining-arbitraries-with-builders)
 
+#### Combining Arbitraries vs Flat Mapping
+
+Combining arbitraries with each other can also be achieved through [flat mapping](#flat-mapping).
+So, the valid people arbitrary from above could also be written as:
+
+```java
+@Provide
+Arbitrary<Person> validPeople() {
+    Arbitrary<String> names = Arbitraries.strings().withCharRange('a', 'z')
+        .ofMinLength(3).ofMaxLength(21);
+    Arbitrary<Integer> ages = Arbitraries.integers().between(0, 130);
+    return names.flatMap(name -> ages.map(age -> new Person(name, age)));
+}
+```
+
+This approach has two disadvantages, though:
+1. The more arbitraries you combine, the more nesting of flat maps will you need.
+   This does not only look ugly, but it's also hard to understand.
+2. Since flat mapping is about the dependency of one arbitrary on values
+   generated by another, shrinking cannot be as aggressive.
+   That means that in many cases using `combine(..)` will lead to better
+   shrinking behaviour than nested `flatMap(..)` calls.
+
+The drawback of `combine` is that it cannot replace `flatMap` in all situations.
+If there is a real dependency between arbitraries, you cannot just combine them.
+Unless [filtering combinations](#filtering-combinations) can take care of the dependency.
+
 #### Filtering Combinations
 
 You may run into situations in which you want to combine two or more arbitraries,
@@ -2600,16 +2449,16 @@ capability to sort out unwanted combinations:
 ```java
 @Property
 void pairsCannotBeTwins(@ForAll("digitPairsWithoutTwins") String pair) {
-	Assertions.assertThat(pair).hasSize(2);
-	Assertions.assertThat(pair.charAt(0)).isNotEqualTo(pair.charAt(1));
+    Assertions.assertThat(pair).hasSize(2);
+    Assertions.assertThat(pair.charAt(0)).isNotEqualTo(pair.charAt(1));
 }
 
 @Provide
 Arbitrary<String> digitPairsWithoutTwins() {
-	Arbitrary<Integer> digits = Arbitraries.integers().between(0, 9);
-	return Combinators.combine(digits, digits)
-					  .filter((first, second) -> first != second)
-					  .as((first, second) -> first + "" + second);
+    Arbitrary<Integer> digits = Arbitraries.integers().between(0, 9);
+    return Combinators.combine(digits, digits)
+                      .filter((first, second) -> first != second)
+                      .as((first, second) -> first + "" + second);
 }
 ```
 
@@ -2716,89 +2565,6 @@ Have a look at
 [Builders.withBuilder(Supplier)](/docs/snapshot/javadoc/net/jqwik/api/Builders.html#withBuilder(java.util.function.Supplier))
 to check the API.
 
-### Uniqueness Constraints
-
-In many problem domains there exist identifying features or attributes 
-that must not appear more than once.
-In those cases the multiple generation of objects can be restricted by
-either [annotating parameters with `@UniqueElements`](#unique-elements)
-or by using one of the many `uniqueness(..)` configuration methods for 
-collections and collection-like types:
-
-- `ListArbitrary<T>.uniqueElements(Function<T, Object>)`
-- `ListArbitrary<T>.uniqueElements()`
-- `SetArbitrary<T>.uniqueElements(Function<T, Object>)`
-- `StreamArbitrary<T>.uniqueElements(Function<T, Object>)`
-- `StreamArbitrary<T>.uniqueElements()`
-- `IteratorArbitrary<T>.uniqueElements(Function<T, Object>)`
-- `IteratorArbitrary<T>.uniqueElements()`
-- `ArrayArbitrary<T, A>.uniqueElements(Function<T, Object>)`
-- `ArrayArbitrary<T, A>.uniqueElements()`
-- `MapArbitrary<K, V>.uniqueKeys(Function<K, Object>)`
-- `MapArbitrary<K, V>.uniqueValues(Function<V, Object>)`
-- `MapArbitrary<K, V>.uniqueValues()`
-
-The following examples demonstrates how to generate a list of `Person` objects
-whose names must be unique:
-
-```java
-@Property
-void listOfPeopleWithUniqueNames(@ForAll("people") List<Person> people) {
-  List<String> names = people.stream().map(p -> p.name).collect(Collectors.toList());
-  Assertions.assertThat(names).doesNotHaveDuplicates();
-}
-
-@Provide
-Arbitrary<List<Person>> people() {
-  Arbitrary<String> names = Arbitraries.strings().alpha().ofMinLength(3).ofMaxLength(20);
-  Arbitrary<Integer> ages = Arbitraries.integers().between(0, 120);
-  
-  Arbitrary<Person> persons = Combinators.combine(names, ages).as((name, age) -> new Person(name, age));
-  return persons.list().uniqueElements(p -> p.name);
-};
-```
-
-### Ignoring Exceptions During Generation
-
-Once in a while, usually when [combining generated values](#combining-arbitraries),
-it's difficult to figure out in advance all the constraints that make the generation of objects
-valid. In a good object-oriented model, however, the objects themselves --
-i.e. their constructors or factory methods -- take care that only valid objects
-can be created. The attempt to create an invalid value will be rejected with an
-exception.
-
-As a good example have a look at JDK's `LocalDate` class, which allows to instantiate dates
-using `LocalDate.of(int year, int month, int dayOfMonth)`.
-In general `dayOfMonth` can be between `1` and `31` but trying to generate a
-"February 31" will throw a `DateTimeException`. Therefore, when you want to randomly
-generated dates between "January 1 1900" and "December 31 2099" you have two choices:
-
-- Integrate all rules about valid dates -- including leap years! -- into your generator.
-  This will probably require a cascade of flat-mapping `years` to `months` to `days`.
-- Rely on the factory method's built-in validation and just ignore thrown
-  `DateTimeException` instances:
-
-```java
-@Provide
-Arbitrary<LocalDate> datesBetween1900and2099() {
-  Arbitrary<Integer> years = Arbitraries.integers().between(1900, 2099);
-  Arbitrary<Integer> months = Arbitraries.integers().between(1, 12);
-  Arbitrary<Integer> days = Arbitraries.integers().between(1, 31);
-  
-  return Combinators.combine(years, months, days)
-  	  .as(LocalDate::of)
-  	  .ignoreException(DateTimeException.class);
-}
-```
-
-### Fix an Arbitrary's `genSize`
-
-Some generators (e.g. most number generators) are sensitive to the
-`genSize` value that is used when creating them.
-The default value for `genSize` is the number of tries configured for the property
-they are used in. If there is a need to influence the behaviour of generators
-you can do so by using
-[`Arbitrary.fixGenSize(int)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html#fixGenSize(int)).
 
 
 
