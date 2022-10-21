@@ -49,6 +49,10 @@ title: jqwik Release Notes
 - Histogramms will use `#` as character for bars on Windows now.
   See https://github.com/jlink/jqwik/issues/376.
 
+- Fixed reflection bug for Java >= 17.
+  See https://github.com/jlink/jqwik/issues/393.
+
+
 ## 1.7.0
 
 <p style="padding-left:1em;font-size:larger">
