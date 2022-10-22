@@ -32,6 +32,9 @@ title: jqwik Release Notes
 - Added [filtering](/docs/snapshot/user-guide.html#filtering-combinations) to Combinators. 
   See https://github.com/jlink/jqwik/issues/329.
 
+- Added `Chain.transformers()` and `ActionChain.transformers()` to retrieve
+  the list of applied `Transformer` instances in a chain.
+
 #### Breaking Changes
 
 - All combinator types in `Combinators` are now interfaces instead of classes:
