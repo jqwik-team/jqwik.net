@@ -44,6 +44,181 @@ title: jqwik User Guide - 1.7.1-SNAPSHOT
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Detailed Table of Contents  
 
+- [How to Use](#how-to-use)
+  - [Required Version of JUnit Platform](#required-version-of-junit-platform)
+  - [Gradle](#gradle)
+    - [Seeing jqwik Reporting in Gradle Output](#seeing-jqwik-reporting-in-gradle-output)
+  - [Maven](#maven)
+  - [Snapshot Releases](#snapshot-releases)
+  - [Project without Build Tool](#project-without-build-tool)
+- [Writing Properties](#writing-properties)
+  - [Creating a Property](#creating-a-property)
+    - [Failure Reporting](#failure-reporting)
+    - [Additional Reporting Options](#additional-reporting-options)
+    - [Platform Reporting with Reporter Object](#platform-reporting-with-reporter-object)
+    - [Adding Footnotes to Failure Reports](#adding-footnotes-to-failure-reports)
+  - [Optional `@Property` Attributes](#optional-property-attributes)
+    - [Setting Defaults for `@Property` Attributes](#setting-defaults-for-property-attributes)
+  - [Creating an Example-based Test](#creating-an-example-based-test)
+  - [Assertions](#assertions)
+  - [Lifecycle](#lifecycle)
+    - [Simple Property Lifecycle](#simple-property-lifecycle)
+    - [Annotated Lifecycle Methods](#annotated-lifecycle-methods)
+    - [Single Property Lifecycle](#single-property-lifecycle)
+  - [Grouping Tests](#grouping-tests)
+  - [Naming and Labeling Tests](#naming-and-labeling-tests)
+  - [Tagging Tests](#tagging-tests)
+  - [Disabling Tests](#disabling-tests)
+- [Default Parameter Generation](#default-parameter-generation)
+  - [Constraining Default Generation](#constraining-default-generation)
+    - [Allow Null Values](#allow-null-values)
+    - [String Length](#string-length)
+    - [String not Blank](#string-not-blank)
+    - [Character Sets](#character-sets)
+    - [List, Set, Stream, Iterator, Map and Array Size](#list-set-stream-iterator-map-and-array-size)
+    - [Unique Elements](#unique-elements)
+    - [Integer Constraints](#integer-constraints)
+    - [Decimal Constraints](#decimal-constraints)
+  - [Constraining parameterized types](#constraining-parameterized-types)
+  - [Constraining array types](#constraining-array-types)
+  - [Providing variable types](#providing-variable-types)
+  - [Self-Made Annotations](#self-made-annotations)
+- [Customized Parameter Generation](#customized-parameter-generation)
+  - [Arbitrary Provider Methods](#arbitrary-provider-methods)
+    - [Provider Methods with Parameters](#provider-methods-with-parameters)
+  - [Arbitrary Suppliers](#arbitrary-suppliers)
+  - [Providing Arbitraries for Embedded Types](#providing-arbitraries-for-embedded-types)
+  - [Static `Arbitraries` methods](#static-arbitraries-methods)
+    - [Generate values yourself](#generate-values-yourself)
+    - [Select or generate values randomly](#select-or-generate-values-randomly)
+    - [Select randomly with Weights](#select-randomly-with-weights)
+    - [Characters and Strings](#characters-and-strings)
+    - [String Size](#string-size)
+    - [java.util.Random](#javautilrandom)
+    - [Shuffling Permutations](#shuffling-permutations)
+    - [Default Types](#default-types)
+  - [Numeric Arbitrary Types](#numeric-arbitrary-types)
+    - [Integrals](#integrals)
+    - [Decimals](#decimals)
+    - [Special Decimal Values](#special-decimal-values)
+    - [Random Numeric Distribution](#random-numeric-distribution)
+  - [Collections, Streams, Iterators and Arrays](#collections-streams-iterators-and-arrays)
+    - [Size of Multi-value Containers](#size-of-multi-value-containers)
+  - [Collecting Values in a List](#collecting-values-in-a-list)
+  - [Optional](#optional)
+  - [Tuples of same base type](#tuples-of-same-base-type)
+  - [Maps](#maps)
+    - [Map Size](#map-size)
+    - [Map Entries](#map-entries)
+  - [Functional Types](#functional-types)
+  - [Fluent Configuration Interfaces](#fluent-configuration-interfaces)
+  - [Generate `null` values](#generate-null-values)
+  - [Inject duplicate values](#inject-duplicate-values)
+  - [Filtering](#filtering)
+  - [Mapping](#mapping)
+    - [Mapping over Elements of Collection](#mapping-over-elements-of-collection)
+  - [Flat Mapping](#flat-mapping)
+    - [Flat Mapping with Tuple Types](#flat-mapping-with-tuple-types)
+    - [Flat Mapping over Elements of Collection](#flat-mapping-over-elements-of-collection)
+    - [Implicit Flat Mapping](#implicit-flat-mapping)
+  - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
+  - [Uniqueness Constraints](#uniqueness-constraints)
+  - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
+  - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
+- [Combining Arbitraries](#combining-arbitraries)
+  - [Combining Arbitraries with `combine`](#combining-arbitraries-with-combine)
+    - [Combining Arbitraries vs Flat Mapping](#combining-arbitraries-vs-flat-mapping)
+    - [Filtering Combinations](#filtering-combinations)
+    - [Flat Combination](#flat-combination)
+  - [Combining Arbitraries with Builders](#combining-arbitraries-with-builders)
+- [Recursive Arbitraries](#recursive-arbitraries)
+  - [Probabilistic Recursion](#probabilistic-recursion)
+    - [Using lazy() instead of lazyOf()](#using-lazy-instead-of-lazyof)
+  - [Deterministic Recursion](#deterministic-recursion)
+  - [Deterministic Recursion with `recursive()`](#deterministic-recursion-with-recursive)
+- [Using Arbitraries Directly](#using-arbitraries-directly)
+  - [Generating a Single Value](#generating-a-single-value)
+  - [Generating a Stream of Values](#generating-a-stream-of-values)
+  - [Generating all possible values](#generating-all-possible-values)
+  - [Iterating through all possible values](#iterating-through-all-possible-values)
+  - [Using Arbitraries Outside Jqwik Lifecycle](#using-arbitraries-outside-jqwik-lifecycle)
+- [Contract Tests](#contract-tests)
+- [Stateful Testing](#stateful-testing)
+  - [State Machines](#state-machines)
+  - [Specifying Actions](#specifying-actions)
+  - [Formulating Stateful Properties](#formulating-stateful-properties)
+  - [Running Stateful Properties](#running-stateful-properties)
+  - [Number of actions](#number-of-actions)
+  - [Check Invariants](#check-invariants)
+  - [Rerunning Falsified Action Chains](#rerunning-falsified-action-chains)
+- [Stateful Testing (Old Approach)](#stateful-testing-old-approach)
+  - [Specify Actions](#specify-actions)
+  - [Check Postconditions](#check-postconditions)
+  - [Number of actions](#number-of-actions-1)
+  - [Check Invariants](#check-invariants-1)
+- [Assumptions](#assumptions)
+- [Result Shrinking](#result-shrinking)
+  - [Integrated Shrinking](#integrated-shrinking)
+  - [Switch Shrinking Off](#switch-shrinking-off)
+  - [Switch Shrinking to Full Mode](#switch-shrinking-to-full-mode)
+  - [Change the Shrinking Target](#change-the-shrinking-target)
+- [Collecting and Reporting Statistics](#collecting-and-reporting-statistics)
+  - [Labeled Statistics](#labeled-statistics)
+  - [Statistics Report Formatting](#statistics-report-formatting)
+    - [Switch Statistics Reporting Off](#switch-statistics-reporting-off)
+    - [Histograms](#histograms)
+    - [Make Your Own Statistics Report Format](#make-your-own-statistics-report-format)
+  - [Checking Coverage of Collected Statistics](#checking-coverage-of-collected-statistics)
+    - [Check Percentages and Counts](#check-percentages-and-counts)
+    - [Check Ad-hoc Query Coverage](#check-ad-hoc-query-coverage)
+    - [Check Coverage of Regex Pattern](#check-coverage-of-regex-pattern)
+- [Providing Default Arbitraries](#providing-default-arbitraries)
+  - [Simple Arbitrary Providers](#simple-arbitrary-providers)
+  - [Arbitrary Providers for Parameterized Types](#arbitrary-providers-for-parameterized-types)
+  - [Arbitrary Provider Priority](#arbitrary-provider-priority)
+  - [Create your own Annotations for Arbitrary Configuration](#create-your-own-annotations-for-arbitrary-configuration)
+    - [Arbitrary Configuration Example: `@Odd`](#arbitrary-configuration-example-odd)
+- [Domain and Domain Context](#domain-and-domain-context)
+  - [Domain example: American Addresses](#domain-example-american-addresses)
+- [Generation from a Type's Interface](#generation-from-a-types-interface)
+- [Generation of Edge Cases](#generation-of-edge-cases)
+  - [Configuring Edge Case Injection](#configuring-edge-case-injection)
+  - [Configuring Edge Cases Themselves](#configuring-edge-cases-themselves)
+- [Exhaustive Generation](#exhaustive-generation)
+- [Data-Driven Properties](#data-driven-properties)
+- [Rerunning Falsified Properties](#rerunning-falsified-properties)
+- [jqwik Configuration](#jqwik-configuration)
+    - [Legacy Configuration in `jqwik.properties` File](#legacy-configuration-in-jqwikproperties-file)
+- [Additional Modules](#additional-modules)
+  - [Web Module](#web-module)
+    - [Email Address Generation](#email-address-generation)
+    - [Web Domain Generation](#web-domain-generation)
+  - [Time Module](#time-module)
+    - [Generation of Dates](#generation-of-dates)
+    - [Generation of Times](#generation-of-times)
+    - [Generation of DateTimes](#generation-of-datetimes)
+  - [Kotlin Module](#kotlin-module)
+    - [Build Configuration for Kotlin](#build-configuration-for-kotlin)
+    - [Differences to Java Usage](#differences-to-java-usage)
+    - [Generation of Nullable Types](#generation-of-nullable-types)
+    - [Support for Coroutines](#support-for-coroutines)
+    - [Support for Kotlin Collection Types](#support-for-kotlin-collection-types)
+    - [Support for Kotlin Functions](#support-for-kotlin-functions)
+    - [Supported Kotlin-only Types](#supported-kotlin-only-types)
+    - [Kotlin Singletons](#kotlin-singletons)
+    - [Convenience Functions for Kotlin](#convenience-functions-for-kotlin)
+    - [Quirks and Bugs](#quirks-and-bugs)
+  - [Testing Module](#testing-module)
+- [Advanced Topics](#advanced-topics)
+  - [Implement your own Arbitraries and Generators](#implement-your-own-arbitraries-and-generators)
+  - [Lifecycle Hooks](#lifecycle-hooks)
+    - [Principles of Lifecycle Hooks](#principles-of-lifecycle-hooks)
+    - [Lifecycle Hook Types](#lifecycle-hook-types)
+    - [Lifecycle Execution Hooks](#lifecycle-execution-hooks)
+    - [Other Hooks](#other-hooks)
+    - [Lifecycle Storage](#lifecycle-storage)
+- [API Evolution](#api-evolution)
+- [Release Notes](#release-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -2413,7 +2588,7 @@ If you need more you have a few options:
 #### Combining Arbitraries vs Flat Mapping
 
 Combining arbitraries with each other can also be achieved through [flat mapping](#flat-mapping).
-So, the valid people arbitrary from above could also be written as:
+So, the `validPeople` provider method from above could also be written as:
 
 ```java
 @Provide
@@ -3823,7 +3998,7 @@ You can switch off statistics report as simple as that:
 @Property
 @StatisticsReport(StatisticsReport.StatisticsReportMode.OFF)
 void queryStatistics(@ForAll int anInt) {
-	Statistics.collect(anInt);
+    Statistics.collect(anInt);
 }
 ```
 
@@ -3833,7 +4008,7 @@ Or you can just switch it off for properties that do not fail:
 @Property
 @StatisticsReport(onFailureOnly = true)
 void queryStatistics(@ForAll int anInt) {
-	Statistics.collect(anInt);
+    Statistics.collect(anInt);
 }
 ```
 
@@ -3856,10 +4031,10 @@ void integers(@ForAll("gaussians") int aNumber) {
 @Provide
 Arbitrary<Integer> gaussians() {
     return Arbitraries
-               .integers()
-               .between(0, 20)
-               .shrinkTowards(10)
-               .withDistribution(RandomDistribution.gaussian());
+            .integers()
+            .between(0, 20)
+            .shrinkTowards(10)
+            .withDistribution(RandomDistribution.gaussian());
 }
 ```
 
@@ -3939,17 +4114,17 @@ implementation of type
 @Property
 @StatisticsReport(format = MyStatisticsFormat.class)
 void statisticsWithHandMadeFormat(@ForAll Integer anInt) {
-	String range = anInt < 0 ? "negative" : anInt > 0 ? "positive" : "zero";
-	Statistics.collect(range);
+    String range = anInt < 0 ? "negative" : anInt > 0 ? "positive" : "zero";
+    Statistics.collect(range);
 }
 
 class MyStatisticsFormat implements StatisticsReportFormat {
-	@Override
-	public List<String> formatReport(List<StatisticsEntry> entries) {
-		return entries.stream()
-					  .map(e -> String.format("%s: %d", e.name(), e.count()))
-					  .collect(Collectors.toList());
-	}
+    @Override
+    public List<String> formatReport(List<StatisticsEntry> entries) {
+        return entries.stream()
+    	              .map(e -> String.format("%s: %d", e.name(), e.count()))
+    	              .collect(Collectors.toList());
+    }
 }
 ```
 
@@ -3978,12 +4153,12 @@ The following example does that for generated values of enum `RoundingMode`:
 ```java
 @Property(generation = GenerationMode.RANDOMIZED)
 void simpleStats(@ForAll RoundingMode mode) {
-	Statistics.collect(mode);
+    Statistics.collect(mode);
 
-	Statistics.coverage(coverage -> {
-		coverage.check(RoundingMode.CEILING).percentage(p -> p > 5.0);
-		coverage.check(RoundingMode.FLOOR).count(c -> c > 2);
-	});
+    Statistics.coverage(coverage -> {
+        coverage.check(RoundingMode.CEILING).percentage(p -> p > 5.0);
+        coverage.check(RoundingMode.FLOOR).count(c -> c > 2);
+    });
 }
 ```
 
@@ -3993,15 +4168,14 @@ and in a fluent API style.
 ```java
 @Property(generation = GenerationMode.RANDOMIZED)
 void labeledStatistics(@ForAll @IntRange(min = 1, max = 10) Integer anInt) {
-	String range = anInt < 3 ? "small" : "large";
-
-	Statistics.label("range")
-			  .collect(range)
-			  .coverage(coverage -> coverage.check("small").percentage(p -> p > 20.0));
-
-	Statistics.label("value")
-			  .collect(anInt)
-			  .coverage(coverage -> coverage.check(0).count(c -> c > 0));
+    String range = anInt < 3 ? "small" : "large";
+	
+    Statistics.label("range")
+              .collect(range)
+              .coverage(coverage -> coverage.check("small").percentage(p -> p > 20.0));
+    Statistics.label("value")
+              .collect(anInt)
+              .coverage(coverage -> coverage.check(0).count(c -> c > 0));
 }
 ```
 
@@ -4018,12 +4192,12 @@ collect the raw data and use a query when doing coverage checking:
 @Property
 @StatisticsReport(StatisticsReport.StatisticsReportMode.OFF)
 void queryStatistics(@ForAll int anInt) {
-	Statistics.collect(anInt);
-
-	Statistics.coverage(coverage -> {
-		Predicate<List<Integer>> isZero = params -> params.get(0) == 0;
-		coverage.checkQuery(isZero).percentage(p -> p > 5.0);
-	});
+    Statistics.collect(anInt);
+	
+    Statistics.coverage(coverage -> {
+    Predicate<List<Integer>> isZero = params -> params.get(0) == 0;
+        coverage.checkQuery(isZero).percentage(p -> p > 5.0);
+    });
 }
 ```
 
@@ -4031,6 +4205,27 @@ In those cases you probably want to
 [switch off reporting](#switch-statistics-reporting-off),
 otherwise the reports might get very long - and without informative value.
 
+
+#### Check Coverage of Regex Pattern
+
+Another option - similar to [ad-hoc querying](#check-ad-hoc-query-coverage) -
+is the possibility to check coverage of a regular expression pattern:
+
+```java
+@Property
+@StatisticsReport(StatisticsReport.StatisticsReportMode.OFF)
+void patternStatistics(@ForAll @NumericChars String aString) {
+    Statistics.collect(aString);
+	
+    Statistics.coverage(coverage -> {
+        coverage.checkPattern("0.*").percentage(p -> p >= 10.0);
+    });
+}
+```
+
+Mind that only _single_ values of type `CharSequence`, which includes `String`, 
+can be checked against a pattern.
+All other types will not match the pattern.
 
 
 

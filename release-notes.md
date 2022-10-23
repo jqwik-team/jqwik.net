@@ -35,6 +35,9 @@ title: jqwik Release Notes
 - Added `Chain.transformers()` and `ActionChain.transformers()` to retrieve
   the list of applied `Transformer` instances in a chain.
 
+- Added the capability to 
+  [check statistical coverage of regex patterns](/docs/snapshot/user-guide.html#check-coverage-of-regex-pattern).
+
 #### Breaking Changes
 
 - All combinator types in `Combinators` are now interfaces instead of classes:
