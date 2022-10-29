@@ -38,6 +38,8 @@ title: jqwik Release Notes
 - Added the capability to 
   [check statistical coverage of regex patterns](/docs/snapshot/user-guide.html#check-coverage-of-regex-pattern).
 
+- Added optional `filter` parameter to Kotlin `combine` functions.
+
 #### Breaking Changes
 
 - All combinator types in `Combinators` are now interfaces instead of classes:
