@@ -40,6 +40,9 @@ title: jqwik Release Notes
 
 - Added optional `filter` parameter to Kotlin `combine` functions.
 
+- Added Kotlin convenience function `Collection<T>.anyValue()` 
+  to facilitate Kotlin syntax for random value selection.
+
 #### Breaking Changes
 
 - All combinator types in `Combinators` are now interfaces instead of classes:
