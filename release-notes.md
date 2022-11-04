@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.7.1-SNAPSHOT](#171-snapshot)
+- [1.7.1](#171)
 - [1.7.0](#170)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
@@ -23,20 +23,26 @@ title: jqwik Release Notes
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 1.7.1-SNAPSHOT
+## 1.7.1
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.7.1/user-guide.html">User guide</a>,
+<a href="/docs/1.7.1/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.7.1/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
 - Upgrade to Kotlin 1.7.20
 
-- Added [filtering](/docs/snapshot/user-guide.html#filtering-combinations) to Combinators. 
+- Added [filtering](/docs/1.7.1/user-guide.html#filtering-combinations) to Combinators. 
   See https://github.com/jlink/jqwik/issues/329.
 
 - Added `Chain.transformers()` and `ActionChain.transformers()` to retrieve
   the list of applied `Transformer` instances in a chain.
 
 - Added the capability to 
-  [check statistical coverage of regex patterns](/docs/snapshot/user-guide.html#check-coverage-of-regex-pattern).
+  [check statistical coverage of regex patterns](/docs/1.7.1/user-guide.html#check-coverage-of-regex-pattern).
 
 - Added optional `filter` parameter to Kotlin `combine` functions.
 
