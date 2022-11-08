@@ -68,5 +68,6 @@ for programmers to write and run Properties.
 - Read an introduction to [PBT in Java](https://blog.johanneslink.net/2018/03/24/property-based-testing-in-java-introduction/)
 - Read an introduction to [PBT in Kotlin](https://johanneslink.net/property-based-testing-in-kotlin/)
 - Ask or answer questions [on Stackoverflow](https://stackoverflow.com/questions/tagged/jqwik).
-- Follow [jqwik on Twitter](https://twitter.com/jqwiknet).
+- Follow [jqwik on Twitter](https://twitter.com/jqwiknet)
+  or <a rel="me" href="https://fosstodon.org/@jqwik">Mastodon</a>.
 
