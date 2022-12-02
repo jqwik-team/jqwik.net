@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.7.2-SNAPSHOT](#172-snapshot)
 - [1.7.1](#171)
 - [1.7.0](#170)
 - [1.6.x](#16x)
@@ -22,6 +23,21 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 1.7.2-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Introduced `Arbitrary.ignoreExceptions(exType1, exType2, ...)`.
+
+#### Breaking Changes
+
+_no breaking changes_
+
+#### Bug Fixes
+
+_no known bugs_
+
 
 ## 1.7.1
 
