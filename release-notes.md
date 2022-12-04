@@ -30,6 +30,9 @@ title: jqwik Release Notes
 
 - Introduced `Arbitrary.ignoreExceptions(exType1, exType2, ...)`.
 
+- Introduced `@Provide(ignoreExceptions = {})` attribute, 
+  which allows to ignore exceptions in provider methods in a simple way. 
+
 #### Breaking Changes
 
 _no breaking changes_
