@@ -1,8 +1,8 @@
 ---
-title: jqwik User Guide - 1.7.1-SNAPSHOT
+title: jqwik User Guide - 1.7.2-SNAPSHOT
 ---
 <h1>The jqwik User Guide
-<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.1-SNAPSHOT</span>
+<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.2-SNAPSHOT</span>
 </h1>
 
 <h3>Table of Contents
@@ -124,6 +124,7 @@ title: jqwik User Guide - 1.7.1-SNAPSHOT
   - [Randomly Choosing among Arbitraries](#randomly-choosing-among-arbitraries)
   - [Uniqueness Constraints](#uniqueness-constraints)
   - [Ignoring Exceptions During Generation](#ignoring-exceptions-during-generation)
+    - [Ignoring Exceptions in Provider Methods](#ignoring-exceptions-in-provider-methods)
   - [Fix an Arbitrary's `genSize`](#fix-an-arbitrarys-gensize)
 - [Combining Arbitraries](#combining-arbitraries)
   - [Combining Arbitraries with `combine`](#combining-arbitraries-with-combine)
@@ -259,7 +260,7 @@ repositories {
 }
 
 ext.junitJupiterVersion = '5.9.1'
-ext.jqwikVersion = '1.7.1-SNAPSHOT'
+ext.jqwikVersion = '1.7.2-SNAPSHOT'
 
 compileTestJava {
     // To enable argument names in reporting and debugging
@@ -358,7 +359,7 @@ Additionally you have to add the following dependency to your `pom.xml` file:
     <dependency>
         <groupId>net.jqwik</groupId>
         <artifactId>jqwik</artifactId>
-        <version>1.7.1-SNAPSHOT</version>
+        <version>1.7.2-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -386,15 +387,15 @@ will allow you to use _jqwik_'s snapshot release which contains all the latest f
 I've never tried it but using jqwik without gradle or some other tool to manage dependencies should also work.
 You will have to add _at least_ the following jars to your classpath:
 
-- `jqwik-api-1.7.1-SNAPSHOT.jar`
-- `jqwik-engine-1.7.1-SNAPSHOT.jar`
+- `jqwik-api-1.7.2-SNAPSHOT.jar`
+- `jqwik-engine-1.7.2-SNAPSHOT.jar`
 - `junit-platform-engine-1.9.1.jar`
 - `junit-platform-commons-1.9.1.jar`
 - `opentest4j-1.2.0.jar`
 
 Optional jars are:
-- `jqwik-web-1.7.1-SNAPSHOT.jar`
-- `jqwik-time-1.7.1-SNAPSHOT.jar`
+- `jqwik-web-1.7.2-SNAPSHOT.jar`
+- `jqwik-time-1.7.2-SNAPSHOT.jar`
 
 
 
@@ -409,7 +410,7 @@ or package-scoped method with
 [`@Property`](/docs/snapshot/javadoc/net/jqwik/api/Property.html).
 In contrast to examples a property method is supposed to have one or
 more parameters, all of which must be annotated with
-[`@ForAll`](/docs/1.7.1-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
+[`@ForAll`](/docs/1.7.2-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
 
 At test runtime the exact parameter values of the property method
 will be filled in by _jqwik_.
@@ -2503,6 +2504,26 @@ Arbitrary<LocalDate> datesBetween1900and2099() {
 }
 ```
 
+If you want to ignore more than one exception type you can use 
+[`Arbitrary.ignoreExceptions(Class<? extends Throwable>...)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html#ignoreExceptions(java.lang.Class...))
+
+#### Ignoring Exceptions in Provider Methods
+
+If the arbitrary is created in a provider method and the exception(s) should be ignored on the outermost level,
+you can use the `ignoreExceptions` attribute of the `@Provide` annotation:
+
+```java
+@Provide(ignoreExceptions = DateTimeException.class)
+Arbitrary<LocalDate> datesBetween1900and2099() {
+    Arbitrary<Integer> years = Arbitraries.integers().between(1900, 2099);
+    Arbitrary<Integer> months = Arbitraries.integers().between(1, 12);
+    Arbitrary<Integer> days = Arbitraries.integers().between(1, 31);
+
+    return Combinators.combine(years, months, days).as(LocalDate::of);
+}
+```
+
+
 ### Fix an Arbitrary's `genSize`
 
 Some generators (e.g. most number generators) are sensitive to the
@@ -3942,7 +3963,7 @@ If you want more than one statistic in a single property, you must give them lab
 
 ```java
 @Property
-void severalStatistics(@ForAll @IntRange(min = 1, max = 10) Integer anInt) {
+void labeledStatistics(@ForAll @IntRange(min = 1, max = 10) Integer anInt) {
     String range = anInt < 3 ? "small" : "large";
     Statistics.label("range").collect(range);
     Statistics.label("value").collect(anInt);
@@ -3985,7 +4006,7 @@ The `value` attribute is of type
 - __`OFF`__: Switch statistics reporting off
 - __`PLUG_IN`__: Plug in your homemade format. This is the default so that
   you only have to provide the `format` attribute
-  [as shown below](#plug-in-your-own-statistics-report-format)
+  [as shown below](#make-your-own-statistics-report-format)
 
 When using [labeled statistics](#labeled-statistics) you can set mode and format
 for each label individually by using the annotation attribute `@StatisticsReport.value`.
@@ -4479,7 +4500,7 @@ Until now you have seen two ways to specify which arbitraries will be created fo
   that will be triggered by a known parameter signature.
 
 In many cases both approaches can be tedious to set up or require constant repetition of the same
-annotation value. There's another way that allows you to collect a number of arbitrary providers
+annotation value. There's another way that allows you to group a number of arbitrary providers
 (and also arbitrary configurators) in a single place, called a `DomainContext` and tell
 a property method or container to only use providers and configurators from those domain contexts
 that are explicitly stated in a `@Domain(Class<? extends DomainContext>)` annotation.
@@ -4591,7 +4612,7 @@ class AddressProperties {
 
 	@Property
 	@Domain(AmericanAddresses.class)
-	void willFailBecauseGlobalDomainIsNotPresent(@ForAll Address anAddress, @ForAll String anyString) {
+	void globalDomainIsNotPresent(@ForAll Address anAddress, @ForAll String anyString) {
 	}
 
 	@Property
@@ -4610,7 +4631,24 @@ It's being used in a covariant way, i.e., `Arbitrary<String>` is also applicable
 for parameter `@ForAll CharSequence charSequence`.
 
 Since `AmericanAddresses` does not configure any arbitrary provider for `String` parameters,
-the second property will fail with `CannotFindArbitraryException`.
+the property method `globalDomainIsNotPresent(..)` will fail,
+whereas `globalDomainCanBeAdded(..)` will succeed because it has the additional `@Domain(DomainContext.Global.class)` annotation.
+You could also add this line to class `AmericanAddresses` itself,
+which would then automatically bring the global context to all users of this domain class:
+
+```java
+@Domain(DomainContext.Global.class)
+public class AmericanAddresses extends DomainContextBase {
+   ...
+}
+```
+
+The reason that you have to jump through these hoops is that 
+domains are conceived to give you perfect control about how objects of
+a certain application domain are being created.
+That means, that by default they _do not inherit the global context_.
+
+
 
 
 
@@ -5574,7 +5612,7 @@ Here's the jqwik-related part of the Gradle build file for a Kotlin project:
 ```kotlin
 dependencies {
     ...
-    testImplementation("net.jqwik:jqwik-kotlin:1.7.1-SNAPSHOT")
+    testImplementation("net.jqwik:jqwik-kotlin:1.7.2-SNAPSHOT")
 }
 
 tasks.withType<Test>().configureEach {
@@ -5916,7 +5954,8 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
 ##### Diverse Convenience Functions
 
 - `combine(a1: Arbitrary<T1>, ..., (v1: T1, ...) -> R)` can replace all
-  variants of `Combinators.combine(a1, ...).as((v1: T1, ...) -> R)`.
+  variants of `Combinators.combine(a1, ...).as((v1: T1, ...) -> R)`
+  and `Combinators.combine(a1, ...).filter(a1, ...).as((v1: T1, ...) -> R)`.
   Here's an example:
 
   ```kotlin
@@ -5929,7 +5968,10 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
   fun fullNames() : Arbitrary<String> {
       val firstNames = String.any().alpha().ofMinLength(1)
       val lastNames = String.any().alpha().ofMinLength(1)
-      return combine(firstNames, lastNames) {first, last -> first + " " + last }
+      return combine(
+          firstNames, lastNames,
+          filter = { firstName, lastName -> firstName != lastName } // optional parameter
+      ) { first, last -> first + " " + last }
   }
   ```
 
@@ -5949,6 +5991,12 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
 
 - `frequencyOf(vararg frequencies: Pair<Int, Arbitrary<out T>>)` can replace 
   `Arbitraries.frequencyOf(vararg Tuple.Tuple2<Int, Arbitrary<out T>>)`
+
+- `Collection<T>.anyValue()` can replace 
+  `Arbitraries.of(collection: Collection<T>)`
+
+- `Collection<T>.anySubset()` can replace 
+  `Arbitraries.subsetOf(collection: Collection<T>)`
 
 
 #### Quirks and Bugs
@@ -6606,4 +6654,4 @@ If a certain element, e.g. a method, is not annotated itself, then it carries th
 
 ## Release Notes
 
-Read this version's [release notes](/release-notes.html#171-snapshot).
+Read this version's [release notes](/release-notes.html#172-snapshot).
