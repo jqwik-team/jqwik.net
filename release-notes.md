@@ -34,6 +34,9 @@ title: jqwik Release Notes
   [`@Provide(ignoreExceptions = {<ExceptionType>})`](/docs/snapshot/user-guide.html#ignoring-exceptions-in-provider-methods) 
   attribute, which allows to ignore exceptions in provider methods in a simple way. 
 
+- Introduced `Footnotes.addAfterFailure(Supplier<String>)`.
+  See https://github.com/jlink/jqwik/issues/310.
+
 #### Breaking Changes
 
 _no breaking changes_
