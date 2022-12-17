@@ -37,13 +37,17 @@ title: jqwik Release Notes
 - Introduced `Footnotes.addAfterFailure(Supplier<String>)`.
   See https://github.com/jlink/jqwik/issues/310.
 
+- Fixed quite a few performance and memory issues by means of merging pull requests
+  from https://github.com/vlsi. Thanks a lot!
+
 #### Breaking Changes
 
 _no breaking changes_
 
 #### Bug Fixes
 
-_no known bugs_
+- Fixed bug that included never executed actions in chains.
+  See https://github.com/jlink/jqwik/issues/426.
 
 
 ## 1.7.1
