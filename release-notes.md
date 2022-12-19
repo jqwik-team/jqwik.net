@@ -35,10 +35,10 @@ title: jqwik Release Notes
   attribute, which allows to ignore exceptions in provider methods in a simple way. 
 
 - Introduced `Footnotes.addAfterFailure(Supplier<String>)`.
-  See https://github.com/jlink/jqwik/issues/310.
+  See [#310](https://github.com/jlink/jqwik/issues/310).
 
 - Fixed quite a few performance and memory issues by means of merging pull requests
-  from https://github.com/vlsi. Thanks a lot!
+  from [vlsi](https://github.com/vlsi). Thanks a lot!
 
 #### Breaking Changes
 
@@ -47,7 +47,7 @@ _no breaking changes_
 #### Bug Fixes
 
 - Fixed bug that included never executed actions in chains.
-  See https://github.com/jlink/jqwik/issues/426.
+  See [#426](https://github.com/jlink/jqwik/issues/426).
 
 
 ## 1.7.1
