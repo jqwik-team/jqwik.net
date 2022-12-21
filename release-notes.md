@@ -42,7 +42,7 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
-_no breaking changes_
+- Renamed experimental method `ChainArbitrary.addTransformation(..)` to `ChainArbitrary.withTransformation(..)` 
 
 #### Bug Fixes
 
