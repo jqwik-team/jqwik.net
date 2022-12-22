@@ -40,9 +40,16 @@ title: jqwik Release Notes
 - Fixed quite a few performance and memory issues by means of merging pull requests
   from [vlsi](https://github.com/vlsi). Thanks a lot!
 
+- All methods of `net.jqwik.api.Arbitrary` and subtypes now have `@CheckReturnValue` annotation.
+  That means you will get a warning from your IDE if you don't use the result of an arbitrary method,
+  given that you have `org.jetbrains:annotations` as a compile-time dependency.
+
+
 #### Breaking Changes
 
-- Renamed experimental method `ChainArbitrary.addTransformation(..)` to `ChainArbitrary.withTransformation(..)` 
+- Renamed `ChainArbitrary.addTransformation(..)` to `ChainArbitrary.withTransformation(..)` 
+
+- Renamed `ActionChainArbitrary.addAction(..)` to `ActionChainArbitrary.withAction(..)` 
 
 #### Bug Fixes
 
