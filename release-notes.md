@@ -58,6 +58,9 @@ title: jqwik Release Notes
 - Fixed bug that included never executed actions in chains.
   See [#426](https://github.com/jlink/jqwik/issues/426).
 
+- Fixed bug when generating list of consumers.
+  See [#446](https://github.com/jlink/jqwik/issues/446).
+
 
 ## 1.7.1
 
