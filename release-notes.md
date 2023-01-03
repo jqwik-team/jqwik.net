@@ -44,6 +44,8 @@ title: jqwik Release Notes
   That means you will get a warning from your IDE if you don't use the result of an arbitrary method,
   given that you have `org.jetbrains:annotations` as a compile-time dependency.
 
+- Upgrade to Kotlin 1.8.0
+
 
 #### Breaking Changes
 
