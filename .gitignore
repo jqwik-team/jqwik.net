@@ -4,3 +4,6 @@
 # Jekyll
 _site
 Gemfile.lock
+
+# Ignore when opened in IntelliJ IDEA
+.idea
