@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.7.3-SNAPSHOT](#173-snapshot)
 - [1.7.2](#172)
 - [1.7.1](#171)
 - [1.7.0](#170)
@@ -23,6 +24,21 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 1.7.3-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Upgraded to JUnit Platform 1.9.2
+
+#### Breaking Changes
+
+_no breaking changes_
+
+#### Bug Fixes
+
+_no known bugs_
+
 
 ## 1.7.2
 
