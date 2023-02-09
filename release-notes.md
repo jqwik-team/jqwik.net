@@ -1339,7 +1339,7 @@ and
 #### Bug Fixes
 
 - An `OutOfMemoryError` will go through to the top. Fix for
-  [bug report from jqwik-spring](https://github.com/jlink/jqwik-spring/issues/5).
+  [bug report from jqwik-spring](https://github.com/jqwik-team/jqwik-spring/issues/5).
 
 - `Arbitraries.of(listOfValues)` would break when list does not allow null values.
 
@@ -1399,7 +1399,7 @@ and
 #### Breaking Changes
 
 - More changes to Lifecycle Hooks API in order to support a
-  [jqwik Spring extension](https://github.com/jlink/jqwik-spring)
+  [jqwik Spring extension](https://github.com/jqwik-team/jqwik-spring)
 
 
 ### 1.2.5
@@ -1436,7 +1436,7 @@ and
 #### Breaking Changes
 
 - Some fundamental changes to Lifecycle Hooks API in order to support a
-  [jqwik Spring extension](https://github.com/jlink/jqwik-spring)
+  [jqwik Spring extension](https://github.com/jqwik-team/jqwik-spring)
 
 
 #### Bug Fixes

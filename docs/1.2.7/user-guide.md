@@ -202,7 +202,7 @@ about the real dependencies you can replace this dependency with
 ```
 
 In jqwik's samples repository you can find a rather minimal 
-[starter example for jqwik with Gradle](https://github.com/jlink/jqwik-samples/tree/master/jqwik-starter-gradle).
+[starter example for jqwik with Gradle](https://github.com/jqwik-team/jqwik-samples/tree/master/jqwik-starter-gradle).
 
 See [the Gradle section in JUnit 5's user guide](https://junit.org/junit5/docs/current/user-guide/#running-tests-build-gradle)
 for more details on how to configure Gradle for the JUnit 5 platform. 
@@ -253,7 +253,7 @@ Additionally you have to add the following dependency to your `pom.xml` file:
 ```
 
 In jqwik's samples repository you can find a rather minimal 
-[starter example for jqwik with Maven](https://github.com/jlink/jqwik-samples/tree/master/jqwik-starter-maven).
+[starter example for jqwik with Maven](https://github.com/jqwik-team/jqwik-samples/tree/master/jqwik-starter-maven).
 
 ### Snapshot Releases
 
