@@ -7,3 +7,6 @@ Gemfile.lock
 
 # Ignore when opened in IntelliJ IDEA
 .idea
+*.iml
+*.ipr
+*.iws
