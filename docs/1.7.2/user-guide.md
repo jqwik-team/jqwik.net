@@ -374,7 +374,7 @@ In jqwik's samples repository you can find a rather minimal
 ### Snapshot Releases
 
 Snapshot releases are available through jqwik's
-[snapshot repositories](#https://s01.oss.sonatype.org/content/repositories/snapshots).
+[snapshot repositories](https://s01.oss.sonatype.org/content/repositories/snapshots).
 
 Adding
 
@@ -6490,7 +6490,7 @@ but those implementations have a different proximity or require a different prop
 
 This is really advanced stuff, the mechanism of which will probably evolve or change in the future.
 If you really really want to see an example, look at
-[`JqwikSpringExtension`](#https://github.com/jqwik-team/jqwik-spring/blob/main/src/main/java/net/jqwik/spring/JqwikSpringExtension.java)
+[`JqwikSpringExtension`](https://github.com/jqwik-team/jqwik-spring/blob/main/src/main/java/net/jqwik/spring/JqwikSpringExtension.java)
 
 #### Lifecycle Storage
 

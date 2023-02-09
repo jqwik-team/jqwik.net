@@ -258,7 +258,7 @@ In jqwik's samples repository you can find a rather minimal
 ### Snapshot Releases
 
 Snapshot releases are available through Sonatype's 
-[snapshot repositories](#https://oss.sonatype.org/content/repositories/snapshots).
+[snapshot repositories](https://oss.sonatype.org/content/repositories/snapshots).
 
 Adding 
 

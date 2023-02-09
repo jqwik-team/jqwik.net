@@ -231,7 +231,7 @@ and add the following dependency to your `pom.xml` file:
 ### Snapshot Releases
 
 Snapshot releases are available through Sonatype's 
-[snapshot repositories](#https://oss.sonatype.org/content/repositories/snapshots).
+[snapshot repositories](https://oss.sonatype.org/content/repositories/snapshots).
 
 Adding 
 
