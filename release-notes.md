@@ -37,7 +37,7 @@ _no breaking changes_
 
 #### Bug Fixes
 
-_no known bugs_
+- Fixed timezone-related bug in time module.
 
 
 ## 1.7.2
