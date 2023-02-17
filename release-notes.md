@@ -57,7 +57,7 @@ and <a href="/docs/1.7.2/kdoc/index.html">kdoc</a>
   attribute, which allows to ignore exceptions in provider methods in a simple way. 
 
 - Introduced `Footnotes.addAfterFailure(Supplier<String>)`.
-  See [#310](https://github.com/jlink/jqwik/issues/310).
+  See [#310](https://github.com/jqwik-team/jqwik/issues/310).
 
 - Fixed quite a few performance and memory issues by means of merging pull requests
   from [vlsi](https://github.com/vlsi). Thanks a lot!
@@ -78,10 +78,10 @@ and <a href="/docs/1.7.2/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Fixed bug that included never executed actions in chains.
-  See [#426](https://github.com/jlink/jqwik/issues/426).
+  See [#426](https://github.com/jqwik-team/jqwik/issues/426).
 
 - Fixed bug when generating list of consumers.
-  See [#446](https://github.com/jlink/jqwik/issues/446).
+  See [#446](https://github.com/jqwik-team/jqwik/issues/446).
 
 
 ## 1.7.1
@@ -97,7 +97,7 @@ and <a href="/docs/1.7.1/kdoc/index.html">kdoc</a>
 - Upgrade to Kotlin 1.7.20
 
 - Added [filtering](/docs/1.7.1/user-guide.html#filtering-combinations) to Combinators. 
-  See https://github.com/jlink/jqwik/issues/329.
+  See https://github.com/jqwik-team/jqwik/issues/329.
 
 - Added `Chain.transformers()` and `ActionChain.transformers()` to retrieve
   the list of applied `Transformer` instances in a chain.
@@ -125,10 +125,10 @@ and <a href="/docs/1.7.1/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Histogramms will use `#` as character for bars on Windows now.
-  See https://github.com/jlink/jqwik/issues/376.
+  See https://github.com/jqwik-team/jqwik/issues/376.
 
 - Fixed reflection bug for Java >= 17.
-  See https://github.com/jlink/jqwik/issues/393.
+  See https://github.com/jqwik-team/jqwik/issues/393.
 
 
 ## 1.7.0
@@ -166,7 +166,7 @@ and <a href="/docs/1.7.0/kdoc/index.html">kdoc</a>
 
 - `Arbitrary.filter(Predicate<T> predicate, int maxMisses)` has swapped arguments:
   `Arbitrary.filter(int maxMisses, Predicate<T> predicate)` to allow for a more idiomatic use in Kotlin.
-  See https://github.com/jlink/jqwik/issues/334.
+  See https://github.com/jqwik-team/jqwik/issues/334.
 
 - Removed method `ActionSequenceArbitrary.ofMinSize(int)` which had been deprecated in 1.5.3
 
@@ -187,24 +187,24 @@ and <a href="/docs/1.7.0/kdoc/index.html">kdoc</a>
 #### Bug Fixes and Improvements
 
 - Generated TLDs in `web-module` will no longer start with digit.
-  See https://github.com/jlink/jqwik/issues/316.
+  See https://github.com/jqwik-team/jqwik/issues/316.
 
 - Fixed potential stack overflow when dealing with recursive types.
-  See https://github.com/jlink/jqwik/issues/327.
+  See https://github.com/jqwik-team/jqwik/issues/327.
 
 - Property methods in Kotlin with `internal` modifier get now their correct name.
 
 - Combined arbitraries will not explode so easily now.
-  See https://github.com/jlink/jqwik/issues/342.
+  See https://github.com/jqwik-team/jqwik/issues/342.
 
 - Frequency based arbitraries now perform better with large number of options.
-  See https://github.com/jlink/jqwik/issues/332.
+  See https://github.com/jqwik-team/jqwik/issues/332.
 
 - Generator memoization now works for most kinds of arbitraries and therefore uses less memory.
-  See https://github.com/jlink/jqwik/issues/339.
+  See https://github.com/jqwik-team/jqwik/issues/339.
 
 - Arbitrary API methods `ofMinSize()` and `ofMinLength()` are handled more intelligently.
-  See https://github.com/jlink/jqwik/issues/377.
+  See https://github.com/jqwik-team/jqwik/issues/377.
 
 
 ## 1.6.x
@@ -233,7 +233,7 @@ and <a href="/docs/1.6.5/kdoc/index.html">kdoc</a>
 - Some false positive matching of provider method return types has been fixed.
 
 - Data-driven properties now allow compatible null values.
-  See https://github.com/jlink/jqwik/issues/308.
+  See https://github.com/jqwik-team/jqwik/issues/308.
 
 
 ### 1.6.4
@@ -306,10 +306,10 @@ and <a href="/docs/1.6.3/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Shrinking now still works when thrown exception has no stacktrace.
-  See https://github.com/jlink/jqwik/issues/283.
+  See https://github.com/jqwik-team/jqwik/issues/283.
 
 - Builders can now use nullable arbitraries.
-  See https://github.com/jlink/jqwik/issues/295.
+  See https://github.com/jqwik-team/jqwik/issues/295.
 
 
 ### 1.6.2
@@ -350,7 +350,7 @@ and <a href="/docs/1.6.2/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Using `@WithNull` on primitive array types no longer leads to an `IllegalArgumentException`.
-  See https://github.com/jlink/jqwik/issues/270.
+  See https://github.com/jqwik-team/jqwik/issues/270.
 
 - Generic array types in parameters can now be properly resolved
 
@@ -459,7 +459,7 @@ and <a href="/docs/1.6.0/kdoc/index.html">kdoc</a>
 - Added `Functions.FunctionWrapper.returning()` as replacement for deprecated `returns()`.
 
 - Added explicit module information for all modules.
-  See https://github.com/jlink/jqwik/issues/243.
+  See https://github.com/jqwik-team/jqwik/issues/243.
   Thank you https://github.com/sormuras for the support!
 
 
@@ -479,7 +479,7 @@ and <a href="/docs/1.6.0/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Fixed memory leak when calling `Arbitrary.sample()` in jqwik scope.
-  See https://github.com/jlink/jqwik/issues/236.
+  See https://github.com/jqwik-team/jqwik/issues/236.
 
 - Sometimes Kotlin method names have a postfix.
   They can now be resolved and have normal display names.
@@ -504,12 +504,12 @@ and
 - Upgraded to JUnit platform 1.8.0
 
 - Improved performance of large collection generation.
-  See https://github.com/jlink/jqwik/pull/227.
+  See https://github.com/jqwik-team/jqwik/pull/227.
 
 #### Breaking Changes
 
 - Parameters for `StringArbitrary.ofMinLength()` and `StringArbitrary.ofMaxLength()` are validated.
-  See https://github.com/jlink/jqwik/issues/221.
+  See https://github.com/jqwik-team/jqwik/issues/221.
 
 #### Bug Fixes
 
@@ -545,12 +545,12 @@ and
 
 - Properties with single try (aka examples) with at least one `@ForAll` parameter will now
   produce a test report even if they succeed.
-  See https://github.com/jlink/jqwik/issues/217.
+  See https://github.com/jqwik-team/jqwik/issues/217.
 
 #### Bug Fixes
 
 - Fixed edge cases performance problem.
-  See https://github.com/jlink/jqwik/issues/214
+  See https://github.com/jqwik-team/jqwik/issues/214
 
 
 ### 1.5.4
@@ -593,7 +593,7 @@ and
 
 #### Bug Fixes
 
-- Addressed performance issues raised in https://github.com/jlink/jqwik/issues/206
+- Addressed performance issues raised in https://github.com/jqwik-team/jqwik/issues/206
 
 - Fixed some type resolution and type usage bug found through
   https://github.com/mihxil/math.
@@ -634,11 +634,11 @@ and
 #### Bug Fixes
 
 - Module name now correctly set for testing, web and time modules.
-  See https://github.com/jlink/jqwik/issues/201.
+  See https://github.com/jqwik-team/jqwik/issues/201.
 
 - No longer throwing ConcurrentModificationException when using `sample()` within another generator.
   This happened in Java >= 11 only.
-  See https://github.com/jlink/jqwik/issues/205
+  See https://github.com/jqwik-team/jqwik/issues/205
 
 
 ### 1.5.2
@@ -679,13 +679,13 @@ and
 #### Bug Fixes
 
 - Fixed bug in edge case generation:
-  https://github.com/jlink/jqwik/issues/180
+  https://github.com/jqwik-team/jqwik/issues/180
 
 - Fixed bug when running inner tests of an extended test container:
-  https://github.com/jlink/jqwik/issues/179
+  https://github.com/jqwik-team/jqwik/issues/179
 
 - Fixed bug in Tuple.toString():
-  https://github.com/jlink/jqwik/issues/187
+  https://github.com/jqwik-team/jqwik/issues/187
 
 ### 1.5.1
 
@@ -698,7 +698,7 @@ and
 #### New and Enhanced Features
 
 - Implemented `@StatisticsReport.label` as suggested in
-  https://github.com/jlink/jqwik/issues/146.
+  https://github.com/jqwik-team/jqwik/issues/146.
 
 - Time module
   - [Generation of Times](/docs/1.5.1/user-guide.html#generation-of-times)
@@ -706,7 +706,7 @@ and
     got its first rudimentary support.
 
 - Added `StringArbitrary.excludeChars(char ... toExclude)`.
-  See https://github.com/jlink/jqwik/issues/167.
+  See https://github.com/jqwik-team/jqwik/issues/167.
 
 #### Breaking Changes
 
@@ -745,7 +745,7 @@ and
 
 #### Bug Fixes
 
-- Fixed [degraded generation performance](https://github.com/jlink/jqwik/issues/166)
+- Fixed [degraded generation performance](https://github.com/jqwik-team/jqwik/issues/166)
   introduced in version [1.4.0](#140).
 
 - `Arbitrary.withoutEdgeCases()` did not really get rid of all edge case generation.
@@ -785,7 +785,7 @@ and
   [configuration parameter](/docs/1.4.0/user-guide.html#jqwik-configuration)
   `jqwik.seeds.whenfixed`
   to warn or even fail when a property has been given a fixed random seed.
-  See [this issued](https://github.com/jlink/jqwik/issues/138) for more details.
+  See [this issued](https://github.com/jqwik-team/jqwik/issues/138) for more details.
   Many thanks to [osi](https://github.com/osi) for this contribution.
 
 - jqwik's approach to specify uniqueness of generated objects has been completely revamped:
@@ -905,7 +905,7 @@ and
 #### Bug Fixes
 
 - `Arbitraries.lazy()`
-  [did not allow exhaustive generation](https://github.com/jlink/jqwik/issues/137)
+  [did not allow exhaustive generation](https://github.com/jqwik-team/jqwik/issues/137)
   but does now.
 
 - `SampleReportingFormat.reportJavaBean(..)` can now handle methods named
@@ -929,7 +929,7 @@ and
   has now configuration options.
 
 - Generated email addresses now
-  [have fewer edge cases](https://github.com/jlink/jqwik/issues/133).
+  [have fewer edge cases](https://github.com/jqwik-team/jqwik/issues/133).
 
 - Added constraint annotation
   [`@Email`](/docs/1.3.9/javadoc/net/jqwik/api/constraints/Email.html)
@@ -949,11 +949,11 @@ and
 
 #### Bug Fixes
 
-- [Reporting of null values in failed properties](https://github.com/jlink/jqwik/issues/132)
+- [Reporting of null values in failed properties](https://github.com/jqwik-team/jqwik/issues/132)
   no longer fails with NPE.
 
 - Sampling arbitraries with null values
-  [no longer fails](https://github.com/jlink/jqwik/pull/136).
+  [no longer fails](https://github.com/jqwik-team/jqwik/pull/136).
 
 ### 1.3.8
 
@@ -1007,18 +1007,18 @@ and
 #### Breaking Changes
 
 - _Examples_ with a failing assumption - i.e. throwing a `TestAbortedException` -
-  will now be reported as being skipped. See https://github.com/jlink/jqwik/issues/122
+  will now be reported as being skipped. See https://github.com/jqwik-team/jqwik/issues/122
   for motivation and reasoning.
 
 #### Bug Fixes
 
 - Using some arbitraries with `Arbitrary.sample()` outside of a jqwik context
-  [no longer worked](https://github.com/jlink/jqwik/issues/125).
+  [no longer worked](https://github.com/jqwik-team/jqwik/issues/125).
   Now it does again.
 
 - The default character generator was erroneously considered to produce unique
   characters. Resulted in a strange to analyze
-  [bug when generating functions](https://github.com/jlink/jqwik/issues/126)
+  [bug when generating functions](https://github.com/jqwik-team/jqwik/issues/126)
 
 
 ### 1.3.6
@@ -1050,7 +1050,7 @@ and
   Now the minimum ratio is 1 edge case in 3 generating steps.
 
 - Warning about combinatorial explosion of edge cases generation is
-  now [logged only once](https://github.com/jlink/jqwik/issues/119).
+  now [logged only once](https://github.com/jqwik-team/jqwik/issues/119).
 
 - Edge cases for `oneOf(..)` and `frequencyOf(..)` generators are now correctly being shrunk.
 
@@ -1087,7 +1087,7 @@ and
 #### Bug Fixes
 
 - edge cases generation will be stopped when 10000 edge cases have been found.
-  See https://github.com/jlink/jqwik/issues/113
+  See https://github.com/jqwik-team/jqwik/issues/113
 
 
 ### 1.3.4
@@ -1122,7 +1122,7 @@ and
 #### Bug Fixes
 
 - Made loading of services thread-safe to allow use of jqwik generators
-  in parallel JUnit runs: https://github.com/jlink/jqwik/pull/117.
+  in parallel JUnit runs: https://github.com/jqwik-team/jqwik/pull/117.
   Thank you, https://github.com/Danny02!
 
 
@@ -1158,7 +1158,7 @@ and
 - `Arbitraries.frequencyOf() now takes covariant arbitrary types
 
 - Made loading of services thread-safe to allow use of jqwik generators
-  in parallel JUnit runs: https://github.com/jlink/jqwik/pull/117.
+  in parallel JUnit runs: https://github.com/jqwik-team/jqwik/pull/117.
   Thank you, https://github.com/Danny02!
 
 - Added `PropertyLifecycleContext.attributes()`, which allows to query, set and change
@@ -1227,7 +1227,7 @@ and
 #### Bug Fixes
 
 - Reporting samples with circular dependencies [does no longer throw
-  an exception](https://github.com/jlink/jqwik/issues/111)
+  an exception](https://github.com/jqwik-team/jqwik/issues/111)
 
 - Reporting test failure due to exception without message
   no longer leads to ignored test
@@ -1247,7 +1247,7 @@ and
 
 - Reporting of falsified, shrunk and  generated samples
   [has been completely reworked](/docs/1.3.1/user-guide.html#failure-reporting).
-  See [this issue](https://github.com/jlink/jqwik/issues/85) for more details.
+  See [this issue](https://github.com/jqwik-team/jqwik/issues/85) for more details.
 
 - Added `Arbitrary.ignoreException(exceptionType)` which allows to
   [ignore exceptions during value generation](/docs/1.3.1/user-guide.html#ignoring-exceptions-during-generation).
@@ -1560,9 +1560,9 @@ and
 
 #### Bug Fixes
 
-- [Statistics formatting bug](https://github.com/jlink/jqwik/issues/72)
-- [Exhaustive generation bug](https://github.com/jlink/jqwik/issues/77)
-- [Using Arbitraries.forType() outside property bug](https://github.com/jlink/jqwik/issues/79)
+- [Statistics formatting bug](https://github.com/jqwik-team/jqwik/issues/72)
+- [Exhaustive generation bug](https://github.com/jqwik-team/jqwik/issues/77)
+- [Using Arbitraries.forType() outside property bug](https://github.com/jqwik-team/jqwik/issues/79)
 
 ### 1.2.1
 
@@ -1647,8 +1647,8 @@ and
 - Upgrade to JUnit platform 1.5.1
 - Upgrade to Gradle 5.5.1
 - Default character generation now excludes codepoints `0xd800` through `0xdfff`
-- Fixed set generation bug https://github.com/jlink/jqwik/issues/65
-- Fixed [bug in Unshrinkable.equals](https://github.com/jlink/jqwik/pull/66).
+- Fixed set generation bug https://github.com/jqwik-team/jqwik/issues/65
+- Fixed [bug in Unshrinkable.equals](https://github.com/jqwik-team/jqwik/pull/66).
   Many thanks to [mhyeon-lee](https://github.com/mhyeon-lee) for that pull request!
 - List and array generation from unique arbitraries now have a default max size
   that makes sense
@@ -1710,9 +1710,9 @@ and
 
 - Whitespace characters for generation of Strings and chars are now
   platform and JDK version dependent.
-  See [this Github issue](https://github.com/jlink/jqwik/issues/55).
+  See [this Github issue](https://github.com/jqwik-team/jqwik/issues/55).
 - Missing `@ForAll` annotation will now fail test - instead of skipping it.
-  See [this Github issue](https://github.com/jlink/jqwik/issues/54).
+  See [this Github issue](https://github.com/jqwik-team/jqwik/issues/54).
 - Added `CharacterArbitrary.with(char ... allowedChars)`
 - Added `CharacterArbitrary.range(char min, char max)`
 - Deprecated `CharacterArbitrary.between(char min, char max)`
@@ -1726,8 +1726,8 @@ and
 </p>
 
 - Added `Arbitrary.forEachValue(Consumer action)`
-- Fixed [Kotlin compatibility issue](https://github.com/jlink/jqwik/issues/52)
-- Fixed [decimal generation bug](https://github.com/jlink/jqwik/issues/50)
+- Fixed [Kotlin compatibility issue](https://github.com/jqwik-team/jqwik/issues/52)
+- Fixed [decimal generation bug](https://github.com/jqwik-team/jqwik/issues/50)
 - Update to JUnit Platform 5.4.1
 
 

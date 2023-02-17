@@ -333,7 +333,7 @@ The first failed execution will stop value generation
 and be reported as failure - usually followed by an attempt to 
 [shrink](#result-shrinking) the falsified parameter set.
 
-[Here](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/PropertyBasedTests.java)
+[Here](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/PropertyBasedTests.java)
 are two properties whose failures might surprise you:
 
 ```java
@@ -562,7 +562,7 @@ A test case method must
 - or return nothing (`void`) in which case you will probably
   use [assertions](#assertions) in order to verify the test condition.
   
-[Here](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ExampleBasedTests.java)
+[Here](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ExampleBasedTests.java)
 is a test class with two example-based tests:
 
 ```java
@@ -812,7 +812,7 @@ maintainability of your tests.
 
 Groups can be nested and there lifecycle is also nested, that means that
 the lifecycle of a test class is also applied to inner groups of that container.
-Have a look at [this example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/TestsWithGroups.java):
+Have a look at [this example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/TestsWithGroups.java):
 
 ```java
 import net.jqwik.api.*;
@@ -860,7 +860,7 @@ If you want to tweak display names even more,
 test container classes, groups, example methods and property methods can be labeled
 using the annotation `@Label("a label")`. This label will be used to display the element
 in test reports or within the IDE. 
-[In the following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/NamingExamples.java),
+[In the following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/NamingExamples.java),
 every test relevant element has been labeled:
 
 ```java
@@ -902,7 +902,7 @@ Those tag can be used to filter the set of tests
 Tags are handed down from container (class or group) to its children (test methods or groups).
 
 Have a look at 
-[the following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/TaggingExamples.java).
+[the following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/TaggingExamples.java).
 Including the tag `integration-test` will include
 all tests of the class.
 
@@ -1111,7 +1111,7 @@ _jqwik_ can also handle type variables and wildcard types. The handling of upper
 bounds works mostly as you would expect it.
 
 Consider
-[the following examples](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/VariableTypedPropertyExamples.java):
+[the following examples](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/VariableTypedPropertyExamples.java):
 
 ```java
 class VariableTypedPropertyExamples {
@@ -1183,7 +1183,7 @@ of values programmatically. The means to do that are _provider methods_.
 ### Parameter Provider Methods
 
 Look at the 
-[following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ProvideMethodExamples.java):
+[following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ProvideMethodExamples.java):
 
 ```java
 @Property
@@ -1332,7 +1332,7 @@ Arbitrary<String> abcdWeighted() {
 
 The first value of the tuple specifies the frequency of a particular value in relation to the
 sum of all frequencies. In 
-[the given example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ChoosingExamples.java#L17)
+[the given example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/ChoosingExamples.java#L17)
 the sum is 36, thus `"a"` will be generated with a probability of `1/36` 
 whereas `"d"` has a generation probability of `20/36` (= `5/9`).
 
@@ -1648,7 +1648,7 @@ which are organized in a flat hierarchy:
 
 
 Here are a 
-[two examples](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FluentConfigurationExamples.java)
+[two examples](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FluentConfigurationExamples.java)
 to give you a hint of what you can do:
 
 ```java
@@ -1813,7 +1813,7 @@ will move towards the lowest allowed number, that is `10000`.
 Similar as in the case of `Arbitrary.map(..)` there are situations in which you want to use
 a generated value in order to create another Arbitrary from it. Sounds complicated?
 Have a look at the 
-[following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FlatMappingExamples.java#L26):
+[following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FlatMappingExamples.java#L26):
 
 ```java
 @Property
@@ -1848,7 +1848,7 @@ However, both have dependencies:
 You can make _jqwik_ create all three values by using 
 [`flatMap`](/docs/1.3.6/javadoc/net/jqwik/api/Arbitrary.html#flatMap-java.util.function.Function-) 
 combined with a tuple type 
-[like this](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FlatMappingExamples.java#L32):
+[like this](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/FlatMappingExamples.java#L32):
 
 
 ```java
@@ -1904,7 +1904,7 @@ Arbitrary<Integer> oneOfThree() {
 }
 ```
 
-[In this example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/OneOfExamples.java)
+[In this example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/OneOfExamples.java)
 the statistics should also give you an equal distribution between
 the three types of integers.
 
@@ -1941,9 +1941,9 @@ a more complicated domain object. In those cases you can combine several arbitra
 a single result arbitrary using 
 [`Combinators.combine()`](/docs/1.3.6/javadoc/net/jqwik/api/Combinators.html#combine-net.jqwik.api.Arbitrary-net.jqwik.api.Arbitrary-) 
 with up to eight arbitraries. 
-[Create an issue on github](https://github.com/jlink/jqwik/issues) if you need more than eight. 
+[Create an issue on github](https://github.com/jqwik-team/jqwik/issues) if you need more than eight. 
 
-[The following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/MappingAndCombinatorExamples.java#L25)
+[The following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/MappingAndCombinatorExamples.java#L25)
 generates `Person` instances from three arbitraries as inputs.
 
 ```java
@@ -2135,7 +2135,7 @@ is one application field but you can also use it for other stuff.
 ### Probabilistic Recursion
 
 Look at the 
-[following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/RecursiveExamples.java)
+[following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/RecursiveExamples.java)
 which generates sentences by recursively adding words to a sentence:
 
 ```java
@@ -2411,7 +2411,7 @@ when they can be invoked and some objects have invariants that should never be v
 of the sequence of performed actions.
 
 To make this abstract concept concrete, let's look at a 
-[simple stack implementation](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStack.java):
+[simple stack implementation](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStack.java):
 
 ```java
 public class MyStringStack {
@@ -2428,7 +2428,7 @@ public class MyStringStack {
 
 We can see at least three _actions_ with their preconditions and expected state changes:
 
-- [`Push`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PushAction.java):
+- [`Push`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PushAction.java):
   Push a string onto the stack. The string should be on top afterwards and the size
   should have increased by 1.
   
@@ -2458,7 +2458,7 @@ We can see at least three _actions_ with their preconditions and expected state 
   }
   ``` 
 
-- [`Pop`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PopAction.java):
+- [`Pop`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/PopAction.java):
   If (and only if) the stack is not empty, pop the element on top off the stack. 
   The size of the stack should have decreased by 1.
   
@@ -2486,7 +2486,7 @@ We can see at least three _actions_ with their preconditions and expected state 
   }
   ``` 
 
-- [`Clear`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/ClearAction.java):
+- [`Clear`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/ClearAction.java):
   Remove all elements from the stack which should be empty afterwards.
   
   ```java
@@ -2512,7 +2512,7 @@ The fundamental property that _jqwik_ should try to falsify is:
     (aka postconditions) should be fulfilled.
     
 We can formulate that quite easily as a 
-[_jqwik_ property](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStackProperties.java):
+[_jqwik_ property](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/stateful/mystack/MyStringStackProperties.java):
 
 ```java
 class MyStringStackProperties {
@@ -2629,7 +2629,7 @@ If you want to constrain the set of generated values in a way that embraces
 more than one parameter, [filtering](#filtering) does not work. What you
 can do instead is putting one or more assumptions at the beginning of your property.
 
-[The following property](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/AssumptionExamples.java)
+[The following property](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/AssumptionExamples.java)
 works only on strings that are not equal:
 
 ```java
@@ -2980,7 +2980,7 @@ void twoParameterStats(
 
 As you can see, collected `null` values are not being reported.
 
-[Here](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/statistics/StatisticsExamples.java)
+[Here](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/statistics/StatisticsExamples.java)
 are a couple of examples to try out.
 
 ### Labeled Statistics
@@ -3264,7 +3264,7 @@ packaged into _jqwik_.
 ### Simple Arbitrary Providers
 
 A simple provider is one that delivers arbitraries for types without type variables.
-Consider the class [`Money`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/Money.java):
+Consider the class [`Money`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/Money.java):
 
 ```java
 public class Money {
@@ -3288,7 +3288,7 @@ public class Money {
 ``` 
 
 If you register the following class
-[`MoneyArbitraryProvider`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/MoneyArbitraryProvider.java):
+[`MoneyArbitraryProvider`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/MoneyArbitraryProvider.java):
 
 ```java
 package my.own.provider;
@@ -3311,7 +3311,7 @@ public class MoneyArbitraryProvider implements ArbitraryProvider {
 ```
 
 in file 
-[`META-INF/services/net.jqwik.api.providers.ArbitraryProvider`](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/resources/META-INF/services/net.jqwik.api.providers.ArbitraryProvider)
+[`META-INF/services/net.jqwik.api.providers.ArbitraryProvider`](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/resources/META-INF/services/net.jqwik.api.providers.ArbitraryProvider)
 with such an entry:
 
 ```
@@ -3319,7 +3319,7 @@ my.own.provider.MoneyArbitraryProvider
 ```
 
 The 
-[following property](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/MoneyProperties.java)
+[following property](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/defaultprovider/MoneyProperties.java)
 will run without further ado - regardless the class you put it in:
 
 ```java
@@ -3406,9 +3406,9 @@ The mechanism you can plug into is similar to what you do when
 
 To demonstrate the idea let's create an annotation `@Odd` which will constrain any integer
 generation to only generate odd numbers. First things first, so here's 
-the [`@Odd` annotation](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/Odd.java)
+the [`@Odd` annotation](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/Odd.java)
 together with the 
-[configurator implementation](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/OddConfigurator.java):
+[configurator implementation](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/OddConfigurator.java):
 
 ```java
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.PARAMETER, ElementType.TYPE_USE })
@@ -3427,8 +3427,8 @@ Mind that the implementation uses an abstract base class - instead of the interf
 which simplifies implementation if you're only interested in a single annotation.
 
 If you now 
-[register the implementation](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/resources/META-INF/services/net.jqwik.api.configurators.ArbitraryConfigurator),
-the [following example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/OddProperties.java)
+[register the implementation](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/resources/META-INF/services/net.jqwik.api.configurators.ArbitraryConfigurator),
+the [following example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/OddProperties.java)
 will work:
 
 ```java
@@ -3504,9 +3504,9 @@ Let's say that US postal addresses play a crucial role in the software that we'r
 That's why there are a couple of classes that represent important domain concepts: 
 `Street`, `State`, `City` and `Address`. Since we have to generate instances of those classes
 for our properties, we collect all arbitrary provision code in
-[AmericanAddresses](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/domains/AmericanAddresses.java).
+[AmericanAddresses](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/domains/AmericanAddresses.java).
 Now look at
-[this example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/domains/AddressProperties.java):
+[this example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/domains/AddressProperties.java):
 
 ```java
 class AddressProperties {
@@ -3587,7 +3587,7 @@ the class in order to generate instances. Whenever there's an exception during
 generation they will be ignored; that way you'll only get valid instances.
 
 There are quite a few ways usage and configuration options. Have a look
-at the [complete example](https://github.com/jlink/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/types/TypeArbitraryExamples.java)
+at the [complete example](https://github.com/jqwik-team/jqwik/blob/1.3.6/documentation/src/test/java/net/jqwik/docs/types/TypeArbitraryExamples.java)
 and check the following api entry points:
 
 - [UseType](/docs/1.3.6/javadoc/net/jqwik/api/constraints/UseType.html)
@@ -3851,7 +3851,7 @@ to make it work smoothly with the rest of the framework.
 Therefore, use the innumerable features to combine existing arbitraries into your special one.
 If you cannot figure out how to create an arbitrary with the desired behaviour
 either [ask on stack overflow](https://stackoverflow.com/questions/tagged/jqwik)
-or [open a Github issue](https://github.com/jlink/jqwik/issues). 
+or [open a Github issue](https://github.com/jqwik-team/jqwik/issues). 
 
 ### Lifecycle Hooks
 

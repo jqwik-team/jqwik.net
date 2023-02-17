@@ -14,13 +14,13 @@ and answer [questions on Stackoverflow](https://stackoverflow.com/questions/tagg
 ### Bugs, Ideas and Feature Suggestions
 
 Please, please, please add your suggestion, ideas and bug reports using the project's
-[issue tracker on github](https://github.com/jlink/jqwik/issues).
+[issue tracker on github](https://github.com/jqwik-team/jqwik/issues).
 
 
 ### Pull Requests
 
-Of course, you are also invited to send in [pull requests](https://github.com/jlink/jqwik/pulls).
-Before you submit a PR make sure you follow [the contributing rules](https://github.com/jlink/jqwik/blob/master/CONTRIBUTING.md).
+Of course, you are also invited to send in [pull requests](https://github.com/jqwik-team/jqwik/pulls).
+Before you submit a PR make sure you follow [the contributing rules](https://github.com/jqwik-team/jqwik/blob/master/CONTRIBUTING.md).
  
 Be prepared, though, that I'll be picky about what I accept, since a good level of consistency
 is crucial for shaping the mid and long-term future of a project's design and architecture.
@@ -30,6 +30,6 @@ your pull request.
 ### Supporter, Maintainer, Influencer
 
 If you want to become a long-term supporter, maintainer or committer for __jqwik__
-please [get in touch](mailto:business@johanneslink.net).
+please [get in touch](mailto:info@jqwik.net).
 
 

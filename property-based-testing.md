@@ -40,11 +40,11 @@ There are a few alternatives to _jqwik_ if you want to do PBT on the JVM:
 - [jetCheck](https://github.com/JetBrains/jetCheck): A property-based testing library for Java 8+. 
   Works with any testing framework.
 - [ScalaCheck](http://www.scalacheck.org/): A mature property based testing system with shrinking and all, 
-  iff you prefer Scala over Java.
+  if you prefer Scala to Java.
 - [test.check for Clojure](https://github.com/clojure/test.check): Inspired by QuickCheck. Since Clojure
   does not have static types generators must always be declared explicitly.
 - [KotlinTest](https://github.com/kotlintest/kotlintest): Has some basic support for PBT. 
-  Currently no shrinking yet.
+  Currently, no shrinking yet.
 - [Frege, a Haskell for the JVM,](https://github.com/Frege/frege)
   comes with a classical QuickCheck implementation.
   [This section](https://dierk.gitbooks.io/fregegoodness/content/src/docs/asciidoc/qc_property.html)
