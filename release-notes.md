@@ -38,6 +38,8 @@ _no breaking changes_
 #### Bug Fixes
 
 - Fixed timezone-related bug in time module.
+- 
+- Fixed "Shrink&Grow" bug: https://github.com/jqwik-team/jqwik/issues/439
 
 
 ## 1.7.2
