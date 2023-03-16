@@ -34,6 +34,9 @@ title: jqwik Release Notes
 - `uniqueElements(..)` methods are now part of `StreamableArbitrary` interface.
   See https://github.com/jqwik-team/jqwik/issues/466.
 
+- Added `Arbitrary.ignoreException(int maxThrows, Class<? extends Throwable> exceptionType)` and
+  `Arbitrary.ignoreExceptions(maxThrows, Class<? extends Throwable> ... exceptionTypes)`
+
 #### Breaking Changes
 
 _no breaking changes_
