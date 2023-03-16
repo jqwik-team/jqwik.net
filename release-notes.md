@@ -31,6 +31,9 @@ title: jqwik Release Notes
 
 - Upgraded to JUnit Platform 1.9.2
 
+- `uniqueElements(..)` methods are now part of `StreamableArbitrary` interface.
+  See https://github.com/jqwik-team/jqwik/issues/466.
+
 #### Breaking Changes
 
 _no breaking changes_
