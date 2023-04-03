@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.7.4-SNAPSHOT](#174-snapshot)
 - [1.7.3](#173)
 - [1.7.2](#172)
 - [1.7.1](#171)
@@ -24,6 +25,21 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 1.7.4-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Upgraded to Kotlin 1.8.20
+
+#### Breaking Changes
+
+_no breaking changes_
+
+#### Bug Fixes
+
+_no known bugs_
+
 
 ## 1.7.3
 
@@ -45,7 +61,7 @@ and <a href="/docs/1.7.3/kdoc/index.html">kdoc</a>
 
 #### Breaking Changes
 
-_no breaking changes_
+- `StreamableArbitrary` now has to implement `uniqueElements()` and `uniqueElements(by)`
 
 #### Bug Fixes
 
