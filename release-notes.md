@@ -38,7 +38,8 @@ _no breaking changes_
 
 #### Bug Fixes
 
-_no known bugs_
+- Fixed bug in `AroundPropertyHook` extensions combined with `@AfterProperty` methods.
+  See [Issue 473](https://github.com/jqwik-team/jqwik/issues/473).
 
 
 ## 1.7.3
