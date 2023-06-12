@@ -34,7 +34,7 @@ title: jqwik Release Notes
 
 - Upgraded to JUnit Platform 1.9.3
 
-- Upgraded to Kotlin 1.8.21
+- Upgraded to Kotlin 1.8.22
 
 - Added interface method `LifecycleContext.findRepeatableAnnotations(annotationClass)` 
   and implementations in all subtypes. 
