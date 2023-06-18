@@ -37,7 +37,10 @@ title: jqwik Release Notes
 - Upgraded to Kotlin 1.8.22
 
 - Added interface method `LifecycleContext.findRepeatableAnnotations(annotationClass)` 
-  and implementations in all subtypes. 
+  and implementations in all subtypes.
+
+- Performance improvement for `@UniqueElements`. Many thanks to [DirkToewe](https://github.com/DirkToewe).
+  See https://github.com/jqwik-team/jqwik/pull/491.
 
 #### Breaking Changes
 
