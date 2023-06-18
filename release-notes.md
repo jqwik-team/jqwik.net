@@ -42,6 +42,9 @@ title: jqwik Release Notes
 - Performance improvement for `@UniqueElements`. Many thanks to [DirkToewe](https://github.com/DirkToewe).
   See https://github.com/jqwik-team/jqwik/pull/491.
 
+- Added interface `MethodLifecycleContext` as a supertype of both
+  `PropertyLifecycleContext` and `TryLifecycleContext`.
+
 #### Breaking Changes
 
 _no breaking changes_
