@@ -23,7 +23,7 @@ _See the [jqwik user guide](https://jqwik.net/docs/current/user-guide.html) for 
   - [Generate selection of values](#generate-selection-of-values)
   - [Numbers and String](#numbers-and-string)
   - [Choose among Arbitraries](#choose-among-arbitraries)
-- [Important Methods of all Arbitrary<T> type](#important-methods-of-all-arbitraryt-types)
+- [Important Methods of all Arbitrary types](#important-methods-of-all-arbitrary-types)
   - [Filter](#filter)
   - [Map](#map)
   - [Flat Map](#flat-map)
@@ -198,7 +198,7 @@ class FizzBuzzTests {
 `<T> Arbitrary<T> oneOf(Arbitrary<T> first, Arbitrary<T>... rest)`
 
 
-## Important Methods of all Arbitrary<T> types
+## Important Methods of all Arbitrary types
 
 ### Filter
 
