@@ -30,7 +30,7 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
-- Upgraded to KotlinX 1.7.0
+- Upgraded to KotlinX 1.7.2
 
 - Upgraded to JUnit Platform 1.9.3
 
