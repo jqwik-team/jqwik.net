@@ -46,10 +46,11 @@ and <a href="/docs/1.7.4/kdoc/index.html">kdoc</a>
   and implementations in all subtypes.
 
 - Performance improvement for `@UniqueElements`. Many thanks to [DirkToewe](https://github.com/DirkToewe).
-  See https://github.com/jqwik-team/jqwik/pull/491.
+  See [PR 491](https://github.com/jqwik-team/jqwik/pull/491).
 
 - Added interface `MethodLifecycleContext` as a supertype of both
   `PropertyLifecycleContext` and `TryLifecycleContext`.
+
 
 #### Breaking Changes
 
