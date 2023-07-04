@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.7.4-SNAPSHOT](#174-snapshot)
+- [1.7.4](#174)
 - [1.7.3](#173)
 - [1.7.2](#172)
 - [1.7.1](#171)
@@ -26,7 +26,13 @@ title: jqwik Release Notes
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 1.7.4-SNAPSHOT
+## 1.7.4
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.7.4/user-guide.html">User guide</a>,
+<a href="/docs/1.7.4/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.7.4/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
@@ -47,7 +53,11 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
-_no breaking changes_
+- The new interface `MethodLifecycleContext` is a supertype of both
+  `PropertyLifecycleContext` and `TryLifecycleContext`. 
+  This could lead to compile-time errors in rare cases of self-implemented
+  context classes.
+
 
 #### Bug Fixes
 
