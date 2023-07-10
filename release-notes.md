@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.8.0-SNAPSHOT](#180-snapshot)
 - [1.7.4](#174)
 - [1.7.3](#173)
 - [1.7.2](#172)
@@ -25,6 +26,27 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 1.8.0-SNAPSHOT
+
+#### New and Enhanced Features
+
+#### Breaking Changes
+
+- `TypeUsage.canBeAssignedTo(TypeUsage)` behaves now closer to the Java compiler's rules
+  about co- and contravariance and.
+  This has the potential to break domains, arbitrary providers, and lifecycle hooks 
+  that depend on the old, more loose, behaviour.
+
+- `@Provide` methods are now matched more loosely. 
+  That means that potential mismatches of generated values and the corresponding `@ForAll`
+  parameters will show up at property execution time instead of property setup time.
+
+#### Bug Fixes
+
+- Fixed bug when selecting parameterized values from domain contexts.
+  See [Issue 499](https://github.com/jqwik-team/jqwik/issues/499).
+
 
 ## 1.7.4
 
