@@ -31,6 +31,8 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
+- Upgraded to Kotlin 1.9.0
+
 #### Breaking Changes
 
 - `TypeUsage.canBeAssignedTo(TypeUsage)` behaves now closer to the Java compiler's rules
