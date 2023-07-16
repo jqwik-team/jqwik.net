@@ -36,13 +36,14 @@ title: jqwik Release Notes
 #### Breaking Changes
 
 - `TypeUsage.canBeAssignedTo(TypeUsage)` behaves now closer to the Java compiler's rules
-  about co- and contravariance and.
+  about allowing assignments - including co- and contravariance.
   This has the potential to break domains, arbitrary providers, and lifecycle hooks 
   that depend on the old, more loose, behaviour.
 
-- `@Provide` methods are now matched more loosely. 
-  That means that potential mismatches of generated values and the corresponding `@ForAll`
-  parameters will show up at property execution time instead of property setup time.
+- `@Provide` methods are now matched on name - or `Provide.value()` - alone. 
+  That means that potential type mismatches of generated values 
+  and the corresponding `@ForAll` parameters will show up at property execution time 
+  instead of property setup time.
 
 #### Bug Fixes
 
