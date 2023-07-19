@@ -49,6 +49,10 @@ title: jqwik Release Notes
 - Fixed bug when selecting parameterized values from domain contexts.
   See [Issue 499](https://github.com/jqwik-team/jqwik/issues/499).
 
+- Fixed type variable resolution bug.
+  See [Issue 492](https://github.com/jqwik-team/jqwik/issues/492).
+
+
 
 ## 1.7.4
 
