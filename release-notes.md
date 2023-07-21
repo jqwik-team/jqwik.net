@@ -33,6 +33,10 @@ title: jqwik Release Notes
 
 - Upgraded to Kotlin 1.9.0
 
+- Added `StringArbitrary.uniqueChars()` to generate strings with unique characters.
+  Discussion in [issue 506](https://github.com/jqwik-team/jqwik/issues/506).
+
+
 #### Breaking Changes
 
 - `TypeUsage.canBeAssignedTo(TypeUsage)` behaves now closer to the Java compiler's rules
@@ -43,6 +47,11 @@ title: jqwik Release Notes
 - `@Provide` methods are now matched more strictly, based on assignability of returned arbitrary type. 
   That means that potential mismatches of generated values and the corresponding `@ForAll`
   parameters will show up already at property setup time through a `CannotFindArbitraryException`.
+
+- `StringArbitrary.repeatChars(0.0)` will now redirect to `StringArbitrary.uniqueChars()`.
+  Previously it used to just make the probability of repeating characters very low.
+  See discussion in [issue 506](https://github.com/jqwik-team/jqwik/issues/506).
+
 
 #### Bug Fixes
 
