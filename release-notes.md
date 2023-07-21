@@ -35,6 +35,10 @@ title: jqwik Release Notes
 
 - Added `StringArbitrary.uniqueChars()` to generate strings with unique characters.
   Discussion in [issue 506](https://github.com/jqwik-team/jqwik/issues/506).
+  This is an experimental feature.
+
+- Added constraint annotation `@UniqueChars` for String parameters.
+  This is an experimental feature.
 
 
 #### Breaking Changes
