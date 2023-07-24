@@ -58,6 +58,12 @@ title: jqwik Release Notes
   Previously it used to just make the probability of repeating characters very low.
   See discussion in [issue 506](https://github.com/jqwik-team/jqwik/issues/506).
 
+- Removed deprecated method `TypeArbitrary.use(Executable)`.
+
+- Removed deprecated methods `ActionChainArbitrary.addAction(action)`
+  and `ActionChainArbitrary.addAction(weight, action)`.
+
+
 
 #### Bug Fixes
 
