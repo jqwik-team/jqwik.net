@@ -42,6 +42,13 @@ title: jqwik Release Notes
 - Added constraint annotation `@UniqueChars` for String parameters.
   This is an experimental feature.
 
+- `EXPERIMENTAL` APIs promoted to `MAINTAINED`:
+  - `Arbitrary.edgeCases(Consumer<EdgeCases.Config<T>> configurator)`
+  - `Arbitrary.withoutEdgeCases()`
+  - `@Property.edgeCases()`
+  - `@ForAll.supplier()`
+  - `@From.supplier()`
+  - `@Provide.ignoreExceptions()`
 
 #### Breaking Changes
 
@@ -62,7 +69,6 @@ title: jqwik Release Notes
 
 - Removed deprecated methods `ActionChainArbitrary.addAction(action)`
   and `ActionChainArbitrary.addAction(weight, action)`.
-
 
 
 #### Bug Fixes
