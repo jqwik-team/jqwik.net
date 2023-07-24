@@ -31,6 +31,8 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
+- Upgraded to JUnit Platform 1.10.0
+
 - Upgraded to Kotlin 1.9.0
 
 - Added `StringArbitrary.uniqueChars()` to generate strings with unique characters.
