@@ -55,6 +55,7 @@ title: jqwik Release Notes
   - `TraverseArbitrary`
   - `TypeArbitrary.enableRecursion()`
   - `@UseType.enableRecursion()`
+  - `DomainContext.getReportingFormats()`
 
 #### Breaking Changes
 
