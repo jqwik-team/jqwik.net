@@ -49,6 +49,8 @@ title: jqwik Release Notes
   - `@ForAll.supplier()`
   - `@From.supplier()`
   - `@Provide.ignoreExceptions()`
+  - `Combinator[2-8].filter(..)`
+  - `ListCombinator.filter(..)`
 
 #### Breaking Changes
 
