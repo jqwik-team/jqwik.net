@@ -51,6 +51,10 @@ title: jqwik Release Notes
   - `@Provide.ignoreExceptions()`
   - `Combinator[2-8].filter(..)`
   - `ListCombinator.filter(..)`
+  - `NumericalArbitrary.withDistribution(..)`
+  - `TraverseArbitrary`
+  - `TypeArbitrary.enableRecursion()`
+  - `@UseType.enableRecursion()`
 
 #### Breaking Changes
 
