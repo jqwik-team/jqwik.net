@@ -44,6 +44,10 @@ title: jqwik Release Notes
 - Added constraint annotation `@UniqueChars` for String parameters.
   This is an experimental feature.
 
+- Added `Arbitraries.fromGeneratorWithSize(..)`.
+  See [issue 494](https://github.com/jqwik-team/jqwik/issues/494).
+  This is an experimental feature.
+
 - `EXPERIMENTAL` APIs promoted to `MAINTAINED`:
   - `Arbitrary.edgeCases(Consumer<EdgeCases.Config<T>> configurator)`
   - `Arbitrary.withoutEdgeCases()`
