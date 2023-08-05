@@ -48,6 +48,8 @@ title: jqwik Release Notes
   See [issue 494](https://github.com/jqwik-team/jqwik/issues/494).
   This is an experimental feature.
 
+- The Kotlin module got a brand new 'Combine DSL'.
+
 - `EXPERIMENTAL` APIs promoted to `MAINTAINED`:
   - `Arbitrary.edgeCases(Consumer<EdgeCases.Config<T>> configurator)`
   - `Arbitrary.withoutEdgeCases()`
