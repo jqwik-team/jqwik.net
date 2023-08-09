@@ -95,6 +95,9 @@ title: jqwik Release Notes
 - Fixed type variable resolution bug.
   See [Issue 492](https://github.com/jqwik-team/jqwik/issues/492).
 
+- Fixed bug where presence of Kotlin module could mess up annotations
+  of parameters in Java classes.
+
 
 
 ## 1.7.4
