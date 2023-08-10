@@ -55,6 +55,8 @@ title: jqwik Release Notes
   This allows [heterogeneous arbitrary configurators](https://github.com/jqwik-team/jqwik/issues/493)
   that differ in arbitrary type only.
 
+- Multiple `@CharRange` annotations are now also possible for `@ForAll char` parameters.
+
 - `EXPERIMENTAL` APIs promoted to `MAINTAINED`:
   - `Arbitrary.edgeCases(Consumer<EdgeCases.Config<T>> configurator)`
   - `Arbitrary.withoutEdgeCases()`
