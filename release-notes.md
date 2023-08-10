@@ -50,6 +50,11 @@ title: jqwik Release Notes
 
 - The Kotlin module got a brand new 'Combine DSL'.
 
+- Configurators that are based on `ArbitraryConfiguratorBase` will now consider
+  any public method the name of which starts with `configure` as a configuration method candidate.
+  This allows [heterogeneous arbitrary configurators](https://github.com/jqwik-team/jqwik/issues/493)
+  that differ in arbitrary type only.
+
 - `EXPERIMENTAL` APIs promoted to `MAINTAINED`:
   - `Arbitrary.edgeCases(Consumer<EdgeCases.Config<T>> configurator)`
   - `Arbitrary.withoutEdgeCases()`
@@ -67,6 +72,11 @@ title: jqwik Release Notes
   - `JqwikSession`
 
 #### Breaking Changes
+
+- Configurators that are based on `ArbitraryConfiguratorBase` must mark their
+  `configure()` methods as `public`. 
+  Private and package-scope methods are no longer supported considered as 
+  configuration method candidates.
 
 - `TypeUsage.canBeAssignedTo(TypeUsage)` behaves now closer to the Java compiler's rules
   about allowing assignments - including co- and contravariance.
