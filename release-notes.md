@@ -29,6 +29,12 @@ title: jqwik Release Notes
 
 ## 1.8.0-SNAPSHOT
 
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/snapshot/user-guide.html">User guide</a>,
+<a href="/docs/snapshot/javadoc/index.html">javadoc</a>
+and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
+</p>
+
 #### New and Enhanced Features
 
 - Upgraded to KotlinX 1.7.3
@@ -48,7 +54,7 @@ title: jqwik Release Notes
   See [issue 494](https://github.com/jqwik-team/jqwik/issues/494).
   This is an experimental feature.
 
-- The Kotlin module got a brand new 'Combine DSL'.
+- The Kotlin module got a brand new [Combinator DSL](/docs/snapshot/user-guide.html#combinator-dsl).
 
 - Configurators that are based on `ArbitraryConfiguratorBase` will now consider
   any public method the name of which starts with `configure` as a configuration method candidate.

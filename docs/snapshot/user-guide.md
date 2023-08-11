@@ -1,8 +1,8 @@
 ---
-title: jqwik User Guide - 1.7.2-SNAPSHOT
+title: jqwik User Guide - 1.8.0-SNAPSHOT
 ---
 <h1>The jqwik User Guide
-<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.7.2-SNAPSHOT</span>
+<span style="padding-left:1em;font-size:50%;font-weight:lighter">1.8.0-SNAPSHOT</span>
 </h1>
 
 <h3>Table of Contents
@@ -64,6 +64,7 @@ title: jqwik User Guide - 1.7.2-SNAPSHOT
   - [Lifecycle](#lifecycle)
     - [Simple Property Lifecycle](#simple-property-lifecycle)
     - [Annotated Lifecycle Methods](#annotated-lifecycle-methods)
+    - [Annotated Lifecycle Variables](#annotated-lifecycle-variables)
     - [Single Property Lifecycle](#single-property-lifecycle)
   - [Grouping Tests](#grouping-tests)
   - [Naming and Labeling Tests](#naming-and-labeling-tests)
@@ -94,6 +95,7 @@ title: jqwik User Guide - 1.7.2-SNAPSHOT
     - [Select randomly with Weights](#select-randomly-with-weights)
     - [Characters and Strings](#characters-and-strings)
     - [String Size](#string-size)
+    - [String with Unique Characters](#string-with-unique-characters)
     - [java.util.Random](#javautilrandom)
     - [Shuffling Permutations](#shuffling-permutations)
     - [Default Types](#default-types)
@@ -179,6 +181,7 @@ title: jqwik User Guide - 1.7.2-SNAPSHOT
   - [Arbitrary Provider Priority](#arbitrary-provider-priority)
   - [Create your own Annotations for Arbitrary Configuration](#create-your-own-annotations-for-arbitrary-configuration)
     - [Arbitrary Configuration Example: `@Odd`](#arbitrary-configuration-example-odd)
+    - [Using Arbitrary Configurator Base Class](#using-arbitrary-configurator-base-class)
 - [Domain and Domain Context](#domain-and-domain-context)
   - [Domain example: American Addresses](#domain-example-american-addresses)
 - [Generation from a Type's Interface](#generation-from-a-types-interface)
@@ -240,7 +243,7 @@ Snapshot releases are created on a regular basis and can be fetched from
 
 ### Required Version of JUnit Platform
 
-The minimum required version of the JUnit platform is `1.9.1`.
+The minimum required version of the JUnit platform is `1.10.0`.
 
 ### Gradle
 
@@ -259,8 +262,8 @@ repositories {
 
 }
 
-ext.junitJupiterVersion = '5.9.1'
-ext.jqwikVersion = '1.7.2-SNAPSHOT'
+ext.junitJupiterVersion = '5.10.0'
+ext.jqwikVersion = '1.8.0-SNAPSHOT'
 
 compileTestJava {
     // To enable argument names in reporting and debugging
@@ -293,7 +296,10 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
 
     // Add any other test library you need...
-    testImplementation "org.assertj:assertj-core:3.12.2"
+    testImplementation "org.assertj:assertj-core:3.23.1"
+
+    // Optional but recommended to get annotation related API warnings
+	compileOnly("org.jetbrains:annotations:23.0.0")
 
 }
 ```
@@ -359,7 +365,7 @@ Additionally you have to add the following dependency to your `pom.xml` file:
     <dependency>
         <groupId>net.jqwik</groupId>
         <artifactId>jqwik</artifactId>
-        <version>1.7.2-SNAPSHOT</version>
+        <version>1.8.0-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
@@ -387,15 +393,15 @@ will allow you to use _jqwik_'s snapshot release which contains all the latest f
 I've never tried it but using jqwik without gradle or some other tool to manage dependencies should also work.
 You will have to add _at least_ the following jars to your classpath:
 
-- `jqwik-api-1.7.2-SNAPSHOT.jar`
-- `jqwik-engine-1.7.2-SNAPSHOT.jar`
-- `junit-platform-engine-1.9.1.jar`
-- `junit-platform-commons-1.9.1.jar`
-- `opentest4j-1.2.0.jar`
+- `jqwik-api-1.8.0-SNAPSHOT.jar`
+- `jqwik-engine-1.8.0-SNAPSHOT.jar`
+- `junit-platform-engine-1.10.0.jar`
+- `junit-platform-commons-1.10.0.jar`
+- `opentest4j-1.3.0.jar`
 
 Optional jars are:
-- `jqwik-web-1.7.2-SNAPSHOT.jar`
-- `jqwik-time-1.7.2-SNAPSHOT.jar`
+- `jqwik-web-1.8.0-SNAPSHOT.jar`
+- `jqwik-time-1.8.0-SNAPSHOT.jar`
 
 
 
@@ -410,7 +416,7 @@ or package-scoped method with
 [`@Property`](/docs/snapshot/javadoc/net/jqwik/api/Property.html).
 In contrast to examples a property method is supposed to have one or
 more parameters, all of which must be annotated with
-[`@ForAll`](/docs/1.7.2-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
+[`@ForAll`](/docs/1.8.0-SNAPSHOT/javadoc/net/jqwik/api/ForAll.html).
 
 At test runtime the exact parameter values of the property method
 will be filled in by _jqwik_.
@@ -580,7 +586,7 @@ public class FootnotesExamples {
 ```
 
 Unlike standard reporting, the footnotes feature must be explicitly enabled through
-the annotation `EnableFootnotes`, which can be added to container classes or individual property methods.
+the annotation `@EnableFootnotes`, which can be added to container classes or individual property methods.
 Now you can add a parameter of type `net.jqwik.api.footnotes.Footnotes` to a property method
 or a lifecycle method annotated with either `@BeforeTry` or `@AfterTry`.
 The footnote string will then be part of the sample reporting:
@@ -603,6 +609,10 @@ Original Sample
   #1 399322
 ```
 
+For footnotes that require significant computation you can also use 
+`Footnotes.addAfterFailure(Supplier<String> footnoteSupplier)`.
+Those suppliers will only be evaluated if the property fails, and then as early as possible.
+Mind that this evaluation can still happen quite often during shrinking.
 
 ### Optional `@Property` Attributes
 
@@ -950,6 +960,28 @@ after container
 All those lifecycle methods are being run through _jqwik_'s mechanism for
 writing [_lifecycle hooks_](#lifecycle-hooks) under the hood.
 
+#### Annotated Lifecycle Variables
+
+One of the lifecycle annotations from above has an additional meaning: 
+[`@BeforeTry`](/docs/snapshot/javadoc/net/jqwik/api/lifecycle/BeforeTry.html):
+It can also be used on a test container class' member variable 
+to make sure that it will be reset to its initial value - the one it had before the first try -
+for each try:
+
+```java
+class BeforeTryMemberExample {
+
+	@BeforeTry
+	int theAnswer = 42;
+
+	@Property
+	void theAnswerIsAlways42(@ForAll int addend) {
+		Assertions.assertThat(theAnswer).isEqualTo(42);
+		theAnswer += addend;
+	}
+}
+```
+
 
 #### Single Property Lifecycle
 
@@ -991,8 +1023,8 @@ another non-static and non-private inner class and annotating it with `@Group`.
 Grouping examples and properties is a means to improve the organization and
 maintainability of your tests.
 
-Groups can be nested and there lifecycle is also nested, that means that
-the lifecycle of a test class is also applied to inner groups of that container.
+Groups can be nested, which makes their lifecycles also nested. 
+That means that the lifecycle of a test class is also applied to inner groups of that container.
 Have a look at [this example](https://github.com/jqwik-team/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/TestsWithGroups.java):
 
 ```java
@@ -1452,9 +1484,15 @@ method within the same class (or one of its superclasses or owning classes).
 This reference refers to either the method's name or the String value
 of the method's `@Provide` annotation.
 
-The providing method has to return an object of type
-[`@Arbitrary<T>`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html)
-where `T` is the static type of the parameter to be provided.
+The providing method has to return an arbitrary instance that matches type
+[`@Arbitrary<? extends TParam>`](/docs/snapshot/javadoc/net/jqwik/api/Arbitrary.html)
+where `TParam` is the static type of the parameter to be provided.
+If the return type cannot be matched, jqwik will throw a `CannotFindArbitraryException`.
+
+**Caveat:**
+_Since this kind of type matching follows Java's rules for assignability,
+some type mismatches, especially in the presence of wildcards and constrained type variables, 
+can be confusing._
 
 Arbitrary provision usually starts with a
 [static method call to `Arbitraries`](#static-arbitraries-methods), maybe followed
@@ -1626,6 +1664,9 @@ The starting point for generation usually is a static method call on class
   to allow for [shrinking](#result-shrinking) you have to provide
   your own `RandomGenerator` implementation.
 
+- [`Arbitrary<T> fromGeneratorWithSize(RandomGenerator<T> generator)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#fromGeneratorWithSize(java.util.function.IntFunction)):
+  Allows to use the `genSize` parameter at creation time of a `RandomGenerator` instance.
+
 #### Select or generate values randomly
 
 - [`Arbitrary<U> of(U... values)`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#of(U...)):
@@ -1723,6 +1764,27 @@ If you want, for example, a uniform distribution of string length between
 Arbitraries.strings().ofMinLength(5).ofMaxLength(25)
 		   .withLengthDistribution(RandomDistribution.uniform());
 ```
+
+#### String with Unique Characters
+
+In case you need a string with unique characters you can use
+[`StringArbitrary.uniqueChars()`](/docs/snapshot/javadoc/net/jqwik/api/Arbitraries.html#uniqueChars()).
+Here's an example:
+
+```java
+Arbitraries.strings().alpha().ofMaxLength(25)
+		   .uniqueChars();
+```
+
+Alternatively you can use the annotation `@UniqueChars` on a `@ForAll String` parameter:
+
+```java
+@Property
+boolean noDuplicateCharsInStrings(@ForAll @UniqueChars String aString) {
+    return aString.distinct().count() == aString.length();
+}
+```
+
 
 #### java.util.Random
 
@@ -3253,9 +3315,9 @@ void checkMyStack(@ForAll("myStackActions") ActionChain<MyStringStack> chain) {
 @Provide
 Arbitrary<ActionChain<MyStringStack>> myStackActions() {
   return ActionChain.startWith(MyStringStack::new)
-                    .addAction(new PushAction())
-                    .addAction(pop())
-                    .addAction(new ClearAction());
+                    .withAction(new PushAction())
+                    .withAction(pop())
+                    .withAction(new ClearAction());
 }
 ```
 
@@ -3316,9 +3378,9 @@ explicitly using `withMaxTransformations(int)`:
 @Provide
 Arbitrary<ActionChain<MyStringStack>> myStackActions() {
     return ActionChain.startWith(MyStringStack::new)
-                      .addAction(new PushAction())
-                      .addAction(pop())
-                      .addAction(new ClearAction())
+                      .withAction(new PushAction())
+                      .withAction(pop())
+                      .withAction(new ClearAction())
                       .withMaxTransformations(10);
 }
 ```
@@ -3333,10 +3395,10 @@ which then requires to explicitly add an action with an `endOfChain()` transform
 @Provide
 Arbitrary<ActionChain<MyStringStack>> myStackActions() {
     return ActionChain.startWith(MyStringStack::new)
-                      .addAction(new PushAction())
-                      .addAction(pop())
-                      .addAction(new ClearAction())
-                      .addAction(Action.just(Transformer.endOfChain()))
+                      .withAction(new PushAction())
+                      .withAction(pop())
+                      .withAction(new ClearAction())
+                      .withAction(Action.just(Transformer.endOfChain()))
                       .infinite();
 }
 
@@ -4402,8 +4464,9 @@ be resolved to `"A String"`.
 ### Create your own Annotations for Arbitrary Configuration
 
 All you can do [to constrain default parameter generation](#constraining-default-generation)
-is adding another annotation to a parameter or its parameter types. What if the existing parameters
-do not suffice your needs? Is there a way to enhance the set of constraint annotations? Yes, there is!
+is adding another annotation to a parameter or its parameter types. What if the existing annotations
+do not suffice for your needs? 
+Is there a way to enhance the set of constraint annotations? Yes, there is!
 
 The mechanism you can plug into is similar to what you do when
 [providing your own default arbitrary providers](#providing-default-arbitraries). That means:
@@ -4412,29 +4475,40 @@ The mechanism you can plug into is similar to what you do when
    [`ArbitraryConfigurator`](/docs/snapshot/javadoc/net/jqwik/api/configurators/ArbitraryConfigurator.html).
 2. Register the implementation using using Java’s `java.util.ServiceLoader` mechanism.
 
+jQwik will then call your implementation for every parameter that is annotated with 
+`@ForAll` and any **additional annotation**.
+That also means that parameters without an additional annotation will not 
+and cannot be affected by a configurator.
+
 #### Arbitrary Configuration Example: `@Odd`
 
 To demonstrate the idea let's create an annotation `@Odd` which will constrain any integer
 generation to only generate odd numbers. First things first, so here's
-the [`@Odd` annotation](https://github.com/jqwik-team/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/Odd.java)
-together with the
-[configurator implementation](https://github.com/jqwik-team/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/OddConfigurator.java):
+the [`@Odd` annotation](https://github.com/jqwik-team/jqwik/blob/master/documentation/src/test/java/net/jqwik/docs/arbitraryconfigurator/Odd.java):
 
 ```java
 @Target({ ElementType.ANNOTATION_TYPE, ElementType.PARAMETER, ElementType.TYPE_USE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Odd {
 }
-
-public class OddConfigurator extends ArbitraryConfiguratorBase {
-	public Arbitrary<Integer> configure(Arbitrary<Integer> arbitrary, Odd odd) {
-		return arbitrary.filter(number -> Math.abs(number % 2) == 1);
-	}
-}
 ```
 
-Mind that the implementation uses an abstract base class - instead of the interface itself -
-which simplifies implementation if you're only interested in a single annotation.
+On its own this annotation will not have any effect. You also need an arbitrary configurator:
+
+```java
+public class OddConfigurator implements ArbitraryConfigurator {
+
+    @Override
+    public <T> Arbitrary<T> configure(Arbitrary<T> arbitrary, TypeUsage targetType) {
+        if (!targetType.isOfType(Integer.class) && !targetType.isOfType(int.class)) {
+            return arbitrary;
+        }
+        return targetType.findAnnotation(Odd.class)
+                         .map(odd -> arbitrary.filter(number -> Math.abs(((Integer) number) % 2) == 1))
+                         .orElse(arbitrary);
+    }
+}
+```
 
 If you now
 [register the implementation](https://github.com/jqwik-team/jqwik/blob/master/documentation/src/test/resources/META-INF/services/net.jqwik.api.configurators.ArbitraryConfigurator),
@@ -4448,46 +4522,55 @@ boolean oddIntegersOnly(@ForAll @Odd int aNumber) {
 }
 ```
 
-There are a few catches, though:
+However, this implementation is rather onerous since it has to check for supported target types 
+and annotation; it also has to cast the arbitrary's value to `Integer`.
+Let's see if we can do better.
 
-- Currently `OddConfigurator` will accept any target type since type erasure
-  will get rid of `<Integer>` in configure-method's signature at runtime.
-  Therefore, using `@Odd` together with e.g. `BigInteger` will lead to a runtime
-  exception. You can prevent that by explicitly accepting only some target types:
+#### Using Arbitrary Configurator Base Class
 
-  ```java
-  public class OddConfigurator extends ArbitraryConfiguratorBase {
+Deriving your implementation from [`ArbitraryConfiguratorBase`](/docs/snapshot/javadoc/net/jqwik/api/configurators/ArbitraryConfiguratorBase.html) will largely simplify things:
 
-  	@Override
-  	protected boolean acceptTargetType(TypeUsage targetType) {
-  		return targetType.isAssignableFrom(Integer.class);
-  	}
 
-  	public Arbitrary<Integer> configure(Arbitrary<Integer> arbitrary, Odd odd) {
-  		return arbitrary.filter(number -> Math.abs(number % 2) == 1);
-  	}
-  }
-  ```
+```java
+public class OddConfigurator extends ArbitraryConfiguratorBase {
 
-  Alternatively, you can check for an object's type directly and use different
-  filter algorithms:
+	public Arbitrary<Integer> configure(Arbitrary<Integer> arbitrary, Odd odd) {
+		return arbitrary.filter(number -> Math.abs(number % 2) == 1);
+	}
+}
+```
 
-  ```java
-  public Arbitrary<Number> configure(Arbitrary<Number> arbitrary, Odd odd) {
-      return arbitrary.filter(number -> {
-          if (number instanceof Integer)
-              return Math.abs((int) number % 2) == 1;
-          if (number instanceof BigInteger)
-              return ((BigInteger) number).remainder(BigInteger.valueOf(2))
-                                          .abs().equals(BigInteger.ONE);
-          return false;
-      });
-  }
-  ```
+The nice thing about `ArbitraryConfiguratorBase` is that it will take care of all the
+boilerplate code for you. It will check for supported target types and annotations and
+will also that the actual arbitrary can be cast to the arbitrary parameter type.
+Your subclass can have any number of `configure` methods under the following constraints:
 
-- You can combine `@Odd` with other annotations like `@Positive` or `@Range` or another
-  self-made configurator. In this case the order of configurator application might play a role,
-  which can be influenced by overriding the `order()` method of a configurator.
+- They must be `public`.
+- Their name starts with `configure`.
+- Their first parameter must be of type `Arbitrary` or a subtype of `Arbitrary`.
+- Their second parameter must have an annotation type.
+- Their return type must be `Arbitrary` or a subtype of `Arbitrary`, 
+  compatible with the original arbitrary's target type.
+
+With this knowledge we can easily enhance our `OddConfigurator` to also support `BigInteger` values:
+
+```java
+public class OddConfigurator extends ArbitraryConfiguratorBase {
+    public Arbitrary<Integer> configureInteger(Arbitrary<Integer> arbitrary, Odd odd) {
+        return arbitrary.filter(number -> Math.abs(number % 2) == 1);
+    }
+
+    public Arbitrary<BigInteger> configureBigInteger(Arbitrary<BigInteger> arbitrary, Odd odd) {
+        return arbitrary.filter(number -> {
+            return number.remainder(BigInteger.valueOf(2)).abs().equals(BigInteger.ONE);
+        });
+    }
+}
+```
+
+You can combine `@Odd` with other annotations like `@Positive` or `@Range` or another
+self-made configurator. In this case the order of configurator application might play a role,
+which can be influenced by overriding the `order()` method of a configurator.
 
 
  
@@ -4512,8 +4595,9 @@ and [DomainContextBase](/docs/snapshot/javadoc/net/jqwik/api/domains/DomainConte
 In subclasses of `DomainContextBase` you have several options to specify 
 arbitrary providers, arbitrary configurators and reporting formats:
 
-- Add methods annotated with `Provide` and a return type of `Arbitrary<T>`.
-  The result of an annotated method will then be used as an arbitrary provider for type `T`.
+- Add methods annotated with `Provide` and a return type of `Arbitrary<TParam>`.
+  The result of an annotated method will then be used as an arbitrary provider
+  for `@ForAll` parameters of type `TParam`.
   
   Those methods follow the same rules as 
   [provider methods in container classes](#parameter-provider-methods),
@@ -4524,19 +4608,19 @@ arbitrary providers, arbitrary configurators and reporting formats:
 - Add inner classes (static or not static, but not private) that implement `ArbitraryProvider`.
   An instance of this class will then be created and used as arbitrary provider.
 
-- Additionally implement `ArbitraryProvider` and the domain context instance
+- Additionally, implement `ArbitraryProvider` and the domain context instance
   itself will be used as arbitrary provider.
 
 - Add inner classes (static or not static, but not private) that implement `ArbitraryConfigurator`.
   An instance of this class will then be created and used as configurator.
 
-- Additionally implement `ArbitraryConfigurator` and the domain context instance
+- Additionally, implement `ArbitraryConfigurator` and the domain context instance
   itself will be used as configurator.
 
 - Add inner classes (static or not static, but not private) that implement `SampleReportingFormat`.
   An instance of this class will then be created and used for reporting values of your domain object.
 
-- Additionally implement `SampleReportingFormat` and the domain context instance
+- Additionally, implement `SampleReportingFormat` and the domain context instance
   itself will be used for reporting values of your domain object.
 
 A `DomainContext` implementation class can itself have `@Domain` annotations,
@@ -4546,7 +4630,7 @@ You can override method `DomainContext.initialize(PropertyLifecycleContext conte
 which will be called once for each property to which this context is applied.
 Since the lifecycle of `DomainContext` instances is not specified,
 do not rely on storing or caching any information in member variables.
-Instead use jqwik's [Storage Mechanism](#lifecycle-storage) to persist data if needed.
+Instead, use jqwik's [Storage Mechanism](#lifecycle-storage) to persist data if needed.
 
 
 ### Domain example: American Addresses
@@ -5593,6 +5677,7 @@ __Table of contents:__
   - [Jqwik Tuples in Kotlin](#jqwik-tuples-in-kotlin)
   - [Type-based Arbitraries](#type-based-arbitraries)
   - [Diverse Convenience Functions](#diverse-convenience-functions)
+  - [Combinator DSL](#combinator-dsl)
 - [Quirks and Bugs](#quirks-and-bugs)
 
 #### Build Configuration for Kotlin
@@ -5612,7 +5697,7 @@ Here's the jqwik-related part of the Gradle build file for a Kotlin project:
 ```kotlin
 dependencies {
     ...
-    testImplementation("net.jqwik:jqwik-kotlin:1.7.2-SNAPSHOT")
+    testImplementation("net.jqwik:jqwik-kotlin:1.8.0-SNAPSHOT")
 }
 
 tasks.withType<Test>().configureEach {
@@ -5998,6 +6083,68 @@ There's a more Kotlinish way to do the same: `anyForType<MyType>()`.
 - `Collection<T>.anySubset()` can replace 
   `Arbitraries.subsetOf(collection: Collection<T>)`
 
+##### Combinator DSL
+
+The combinator DSL provides another, potentially more convenient, wrapper for
+`Combinators.combine`.
+
+Instead of a list of arguments, it uses kotlin's property delegates to refer to
+the arbitraries that are being combined:
+
+```kotlin
+combine {
+    val first by Arbitraries.strings()
+    val second by Arbitraries.strings()
+    // ...
+
+    combineAs {
+        "first: ?first, second: ?second"
+    }
+}
+```
+
+Note that accessing the `first` or `second` properties in the example above 
+_outside_ the `combineAs` block would result in an error.
+
+In the background, this is equivalent to:
+
+```kt
+combine(listOf(Arbitraries.strings(), Arbitraries.strings())) { values ->
+    "first: ?{values[0]}, second: ?{values[1]}"
+}
+```
+
+It is also possible to use filters within the combinator DSL:
+
+```kotlin
+combine {
+    val first by Arbitraries.strings()
+    val second by Arbitraries.strings()
+
+    filter { first.isNotEmpty() }
+    filter { first != second }
+
+    combineAs {
+        // 'first' will never be empty or equal to 'second'
+
+        "first" + "second"
+    }
+}
+```
+
+And you can also achieve the `flatCombine` behaviour, by using `flatCombineAs`:
+
+```kotlin
+combine {
+    val first by Arbitraries.strings()
+    val second by Arbitraries.strings()
+    // ...
+
+    flatCombineAs {
+        Arbitraries.just("first: ?first, second: ?second")
+    }
+}
+```
 
 #### Quirks and Bugs
 
@@ -6654,4 +6801,4 @@ If a certain element, e.g. a method, is not annotated itself, then it carries th
 
 ## Release Notes
 
-Read this version's [release notes](/release-notes.html#172-snapshot).
+Read this version's [release notes](/release-notes.html#180-snapshot).
