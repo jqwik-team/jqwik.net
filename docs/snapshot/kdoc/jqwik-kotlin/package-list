@@ -1,5 +1,10 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:experiments////PointingToDeclaration/jqwik-kotlin/experiments/index.html
+$dokka.location:experiments/KotlinExperiments///PointingToDeclaration/jqwik-kotlin/experiments/-kotlin-experiments/index.html
+$dokka.location:experiments/KotlinExperiments/KotlinExperiments/#/PointingToDeclaration/jqwik-kotlin/experiments/-kotlin-experiments/-kotlin-experiments.html
+$dokka.location:experiments/KotlinExperiments/combinesOneToThree/#/PointingToDeclaration/jqwik-kotlin/experiments/-kotlin-experiments/combines-one-to-three.html
+$dokka.location:experiments/KotlinExperiments/filter arbitraries/#net.jqwik.api.Tuple.Tuple2[kotlin.Int,kotlin.Int]/PointingToDeclaration/jqwik-kotlin/experiments/-kotlin-experiments/filter arbitraries.html
 $dokka.location:net.jqwik.kotlin.api////PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/index.html
 $dokka.location:net.jqwik.kotlin.api//any/kotlin.Boolean.Companion#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any.html
 $dokka.location:net.jqwik.kotlin.api//any/kotlin.Byte.Companion#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any.html
@@ -22,16 +27,17 @@ $dokka.location:net.jqwik.kotlin.api//any/kotlin.ranges.IntRange.Companion#/Poin
 $dokka.location:net.jqwik.kotlin.api//any/kotlin.ranges.IntRange.Companion#kotlin.ranges.IntRange/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any.html
 $dokka.location:net.jqwik.kotlin.api//anyForType/#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-for-type.html
 $dokka.location:net.jqwik.kotlin.api//anyFunction/#kotlin.reflect.KClass[*]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function.html
-$dokka.location:net.jqwik.kotlin.api//anyFunction0/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function0.html
-$dokka.location:net.jqwik.kotlin.api//anyFunction1/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function1.html
-$dokka.location:net.jqwik.kotlin.api//anyFunction2/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function2.html
-$dokka.location:net.jqwik.kotlin.api//anyFunction3/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function3.html
-$dokka.location:net.jqwik.kotlin.api//anyFunction4/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function4.html
+$dokka.location:net.jqwik.kotlin.api//anyFunction0/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function0.html
+$dokka.location:net.jqwik.kotlin.api//anyFunction1/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function1.html
+$dokka.location:net.jqwik.kotlin.api//anyFunction2/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function2.html
+$dokka.location:net.jqwik.kotlin.api//anyFunction3/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function3.html
+$dokka.location:net.jqwik.kotlin.api//anyFunction4/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-function4.html
 $dokka.location:net.jqwik.kotlin.api//anyPair/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-pair.html
 $dokka.location:net.jqwik.kotlin.api//anySubset/kotlin.collections.Collection[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-subset.html
 $dokka.location:net.jqwik.kotlin.api//anyTriple/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-triple.html
 $dokka.location:net.jqwik.kotlin.api//anyValue/kotlin.collections.Collection[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/any-value.html
 $dokka.location:net.jqwik.kotlin.api//array/net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/array.html
+$dokka.location:net.jqwik.kotlin.api//combine/#kotlin.Function1[net.jqwik.kotlin.api.CombinatorScope,net.jqwik.kotlin.api.Combined[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/combine.html
 $dokka.location:net.jqwik.kotlin.api//combine/#kotlin.collections.List[net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]]#kotlin.Function1[kotlin.collections.List[TypeParam(bounds=[kotlin.Any?])],kotlin.Boolean]?#kotlin.Function1[kotlin.collections.List[TypeParam(bounds=[kotlin.Any?])],TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/combine.html
 $dokka.location:net.jqwik.kotlin.api//combine/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]?#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/combine.html
 $dokka.location:net.jqwik.kotlin.api//combine/#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function3[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),kotlin.Boolean]?#kotlin.Function3[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/combine.html
@@ -72,7 +78,15 @@ $dokka.location:net.jqwik.kotlin.api//pair/net.jqwik.api.Arbitrary[TypeParam(bou
 $dokka.location:net.jqwik.kotlin.api//runBlockingProperty/#kotlin.coroutines.CoroutineContext#kotlin.coroutines.SuspendFunction1[kotlinx.coroutines.CoroutineScope,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/run-blocking-property.html
 $dokka.location:net.jqwik.kotlin.api//sequence/net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/sequence.html
 $dokka.location:net.jqwik.kotlin.api//triple/net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/triple.html
-$dokka.location:net.jqwik.kotlin.api//use/net.jqwik.api.Builders.BuilderCombinator[TypeParam(bounds=[kotlin.Any?])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function2[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/use.html
+$dokka.location:net.jqwik.kotlin.api//use/net.jqwik.api.Builders.BuilderCombinator[TypeParam(bounds=[kotlin.Any])]#net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function2[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/use.html
+$dokka.location:net.jqwik.kotlin.api/ArbitraryProperty///PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-arbitrary-property/index.html
+$dokka.location:net.jqwik.kotlin.api/ArbitraryProperty/getValue/#kotlin.Nothing?#kotlin.reflect.KProperty[*]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-arbitrary-property/get-value.html
+$dokka.location:net.jqwik.kotlin.api/CombinatorScope///PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combinator-scope/index.html
+$dokka.location:net.jqwik.kotlin.api/CombinatorScope/combineAs/#kotlin.Function0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combinator-scope/combine-as.html
+$dokka.location:net.jqwik.kotlin.api/CombinatorScope/filter/#kotlin.Function0[kotlin.Boolean]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combinator-scope/filter.html
+$dokka.location:net.jqwik.kotlin.api/CombinatorScope/flatCombineAs/#kotlin.Function0[net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combinator-scope/flat-combine-as.html
+$dokka.location:net.jqwik.kotlin.api/CombinatorScope/provideDelegate/net.jqwik.api.Arbitrary[TypeParam(bounds=[kotlin.Any?])]#kotlin.Nothing?#kotlin.reflect.KProperty[*]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combinator-scope/provide-delegate.html
+$dokka.location:net.jqwik.kotlin.api/Combined///PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-combined/index.html
 $dokka.location:net.jqwik.kotlin.api/IntRangeArbitrary///PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-int-range-arbitrary/index.html
 $dokka.location:net.jqwik.kotlin.api/IntRangeArbitrary/IntRangeArbitrary/#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-int-range-arbitrary/-int-range-arbitrary.html
 $dokka.location:net.jqwik.kotlin.api/IntRangeArbitrary/IntRangeArbitrary/#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-int-range-arbitrary/-int-range-arbitrary.html
@@ -91,5 +105,6 @@ $dokka.location:net.jqwik.kotlin.api/SequenceArbitrary/ofSize/#kotlin.ranges.Int
 $dokka.location:net.jqwik.kotlin.api/SequenceArbitrary/uniqueElements/#/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-sequence-arbitrary/unique-elements.html
 $dokka.location:net.jqwik.kotlin.api/SequenceArbitrary/uniqueElements/#java.util.function.Function[TypeParam(bounds=[kotlin.Any?]),kotlin.Any]/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-sequence-arbitrary/unique-elements.html
 $dokka.location:net.jqwik.kotlin.api/SequenceArbitrary/withSizeDistribution/#net.jqwik.api.RandomDistribution/PointingToDeclaration/jqwik-kotlin/net.jqwik.kotlin.api/-sequence-arbitrary/with-size-distribution.html
+experiments
 net.jqwik.kotlin.api
 
