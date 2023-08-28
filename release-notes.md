@@ -41,7 +41,7 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 
 - Upgraded to JUnit Platform 1.10.0
 
-- Upgraded to Kotlin 1.9.0
+- Upgraded to Kotlin 1.9.10
 
 - Added `StringArbitrary.uniqueChars()` to generate strings with unique characters.
   Discussion in [issue 506](https://github.com/jqwik-team/jqwik/issues/506).
