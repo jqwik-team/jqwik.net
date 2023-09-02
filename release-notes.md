@@ -9,12 +9,8 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.8.0-SNAPSHOT](#180-snapshot)
-- [1.7.4](#174)
-- [1.7.3](#173)
-- [1.7.2](#172)
-- [1.7.1](#171)
-- [1.7.0](#170)
+- [1.8.0](#180)
+- [1.7.x](#17x)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
 - [1.4.0](#140)
@@ -27,12 +23,12 @@ title: jqwik Release Notes
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## 1.8.0-SNAPSHOT
+## 1.8.0
 
 <p style="padding-left:1em;font-size:larger">
-<a href="/docs/snapshot/user-guide.html">User guide</a>,
-<a href="/docs/snapshot/javadoc/index.html">javadoc</a>
-and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
+<a href="/docs/1.8.0/user-guide.html">User guide</a>,
+<a href="/docs/1.8.0/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.8.0/kdoc/index.html">kdoc</a>
 </p>
 
 #### New and Enhanced Features
@@ -54,7 +50,7 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
   See [issue 494](https://github.com/jqwik-team/jqwik/issues/494).
   This is an experimental feature.
 
-- The Kotlin module got a brand new [Combinator DSL](/docs/snapshot/user-guide.html#combinator-dsl).
+- The Kotlin module got a brand new [Combinator DSL](/docs/1.8.0/user-guide.html#combinator-dsl).
 
 - Configurators that are based on `ArbitraryConfiguratorBase` will now consider
   any public method the name of which starts with `configure` as a configuration method candidate.
@@ -108,17 +104,17 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 #### Bug Fixes
 
 - Fixed bug when selecting parameterized values from domain contexts.
-  See [Issue 499](https://github.com/jqwik-team/jqwik/issues/499).
+  See [issue 499](https://github.com/jqwik-team/jqwik/issues/499).
 
 - Fixed type variable resolution bug.
-  See [Issue 492](https://github.com/jqwik-team/jqwik/issues/492).
+  See [issue 492](https://github.com/jqwik-team/jqwik/issues/492).
 
 - Fixed bug where presence of Kotlin module could mess up annotations
   of parameters in Java classes.
 
+## 1.7.x
 
-
-## 1.7.4
+### 1.7.4
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.7.4/user-guide.html">User guide</a>,
@@ -158,7 +154,7 @@ and <a href="/docs/1.7.4/kdoc/index.html">kdoc</a>
   See [Issue 473](https://github.com/jqwik-team/jqwik/issues/473).
 
 
-## 1.7.3
+### 1.7.3
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.7.3/user-guide.html">User guide</a>,
@@ -187,7 +183,7 @@ and <a href="/docs/1.7.3/kdoc/index.html">kdoc</a>
 - Fixed "Shrink&Grow" bug: https://github.com/jqwik-team/jqwik/issues/439
 
 
-## 1.7.2
+### 1.7.2
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.7.2/user-guide.html">User guide</a>,
@@ -231,7 +227,7 @@ and <a href="/docs/1.7.2/kdoc/index.html">kdoc</a>
   See [#446](https://github.com/jqwik-team/jqwik/issues/446).
 
 
-## 1.7.1
+### 1.7.1
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.7.1/user-guide.html">User guide</a>,
@@ -278,7 +274,7 @@ and <a href="/docs/1.7.1/kdoc/index.html">kdoc</a>
   See https://github.com/jqwik-team/jqwik/issues/393.
 
 
-## 1.7.0
+### 1.7.0
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.7.0/user-guide.html">User guide</a>,
