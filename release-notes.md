@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.8.1-SNAPSHOT](#181-snapshot)
 - [1.8.0](#180)
 - [1.7.x](#17x)
 - [1.6.x](#16x)
@@ -22,6 +23,19 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.8.1-SNAPSHOT
+
+#### New and Enhanced Features
+
+#### Breaking Changes
+
+#### Bug Fixes
+
+- Fixed bug when using `Combinators.combine()` on empty list of arbitraries.
+  See [issue 522](https://github.com/jqwik-team/jqwik/issues/522).
+
 
 ## 1.8.0
 
