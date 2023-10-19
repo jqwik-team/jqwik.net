@@ -36,6 +36,9 @@ title: jqwik Release Notes
 - Fixed bug when using `Combinators.combine()` on empty list of arbitraries.
   See [issue 522](https://github.com/jqwik-team/jqwik/issues/522).
 
+- Fixed type resolution bug.
+  See [issue 519](https://github.com/jqwik-team/jqwik/issues/519).
+
 
 ## 1.8.0
 
