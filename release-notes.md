@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.8.1-SNAPSHOT](#181-snapshot)
+- [1.8.1](#181)
 - [1.8.0](#180)
 - [1.7.x](#17x)
 - [1.6.x](#16x)
@@ -25,11 +25,21 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.8.1-SNAPSHOT
+## 1.8.1
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.8.1/user-guide.html">User guide</a>,
+<a href="/docs/1.8.1/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.8.1/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
+_No new features_
+
 #### Breaking Changes
+
+_No breaking changes_
 
 #### Bug Fixes
 
