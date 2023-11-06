@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.8.2-SNAPSHOT](#182-snapshot)
 - [1.8.1](#181)
 - [1.8.0](#180)
 - [1.7.x](#17x)
@@ -23,6 +24,22 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.8.2-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Upgraded to JUnit Platform 1.10.0
+
+
+#### Breaking Changes
+
+_No breaking changes_
+
+#### Bug Fixes
+
+_No bug fixes_
 
 
 ## 1.8.1
