@@ -37,9 +37,11 @@ title: jqwik Release Notes
 
 _No breaking changes_
 
+
 #### Bug Fixes
 
-_No bug fixes_
+- Nested test containers using `@Group` have not been working properly with JDK >= 18. 
+  Now they do. See [issue 528](https://github.com/jqwik-team/jqwik/issues/528).
 
 
 ## 1.8.1
