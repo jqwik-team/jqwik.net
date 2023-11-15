@@ -43,6 +43,9 @@ _No breaking changes_
 - Nested test containers using `@Group` have not been working properly with JDK >= 18. 
   Now they do. See [issue 528](https://github.com/jqwik-team/jqwik/issues/528).
 
+- Fixed stack overflow exception while shrinking.
+  See [issue 526](https://github.com/jqwik-team/jqwik/issues/526)
+
 
 ## 1.8.1
 
