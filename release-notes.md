@@ -46,6 +46,10 @@ _No breaking changes_
 - Fixed stack overflow exception while shrinking.
   See [issue 526](https://github.com/jqwik-team/jqwik/issues/526)
 
+- Fixed out of memory error while shrinking.
+  See [issue 527](https://github.com/jqwik-team/jqwik/issues/527).
+  Many thanks to [Juhan Oskar Hennoste](https://github.com/FeldrinH) for providing a fix.
+
 
 ## 1.8.1
 
