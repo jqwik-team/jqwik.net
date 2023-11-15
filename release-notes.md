@@ -44,7 +44,7 @@ _No breaking changes_
   Now they do. See [issue 528](https://github.com/jqwik-team/jqwik/issues/528).
 
 - Fixed stack overflow exception while shrinking.
-  See [issue 526](https://github.com/jqwik-team/jqwik/issues/526)
+  See [issue 526](https://github.com/jqwik-team/jqwik/issues/526).
 
 - Fixed out of memory error while shrinking.
   See [issue 527](https://github.com/jqwik-team/jqwik/issues/527).
