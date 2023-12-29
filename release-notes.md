@@ -73,7 +73,7 @@ _No breaking changes_
   See [issue 526](https://github.com/jqwik-team/jqwik/issues/526).
 
 - Fixed out of memory error while shrinking.
-  See [issue 527](https://github.com/jqwik-team/jqwik/issues/527).
+  See [issue 525](https://github.com/jqwik-team/jqwik/issues/525).
   Many thanks to [Juhan Oskar Hennoste](https://github.com/FeldrinH) for providing a fix.
 
 
