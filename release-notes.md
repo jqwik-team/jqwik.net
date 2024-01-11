@@ -33,6 +33,8 @@ title: jqwik Release Notes
 
 - Upgraded to JUnit Platform 1.10.1
 
+- Upgraded to Kotlin 1.9.22
+
 
 #### Breaking Changes
 
