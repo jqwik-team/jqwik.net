@@ -46,6 +46,9 @@ _No breaking changes_
 - Shrinking of strings with uniqueChars() constraint did not work properly.
   See [issue 541](https://github.com/jqwik-team/jqwik/issues/541).
 
+- Fixed integer generation bug with uniform distribution.
+  See [issue 544](https://github.com/jqwik-team/jqwik/issues/544):
+
 
 ## 1.8.2
 
