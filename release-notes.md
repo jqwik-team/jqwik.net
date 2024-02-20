@@ -31,6 +31,8 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
+- Upgraded to KotlinX 1.8.0
+
 - Upgraded to JUnit Platform 1.10.2
 
 - Upgraded to Kotlin 1.9.22
