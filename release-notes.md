@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.8.3-SNAPSHOT](#183-snapshot)
+- [1.8.3](#183)
 - [1.8.2](#182)
 - [1.8.1](#181)
 - [1.8.0](#180)
@@ -27,7 +27,7 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.8.3-SNAPSHOT
+## 1.8.3
 
 #### New and Enhanced Features
 
