@@ -29,6 +29,12 @@ title: jqwik Release Notes
 
 ## 1.8.3
 
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.8.3/user-guide.html">User guide</a>,
+<a href="/docs/1.8.3/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.8.3/kdoc/index.html">kdoc</a>
+</p>
+
 #### New and Enhanced Features
 
 - Upgraded to KotlinX 1.8.0
