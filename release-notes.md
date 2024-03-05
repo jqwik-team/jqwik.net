@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.8.4-SNAPSHOT](#184-snapshot)
 - [1.8.3](#183)
 - [1.8.2](#182)
 - [1.8.1](#181)
@@ -25,6 +26,23 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.8.4-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Kotlin module: Added `anyForSubtypeOf<MyInterface>()`.
+  Many thanks to [jibidus](https://github.com/jibidus) for the contribution!
+
+#### Breaking Changes
+
+_No breaking changes_
+
+
+#### Bug Fixes
+
+_No known bugs_
 
 
 ## 1.8.3
