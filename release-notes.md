@@ -35,6 +35,8 @@ title: jqwik Release Notes
 - Kotlin module: Added `anyForSubtypeOf<MyInterface>()`.
   Many thanks to [jibidus](https://github.com/jibidus) for the contribution!
 
+- Upgraded to Kotlin 1.9.23
+
 #### Breaking Changes
 
 _No breaking changes_
