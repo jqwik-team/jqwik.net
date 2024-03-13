@@ -44,7 +44,8 @@ _No breaking changes_
 
 #### Bug Fixes
 
-_No known bugs_
+- Fixed bug in Kotlin module that let Java properties fail.
+  See [issue 557](https://github.com/jqwik-team/jqwik/issues/557).
 
 
 ## 1.8.3
