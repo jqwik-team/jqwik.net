@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.8.5-SNAPSHOT](#185-snapshot)
 - [1.8.4](#184)
 - [1.8.3](#183)
 - [1.8.2](#182)
@@ -26,6 +27,24 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.8.5-SNAPSHOT
+
+
+#### New and Enhanced Features
+
+
+#### Breaking Changes
+
+_No breaking changes_
+
+
+#### Bug Fixes
+
+- Fixed bug that led to duplicate lifecycle invocations under inheritance.
+  See [issue 562](https://github.com/jqwik-team/jqwik/issues/562).
+
 
 
 ## 1.8.4
