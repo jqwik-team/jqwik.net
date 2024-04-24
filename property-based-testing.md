@@ -27,6 +27,18 @@ However, most of the stuff is in the context of functional programming languages
 Some of the common patterns used in PBT are described 
 [here](http://blog.ssanj.net/posts/2016-06-26-property-based-testing-patterns.html).
 
+
+### More Videos Featuring PBT and jqwik
+
+_In reverse chronological order:_
+
+- [Getting creative with jqwik generators - Advanced property-based testing in Kotlin](https://www.youtube.com/watch?v=mLpVw0h-hE4)
+- [Property based testing: let your testing library work for you By Magda Stożek](https://www.youtube.com/watch?v=0NBy4IcSJcA)
+- [Property Based Testing: Concepts and Examples - Kenneth Kousen](https://www.youtube.com/watch?v=TWxI5FXAae0)
+- [Property Based Testing in Kotlin and Java with jqwik - Johannes Link](https://www.youtube.com/watch?v=dPhZIo27fYE)
+- [Property-based Testing (German) - Johannes Link](https://www.youtube.com/watch?v=O5gO0dNfsGs)
+
+
 ### Alternative Tools for the JVM
 
 There are a few alternatives to _jqwik_ if you want to do PBT on the JVM:
