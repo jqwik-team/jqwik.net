@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.8.5-SNAPSHOT](#185-snapshot)
+- [1.8.5](#185)
 - [1.8.4](#184)
 - [1.8.3](#183)
 - [1.8.2](#182)
@@ -29,11 +29,17 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.8.5-SNAPSHOT
+## 1.8.5
 
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.8.5/user-guide.html">User guide</a>,
+<a href="/docs/1.8.5/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.8.5/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
+- Upgraded to Kotlin 1.9.24
 
 #### Breaking Changes
 
