@@ -38,8 +38,7 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
-_No breaking changes_
-
+- Requires Kotlin 2
 
 #### Bug Fixes
 
