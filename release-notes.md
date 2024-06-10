@@ -45,6 +45,9 @@ title: jqwik Release Notes
 - Nullability annotations have been added to many API methods and interfaces.
   This could lead to compile-time warnings or errors in your code if you are using tool chains that validate those.
 
+- `UniqueElements.by()` now requires a `Class<? extends Function<? extends @Nullable Object, ?>>` 
+  instead of a `Class<? extends Function<?, Object>>`.
+
 
 #### Bug Fixes
 
