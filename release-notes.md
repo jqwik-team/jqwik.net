@@ -36,13 +36,22 @@ title: jqwik Release Notes
 
 - Upgraded to Kotlin 2.0.0
 
+
 #### Breaking Changes
 
-- Requires Kotlin 2
+- `StatisticsCoverage.checkQuery(Predicate<? super List<?>> query)`: 
+  `query` is now of type `Predicate<? super List<?>>` instead of `Predicate<? super List<Object>>`.
+
+- Nullability annotations have been added to many API methods and interfaces.
+  This could lead to compile-time warnings or errors in your code if you are using tool chains that validate those.
+
 
 #### Bug Fixes
 
-_No bug fixes_
+- Tools like CheckerFramework did not play well with jqwik's (wrong) usage of `@Nullable` on type variables.
+  This has been fixed.
+  See [issue 575](https://github.com/jqwik-team/jqwik/issues/575) for details.
+  Thanks to [vlsi](https://github.com/vlsi) for working out all the nitty, gritty details!
 
 
 ## 1.8.5
