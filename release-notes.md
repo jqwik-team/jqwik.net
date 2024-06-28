@@ -9,13 +9,8 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.9.0-SNAPSHOT](#190-snapshot)
-- [1.8.5](#185)
-- [1.8.4](#184)
-- [1.8.3](#183)
-- [1.8.2](#182)
-- [1.8.1](#181)
-- [1.8.0](#180)
+- [1.9.0](#190)
+- [1.8.x](#18x)
 - [1.7.x](#17x)
 - [1.6.x](#16x)
 - [1.5.x](#15x)
@@ -30,7 +25,13 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.9.0-SNAPSHOT
+## 1.9.0
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.9.0/user-guide.html">User guide</a>,
+<a href="/docs/1.9.0/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.9.0/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
@@ -61,7 +62,9 @@ title: jqwik Release Notes
 - Fixed type matching bug as revealed in [this comment](https://github.com/jqwik-team/jqwik/issues/575#issuecomment-2159531304)
 
 
-## 1.8.5
+## 1.8.x
+
+### 1.8.5
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.5/user-guide.html">User guide</a>,
@@ -85,7 +88,7 @@ _No breaking changes_
 
 
 
-## 1.8.4
+### 1.8.4
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.4/user-guide.html">User guide</a>,
@@ -111,7 +114,7 @@ _No breaking changes_
   See [issue 557](https://github.com/jqwik-team/jqwik/issues/557).
 
 
-## 1.8.3
+### 1.8.3
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.3/user-guide.html">User guide</a>,
@@ -142,7 +145,7 @@ _No breaking changes_
   See [issue 544](https://github.com/jqwik-team/jqwik/issues/544):
 
 
-## 1.8.2
+### 1.8.2
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.2/user-guide.html">User guide</a>,
@@ -174,7 +177,7 @@ _No breaking changes_
   Many thanks to [Juhan Oskar Hennoste](https://github.com/FeldrinH) for providing a fix.
 
 
-## 1.8.1
+### 1.8.1
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.1/user-guide.html">User guide</a>,
@@ -199,7 +202,7 @@ _No breaking changes_
   See [issue 519](https://github.com/jqwik-team/jqwik/issues/519).
 
 
-## 1.8.0
+### 1.8.0
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.8.0/user-guide.html">User guide</a>,
