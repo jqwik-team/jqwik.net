@@ -58,7 +58,7 @@ title: jqwik Release Notes
   See [issue 575](https://github.com/jqwik-team/jqwik/issues/575) for details.
   Thanks to [vlsi](https://github.com/vlsi) for working out all the nitty, gritty details!
 
-- Fixed type matching bug as revealed in https://github.com/jqwik-team/jqwik/issues/575#issuecomment-2159531304
+- Fixed type matching bug as revealed in [this comment](https://github.com/jqwik-team/jqwik/issues/575#issuecomment-2159531304)
 
 
 ## 1.8.5
