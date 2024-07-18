@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.9.1-SNAPSHOT](#191-snapshot)
 - [1.9.0](#190)
 - [1.8.x](#18x)
 - [1.7.x](#17x)
@@ -23,6 +24,26 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.9.1-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Introduced API to handle random seeds outside jqwik's lifecycle.
+  See [issue 581](https://github.com/jqwik-team/jqwik/issues/581).
+
+  - Added `JqwikSession.getRandom()` 
+  - Added `JqwikSession.start(String randomSeed)` 
+  - Added `JqwikSession.run(String randomSeed, Runnable runnable)` 
+
+
+#### Breaking Changes
+
+
+#### Dependency Upgrades and Bug Fixes
+
+- Upgrade to Gradle 8.9
 
 
 ## 1.9.0
