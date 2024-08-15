@@ -93,3 +93,18 @@ a code {
 
     a:focus {text-decoration: none}
 }
+
+#sponsorme-banner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 50px 10px 10px;
+    background-color: yellow;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
