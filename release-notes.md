@@ -43,7 +43,7 @@ title: jqwik Release Notes
 
 #### Dependency Upgrades and Bug Fixes
 
-- Upgrade to Gradle 8.9
+- Upgrade to Gradle 8.10
 
 
 ## 1.9.0
