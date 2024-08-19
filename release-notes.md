@@ -43,7 +43,8 @@ title: jqwik Release Notes
 
 #### Dependency Upgrades and Bug Fixes
 
-- Upgrade to Gradle 8.10
+- Upgraded to Gradle 8.10
+- Upgraded to JUnit Platform 1.11.0
 
 
 ## 1.9.0
