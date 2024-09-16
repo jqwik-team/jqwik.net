@@ -45,6 +45,8 @@ title: jqwik Release Notes
 
 - Upgraded to Gradle 8.10
 - Upgraded to JUnit Platform 1.11.0
+- Upgraded to KotlinX 1.9.0
+
 
 
 ## 1.9.0
