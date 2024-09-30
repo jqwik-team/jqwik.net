@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.9.1-SNAPSHOT](#191-snapshot)
+- [1.9.1](#191)
 - [1.9.0](#190)
 - [1.8.x](#18x)
 - [1.7.x](#17x)
@@ -26,7 +26,13 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.9.1-SNAPSHOT
+## 1.9.1
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.9.1/user-guide.html">User guide</a>,
+<a href="/docs/1.9.1/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.9.1/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
@@ -39,6 +45,8 @@ title: jqwik Release Notes
 
 
 #### Breaking Changes
+
+_No breaking changes_
 
 
 #### Dependency Upgrades and Bug Fixes
