@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.9.2-SNAPSHOT](#192-snapshot)
 - [1.9.1](#191)
 - [1.9.0](#190)
 - [1.8.x](#18x)
@@ -24,6 +25,25 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.9.2-SNAPSHOT
+
+#### New and Enhanced Features
+
+_No new features_
+
+#### Breaking Changes
+
+- The bug fix for [issue 599](https://github.com/jqwik-team/jqwik/issues/599) can
+  lead to different exception types - `IllegalArgumentException` instead of `CannotFindArbitraryException` - 
+  for provider methods that create objects of the wrong type.
+
+
+#### Dependency Upgrades and Bug Fixes
+
+- Fixed bug reported in [issue 599](https://github.com/jqwik-team/jqwik/issues/599) 
+  by making return type matching for provider methods loose again.
 
 
 ## 1.9.1
