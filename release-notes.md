@@ -31,7 +31,8 @@ title: jqwik Release Notes
 
 #### New and Enhanced Features
 
-_No new features_
+- Upgraded to Kotlin 2.1.0
+
 
 #### Breaking Changes
 
