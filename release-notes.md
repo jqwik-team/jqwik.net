@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.9.3-SNAPSHOT](#193-snapshot)
 - [1.9.2](#192)
 - [1.9.1](#191)
 - [1.9.0](#190)
@@ -25,6 +26,21 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.9.3-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Upgraded to Kotlin 2.1.10
+- Upgraded to JUnit Platform 1.11.4
+- Upgraded to KotlinX 1.10.1
+
+
+#### Breaking Changes
+
+
+#### Dependency Upgrades and Bug Fixes
 
 
 ## 1.9.2
