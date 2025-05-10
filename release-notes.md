@@ -39,6 +39,9 @@ title: jqwik Release Notes
 
 #### Breaking Changes
 
+- Added `Action.JustTransform.description()` to public API.
+  See [this pull request](https://github.com/jqwik-team/jqwik/pull/633) for context.
+
 
 #### Dependency Upgrades and Bug Fixes
 
