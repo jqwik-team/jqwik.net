@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.9.3-SNAPSHOT](#193-snapshot)
+- [1.9.3](#193)
 - [1.9.2](#192)
 - [1.9.1](#191)
 - [1.9.0](#190)
@@ -28,22 +28,32 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.9.3-SNAPSHOT
+## 1.9.3
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.9.3/user-guide.html">User guide</a>,
+<a href="/docs/1.9.3/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.9.3/kdoc/index.html">kdoc</a>
+</p>
+
+
 
 #### New and Enhanced Features
-
-- Upgraded to Kotlin 2.1.21
-- Upgraded to JUnit Platform 1.13.0
-- Upgraded to KotlinX 1.10.2
-
-
-#### Breaking Changes
 
 - Added `Action.JustTransform.description()` to public API.
   See [this pull request](https://github.com/jqwik-team/jqwik/pull/633) for context.
 
 
+#### Breaking Changes
+
+- New `Action.JustTransform.description()` may break binary compatibility.
+
+
 #### Dependency Upgrades and Bug Fixes
+
+- Upgraded to Kotlin 2.1.21
+- Upgraded to JUnit Platform 1.13.1
+- Upgraded to KotlinX 1.10.2
 
 
 ## 1.9.2
