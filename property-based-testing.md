@@ -32,6 +32,7 @@ Some of the common patterns used in PBT are described
 
 _In reverse chronological order:_
 
+- [Property based testing to preserve invariants - Mourjo Sen](https://www.youtube.com/watch?v=5tCzdkPPX_s)
 - [Getting creative with jqwik generators - Advanced property-based testing in Kotlin](https://www.youtube.com/watch?v=mLpVw0h-hE4)
 - [Property based testing: let your testing library work for you By Magda Stożek](https://www.youtube.com/watch?v=0NBy4IcSJcA)
 - [Property Based Testing: Concepts and Examples - Kenneth Kousen](https://www.youtube.com/watch?v=TWxI5FXAae0)
