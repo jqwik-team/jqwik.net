@@ -31,12 +31,9 @@ title: jqwik Release Notes
 
 ## 1.9.4-SNAPSHOT
 
-
 #### New and Enhanced Features
 
-
 #### Breaking Changes
-
 
 #### Dependency Upgrades and Bug Fixes
 
