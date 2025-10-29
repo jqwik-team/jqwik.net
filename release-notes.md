@@ -37,9 +37,8 @@ title: jqwik Release Notes
 
 #### Dependency Upgrades and Bug Fixes
 
-- Upgraded to Kotlin 2.2.0
-- Upgraded to JUnit Platform 1.13.2
-
+- Upgraded to Kotlin 2.2.21
+- Upgraded to JUnit Platform 1.14.0
 
 ## 1.9.3
 
