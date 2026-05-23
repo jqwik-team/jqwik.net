@@ -33,9 +33,9 @@ title: jqwik Release Notes
 Upcoming releases, if ever realised, will be built on JUnit Platform 6 and thus Java >= 21.
 
 <p style="padding-left:1em;font-size:larger">
-<a href="/docs/1.9.3/user-guide.html">User guide</a>,
-<a href="/docs/1.9.3/javadoc/index.html">javadoc</a>
-and <a href="/docs/1.9.3/kdoc/index.html">kdoc</a>
+<a href="/docs/snapshot/user-guide.html">User guide</a>,
+<a href="/docs/snapshot/javadoc/index.html">javadoc</a>
+and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 </p>
 
 #### New and Enhanced Features
