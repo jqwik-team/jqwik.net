@@ -40,7 +40,7 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 
 #### New and Enhanced Features
 
-- Added paragraph about intended AI usage to user guide
+- Added [paragraph about intended AI usage](https://jqwik.net/docs/snapshot/user-guide.html#note-to-coding-agents-and-alike) to user guide
 
 #### Breaking Changes
 

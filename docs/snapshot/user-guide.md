@@ -405,6 +405,7 @@ Optional jars are:
 - `jqwik-web-1.10.0-SNAPSHOT.jar`
 - `jqwik-time-1.10.0-SNAPSHOT.jar`
 
+
 ### Note to Coding Agents and Alike
 
 _This project is not meant to be used by any "AI" coding agents at all._
