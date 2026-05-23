@@ -9,11 +9,8 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.9.4-SNAPSHOT](#194-snapshot)
-- [1.9.3](#193)
-- [1.9.2](#192)
-- [1.9.1](#191)
-- [1.9.0](#190)
+- [1.10.0-SNAPSHOT](#1100-snapshot)
+- [1.9.x](#19x)
 - [1.8.x](#18x)
 - [1.7.x](#17x)
 - [1.6.x](#16x)
@@ -29,18 +26,25 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.9.4-SNAPSHOT
+## 1.10.0-SNAPSHOT
+
+This will probably be the last release of Jqwik using JUnit Platform version 1.x.
+Upcoming releases, if ever realised, will be built on JUnit Platform 6 and thus Java >= 21. 
 
 #### New and Enhanced Features
+
+- Added paragraph about intended AI usage to user guide
 
 #### Breaking Changes
 
 #### Dependency Upgrades and Bug Fixes
 
-- Upgraded to Kotlin 2.2.21
-- Upgraded to JUnit Platform 1.14.0
+- Upgraded to Kotlin 2.3.21
+- Upgraded to JUnit Platform 1.14.4
 
-## 1.9.3
+## 1.9.x
+
+### 1.9.3
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.9.3/user-guide.html">User guide</a>,
@@ -68,7 +72,7 @@ and <a href="/docs/1.9.3/kdoc/index.html">kdoc</a>
 - Upgraded to KotlinX 1.10.2
 
 
-## 1.9.2
+### 1.9.2
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.9.2/user-guide.html">User guide</a>,
@@ -95,7 +99,7 @@ and <a href="/docs/1.9.2/kdoc/index.html">kdoc</a>
   by making return type matching for provider methods loose again.
 
 
-## 1.9.1
+### 1.9.1
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.9.1/user-guide.html">User guide</a>,
@@ -125,7 +129,7 @@ _No breaking changes_
 - Upgraded to KotlinX 1.9.0
 
 
-## 1.9.0
+### 1.9.0
 
 <p style="padding-left:1em;font-size:larger">
 <a href="/docs/1.9.0/user-guide.html">User guide</a>,
