@@ -42,7 +42,12 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 
 - Added [paragraph about intended AI usage](https://jqwik.net/docs/snapshot/user-guide.html#note-to-coding-agents-and-alike) to user guide
 
+- Made `@NotBlank` configurator compatible with UTF-8 whitespace.
+  See [issue 663](https://github.com/jqwik-team/jqwik/issues/663) for details.
+
 #### Breaking Changes
+
+- Use of jqwik >= 1.10 with coding agents is strongly discouraged.
 
 #### Dependency Upgrades and Bug Fixes
 
