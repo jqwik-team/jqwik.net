@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.10.0-SNAPSHOT](#1100-snapshot)
+- [1.10.0](#1100)
 - [1.9.x](#19x)
 - [1.8.x](#18x)
 - [1.7.x](#17x)
@@ -26,17 +26,18 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.10.0-SNAPSHOT
+## 1.10.0
 
 **This will probably be the last release of Jqwik using JUnit Platform version 1.x.**
 
 Upcoming releases, if ever realised, will be built on JUnit Platform 6 and thus Java >= 21.
 
 <p style="padding-left:1em;font-size:larger">
-<a href="/docs/snapshot/user-guide.html">User guide</a>,
-<a href="/docs/snapshot/javadoc/index.html">javadoc</a>
-and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
+<a href="/docs/1.10.0/user-guide.html">User guide</a>,
+<a href="/docs/1.10.0/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.10.0/kdoc/index.html">kdoc</a>
 </p>
+
 
 #### New and Enhanced Features
 
@@ -63,7 +64,6 @@ and <a href="/docs/snapshot/kdoc/index.html">kdoc</a>
 <a href="/docs/1.9.3/javadoc/index.html">javadoc</a>
 and <a href="/docs/1.9.3/kdoc/index.html">kdoc</a>
 </p>
-
 
 
 #### New and Enhanced Features
