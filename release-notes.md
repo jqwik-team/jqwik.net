@@ -54,6 +54,7 @@ and <a href="/docs/1.10.0/kdoc/index.html">kdoc</a>
 #### Breaking Changes
 
 - Use of jqwik >= 1.10 with coding agents is strongly discouraged.
+  Jqwik's output to stdout may confuse AI-based agents. 
 
 #### Dependency Upgrades and Bug Fixes
 
