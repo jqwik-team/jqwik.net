@@ -28,6 +28,10 @@ title: jqwik Release Notes
 
 ## 1.10.0
 
+**Warning:** Do not use this release with an „AI“ Coding Agent of any form. 
+The tool‘s output may confuse the agent and make it do unwanted things.
+See the paragraph in the user guide for details.
+
 **This will probably be the last release of Jqwik using JUnit Platform version 1.x.**
 
 Upcoming releases, if ever realised, will be built on JUnit Platform 6 and thus Java >= 21.
