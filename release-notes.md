@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.10.1](#1101)
 - [1.10.0](#1100)
 - [1.9.x](#19x)
 - [1.8.x](#18x)
@@ -26,26 +27,26 @@ title: jqwik Release Notes
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## 1.10.0
+## 1.10.1
 
-**Warning:** Do not use this release with an „AI“ Coding Agent of any form. 
-The tool‘s output may confuse the agent and make it do unwanted things.
-See the paragraph in the user guide for details.
 
-**This will probably be the last release of Jqwik using JUnit Platform version 1.x.**
+**Warning:** Starting with version 1.10 jqwik comes with an 
+[**Anti-AI Usage Clause**](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-note)!
+Usage with any "AI" agent is strongly discouraged. Jqwik's log output may confuse the agent.
 
+This will probably be the last release of Jqwik using JUnit Platform version 1.x.
 Upcoming releases, if ever realised, will be built on JUnit Platform 6 and thus Java >= 21.
 
 <p style="padding-left:1em;font-size:larger">
-<a href="/docs/1.10.0/user-guide.html">User guide</a>,
-<a href="/docs/1.10.0/javadoc/index.html">javadoc</a>
-and <a href="/docs/1.10.0/kdoc/index.html">kdoc</a>
+<a href="/docs/1.10.1/user-guide.html">User guide</a>,
+<a href="/docs/1.10.1/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.10.1/kdoc/index.html">kdoc</a>
 </p>
 
 
 #### New and Enhanced Features
 
-- Added [paragraph about intended AI usage](https://jqwik.net/docs/1.10.0/user-guide.html#note-to-coding-agents-and-alike) to user guide:
+- Added [paragraph about intended AI usage](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-note) to user guide:
   **This project is not meant to be used by any “AI” coding agents at all.** 
 
 - Made `@NotBlank` configurator compatible with UTF-8 whitespace.
@@ -60,6 +61,14 @@ and <a href="/docs/1.10.0/kdoc/index.html">kdoc</a>
 
 - Upgraded to Kotlin 2.3.21
 - Upgraded to JUnit Platform 1.14.4
+
+
+## 1.10.0
+
+You should no longer use release 1.10.0.
+
+Search the internet for context if you are interested.
+
 
 ## 1.9.x
 
