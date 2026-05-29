@@ -31,7 +31,7 @@ title: jqwik Release Notes
 
 
 **Warning:** Starting with version 1.10 jqwik comes with an 
-[**Anti-AI Usage Clause**](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-note)!
+[**Anti-AI Usage Clause**](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-clause)!
 Usage with any "AI" agent is strongly discouraged. Jqwik's log output may confuse the agent.
 
 This will probably be the last release of Jqwik using JUnit Platform version 1.x.
