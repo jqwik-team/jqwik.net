@@ -46,7 +46,7 @@ and <a href="/docs/1.10.1/kdoc/index.html">kdoc</a>
 
 #### New and Enhanced Features
 
-- Added [paragraph about intended AI usage](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-note) to user guide:
+- Added [paragraph about intended AI usage](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-clause) to user guide:
   **This project is not meant to be used by any “AI” coding agents at all.** 
 
 - Made `@NotBlank` configurator compatible with UTF-8 whitespace.
