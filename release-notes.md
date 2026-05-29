@@ -29,7 +29,6 @@ title: jqwik Release Notes
 
 ## 1.10.1
 
-
 **Warning:** Starting with version 1.10 jqwik comes with an 
 [**Anti-AI Usage Clause**](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-clause)!
 Usage with any "AI" agent is strongly discouraged. Jqwik's log output may confuse the agent.
