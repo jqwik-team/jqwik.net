@@ -1,3 +1,7 @@
+<div style="font-size: 150%; font-style: italic">
+Mind that starting with version 1.10 jqwik comes with an 
+<a href="https://jqwik.net/docs/current/user-guide.html#anti-ai-usage-clause">Anti-AI Usage Clause</a>. 
+</div>
 
 <p style="font-size: larger;margin-left: 1cm;">
     <em>jqwik</em> is pronounced like "jay quick" <code style="font-size: large">[ˈdʒeɪkwɪk]</code>.
