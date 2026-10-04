@@ -9,6 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
+- [1.10.2-SNAPSHOT](#1101-snapshot)
 - [1.10.1](#1101)
 - [1.10.0](#1100)
 - [1.9.x](#19x)
@@ -25,6 +26,23 @@ title: jqwik Release Notes
 - [0.8.x](#08x)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## 1.10.2-SNAPSHOT
+
+#### New and Enhanced Features
+
+- Annotation `@Provide` has now `@Keep` as meta-annotation, which enables IDEs to recognise that methods
+  using this annotation are indeed used.
+  See [issue 733](https://github.com/jqwik-team/jqwik/issues/733) for details.
+  Many thanks to [JarvisCraft](https://github.com/JarvisCraft) for finding and fixing it.
+
+#### Breaking Changes
+
+_No known breaking changes_
+
+#### Dependency Upgrades and Bug Fixes
+
 
 
 ## 1.10.1
