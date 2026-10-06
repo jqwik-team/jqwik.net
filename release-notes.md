@@ -46,6 +46,7 @@ _No known breaking changes_
 
 #### Dependency Upgrades and Bug Fixes
 
+- Upgraded build system to Gradle 9.8.0
 
 
 ## 1.10.1
