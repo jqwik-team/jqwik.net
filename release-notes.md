@@ -9,7 +9,7 @@ title: jqwik Release Notes
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ### Table of Contents  
 
-- [1.10.2-SNAPSHOT](#1102-snapshot)
+- [1.10.2](#1102)
 - [1.10.1](#1101)
 - [1.10.0](#1100)
 - [1.9.x](#19x)
@@ -31,7 +31,13 @@ title: jqwik Release Notes
 [**Anti-AI Usage Clause**](https://jqwik.net/docs/1.10.1/user-guide.html#anti-ai-usage-clause)!
 Usage with any "AI" agent is strongly discouraged. Jqwik's log output may confuse the agent.
 
-## 1.10.2-SNAPSHOT
+## 1.10.2
+
+<p style="padding-left:1em;font-size:larger">
+<a href="/docs/1.10.2/user-guide.html">User guide</a>,
+<a href="/docs/1.10.2/javadoc/index.html">javadoc</a>
+and <a href="/docs/1.10.2/kdoc/index.html">kdoc</a>
+</p>
 
 #### New and Enhanced Features
 
